@@ -28,11 +28,9 @@ const Home: NextPage = () => {
 
   return (
     <>
-    <div style={styles.paperContainer}>
     <Navber/>
     <div style={{marginTop:'10%'}}>
     <Content/>
-    </div>
     </div>
     <div style={{ position: 'sticky',zIndex:5,bottom:'1px' }}>
     <Footer/>

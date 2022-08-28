@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const styles = {
     paperContainer: {
       zIndex: 1,
-      height: '750px',
+      height: '650px',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       minWidth: 'fit-content',
@@ -18,9 +18,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   };
   return (
-    <div style={styles.paperContainer}>
+    // <div style={styles.paperContainer}>
       <Component {...pageProps} />
-    </div>
+  //  </div>
+   
   )
 }
 

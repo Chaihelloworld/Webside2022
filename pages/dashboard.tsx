@@ -9,7 +9,6 @@ import Content from '../components/content';
 import Dashboard from '../components/dashboard';
 import NewBg from '../public/NewBg.jpg'
 import Footer from '../components/footer';
-
 const Home: NextPage = () => {
   const styles = {
     paperContainer: {
@@ -28,13 +27,13 @@ const Home: NextPage = () => {
   return (
   
     <>
-    <div style={styles.paperContainer}>
+    {/* <div style={styles.paperContainer}> */}
     <Navber/>
     <div style={{marginTop:'10%'}}>
     <Content/>
     </div>
     <Dashboard/>
-    </div>
+    {/* </div> */}
     <div style={{ position: 'sticky',zIndex:5,bottom:'1px' }}>
     <Footer/>
 

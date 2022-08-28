@@ -8,10 +8,20 @@ import {
   NavItem,
   NavLink,
   Button,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+  Offcanvas,
+  OffcanvasBody,
+  OffcanvasHeader,
 } from 'reactstrap';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
+import styler from '../styles/Navbar.module.scss'
+import Image from 'next/image'
+import imgIcon from '../public/img/user.svg'
 function Example(props: any) {
   const [collapsed, setCollapsed] = useState(true);
   const [cookie, setCookie, removeCookie] = useCookies(['email']);
@@ -20,65 +30,126 @@ function Example(props: any) {
   const [state, setState] = useState(false);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
- 
+
 
   const logoutAPI = () => {
     console.log('logout')
-          setState(false)
-          removeCookie('email');
-          removeCookiesPass('password');
-          removeCookiesToken('apiToken')
+    setState(false)
+    removeCookie('email');
+    removeCookiesPass('password');
+    removeCookiesToken('apiToken')
 
-          window.location.reload()
+    window.location.reload()
 
 
   };
-  useEffect(()=>{
-   if(cookieToken.apiToken){
-    setState(true)
+  useEffect(() => {
+    if (cookieToken.apiToken) {
+      setState(true)
 
-   }
-  },[cookieToken])
+    }
+  }, [cookieToken])
   return (
     <div >
-      <Nav className="my-1 "
+           <Navbar 
+                style={{backgroundColor:'#4300bb'}}
+                >
+                  <div style={{color:'white',margin:'auto'}}>
+                  Copyright © 2022 FORM GOOGLE. All Rights Reserved.
 
-        style={{ backgroundColor: '#212529', height: '65px' }}
+                  </div>
+            </Navbar>
+      <Nav 
+
+        style={{
+          backgroundColor: 'white', height: '65px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}
       >
-        <NavbarBrand href="/" className="me-auto mt-3 p-1" style={{ color: 'white' }}>
-          HOME
-        </NavbarBrand>
-        {state &&((
-           <NavItem>
-           <NavLink
-             active
-           >
-             <Button color="info" className='mt-1' style={{ color: 'white', fontWeight: 700 }}
-               onClick={() => {
-                 logoutAPI();
-               }}
-
-             >
-               Logout
-             </Button>
-
-           </NavLink>
-         </NavItem>
-        ))}
-   {!state &&((
-    <NavItem>
+        <Nav
+        >
+          <NavItem>
             <NavLink
               active
-              href="/login"
+              href="#"
             >
-              <Button color="info" className='mt-1' style={{ color: 'white', fontWeight: 700 }}>
-                Login
-              </Button>
-
+              หน้าหลัก
             </NavLink>
           </NavItem>
-   ))}
-          
+          {/* <NavItem>
+            <NavLink href="#">
+              Another Link
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              disabled
+              href="#"
+            >
+              Disabled Link
+            </NavLink>
+          </NavItem>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              Options
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>Option 1</DropdownItem>
+              <DropdownItem>Option 2</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Reset</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown> */}
+        </Nav>
+        {state && ((
+          <NavItem>
+            <NavLink
+              active
+            >
+
+              <Button outline className={styler.root} onClick={() => {
+                logoutAPI();
+              }}
+              >
+                {/* <Image
+                  src={imgIcon}
+                  alt="Picture of the author"
+                  width={25}
+                  height={25}
+                /> */}
+                <div>
+                  ออกจากระบบ
+
+                </div>
+              </Button>
+            </NavLink>
+          </NavItem>
+        ))}
+        {!state && ((
+          <NavItem>
+            <NavLink
+              active
+            href="/login"
+            >
+              <Button outline className={styler.root} onClick={function noRefCheck() { }}>
+                <Image
+                  src={imgIcon}
+                  alt="Picture of the author"
+                  width={25}
+                  height={25}
+                />
+                <div>
+                  เข้าสู่ระบบ
+
+                </div>
+              </Button>
+           
+            </NavLink>
+          </NavItem>
+        ))}
+
 
 
         {/* <NavItem>
@@ -92,6 +163,13 @@ function Example(props: any) {
         </NavItem> */}
 
       </Nav>
+      <Navbar 
+                style={{backgroundColor:'#4300bb'}}
+                >
+                  <div style={{color:'white',margin:'auto'}}>
+
+                  </div>
+            </Navbar>
     </div>
   );
 }

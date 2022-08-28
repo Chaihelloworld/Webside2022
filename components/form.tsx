@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Col, Form, FormText, Input, Label } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Col, Form, FormText, Input, Label, Card, CardText, CardTitle, Row } from 'reactstrap';
+import styler from '../styles/Navbar.module.scss'
 
 function Modals(args: any) {
   const [modal, setModal] = useState(false);
@@ -8,10 +9,34 @@ function Modals(args: any) {
   const toggle = () => setModal(!modal);
 
   return (
-    <div>
-      <Button color="danger" onClick={toggle}>
-        บันทึกข้อมูล
-      </Button>
+    <div style={{ marginTop: 50,marginBottom:50 }}>
+
+
+      <Row>
+        <Col sm={12} md={12}>
+          <Card body style={{ backgroundColor: '#ffffffc7' }}>
+            <CardTitle style={{ fontWeight: 700, fontSize: '25px' }}>
+              แบบฟอร์มบันทึกข้อมูล
+            </CardTitle>
+            <CardText style={{ padding: '10px' }}>
+                  แบบฟอร์มเก็บข้อมูลไฟฟ้า น้ำประปา และคาร์บอน เพื่อนประโยชน์ส่วนรวม ข้อมูลจะถูกจัดเก็บและนำมาประมวลผล และแสดงผลผ่านกราฟ เพื่อให้คุณ
+              สามารถตรวจสอบ ได้ด้วยตนเองแบบฟอร์มเก็บข้อมูลไฟฟ้า น้ำประปา และคาร์บอน เพื่อนประโยชน์ส่วนรวม ข้อมูลจะถูกจัดเก็บและนำมาประมวลผล และแสดงผลผ่านกราฟ เพื่อให้คุณ
+              สามารถตรวจสอบ ได้ด้วยตนเองแบบฟอร์มเก็บข้อมูลไฟฟ้า น้ำประปา และคาร์บอน เพื่อนประโยชน์ส่วนรวม ข้อมูลจะถูกจัดเก็บและนำมาประมวลผล และแสดงผลผ่านกราฟ เพื่อให้คุณ
+              สามารถตรวจสอบ ได้ด้วยตนเอง
+            </CardText>
+            <Button className={styler.btnstyle}
+              onClick={toggle}>
+              บันทึกข้อมูล
+            </Button>
+          </Card>
+        </Col>
+
+      </Row>
+
+
+
+
+
       <Modal isOpen={modal} toggle={toggle} {...args}>
         <ModalHeader toggle={toggle} > <p style={{ fontSize: '16px' }}>บันทึกข้อมูลการใช้พลังงานครัวเรือน</p></ModalHeader>
         <ModalBody>

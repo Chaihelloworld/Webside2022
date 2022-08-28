@@ -1,24 +1,22 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'reactstrap';
+import { Col, Container, Navbar, Row, UncontrolledCarousel } from 'reactstrap';
 import Navber from '../components/Navber';
-import Content from '../components/content';
 import Dashboard from '../components/dashboard';
 import NewBg from '../public/NewBg.jpg'
-import Footer from '../components/footer';
-
+import Form from '../components/form';
+import Reports from './reports'
 const Home: NextPage = () => {
   const styles = {
     paperContainer: {
+      width: '100%',
       zIndex: 1,
-      height: '900px',
+      height: '100%',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       // width: '150%',
-      
+      padding:20,
       backgroundPosition: 'center',
       backgroundImage: `url(${NewBg.src})`,
     },
@@ -28,21 +26,30 @@ const Home: NextPage = () => {
 
   return (
     <>
-    {/* <div style={styles.paperContainer}> */}
-    <div style={styles.paperContainer}>
+      <Navber />
+      <div style={styles.paperContainer}>
+      <Row>
+          <Col
+            xs="12" md={6}
+          >
+          </Col>
+          <Col
+            xs="12" md={6}
+          >
+            <Form />
+          </Col>
+        </Row>
+</div>
+<Navbar style={{backgroundColor:'#4300bb'}}>
+   
+            </Navbar>
+            <div style={{padding:20}}>
+            <Dashboard/>
 
-    <Navber/>
-    <div style={{marginTop:'10%'}}>
-    <Content/>
-    </div>
-    <Dashboard/>
-    </div>
-    {/* <div style={{ position: 'sticky',zIndex:5,bottom:'1px' }}>
-    <Footer/>
+            </div>
 
-    </div> */}
     </>
-    
+
   )
 }
 
