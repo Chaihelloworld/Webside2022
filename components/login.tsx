@@ -21,10 +21,7 @@ import {
 import { useCookies } from 'react-cookie';
 
 function Content() {
-  const instance = axios.create({
-    baseURL: 'https://6e89-184-82-27-191.ap.ngrok.io/',
-    headers: { 'Content-Type': 'application/json' }
-  });
+
   const [cookie, setCookie] = useCookies(['email']);
   const [cookieToken, setCookieToken] = useCookies(['apiToken']);
   const [cookiePass, setCookiePass] = useCookies(['password']);
@@ -58,7 +55,7 @@ function Content() {
   const submit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     console.log(email, password);
-    axios.post('http://localhost:8000/api/login', {
+    axios.post('https://e9be-184-82-27-191.ap.ngrok.io/api/login', {
       email: email,
       password: password
     })

@@ -52,7 +52,7 @@ function Example(props: any) {
   return (
     <div >
            <Navbar 
-                style={{backgroundColor:'#4300bb'}}
+                style={{backgroundColor:'#01459a'}}
                 >
                   <div style={{color:'white',margin:'auto'}}>
                   Copyright © 2022 FORM GOOGLE. All Rights Reserved.
@@ -164,7 +164,7 @@ function Example(props: any) {
 
       </Nav>
       <Navbar 
-                style={{backgroundColor:'#4300bb'}}
+                style={{backgroundColor:'#01459a'}}
                 >
                   <div style={{color:'white',margin:'auto'}}>
 

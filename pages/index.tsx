@@ -40,7 +40,7 @@ const Home: NextPage = () => {
           </Col>
         </Row>
 </div>
-<Navbar style={{backgroundColor:'#4300bb'}}>
+<Navbar style={{backgroundColor:'#01459a'}}>
    
             </Navbar>
             <div style={{padding:20}}>
