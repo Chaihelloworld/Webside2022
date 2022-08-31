@@ -260,7 +260,6 @@ console.log(formik.values.phone)
                 />
             </div>
            
-          
           </Card>
         </Col>
       </Row>
