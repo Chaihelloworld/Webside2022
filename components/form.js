@@ -29,6 +29,7 @@ import * as yup from "yup";
 import { BsFillTrashFill } from "react-icons/bs";
 import { v4 } from "uuid";
 import { async } from "@firebase/util";
+import Qrcodes from '../public/img/qrcode.jpg'
 const validationSchema = yup.object({
   // fullname: yup
   //   .string()
@@ -232,16 +233,34 @@ console.log(formik.values.phone)
               เพื่อนประโยชน์ส่วนรวม ข้อมูลจะถูกจัดเก็บและนำมาประมวลผล
               และแสดงผลผ่านกราฟ เพื่อให้คุณ สามารถตรวจสอบ ได้ด้วยตนเอง
             </CardText>
-            <div style={{display:'flex'}}>
-            <Button className={styler.btnstyle} onClick={toggle}>
+            <div style={{display:'flex',alignItems:'center'}}>
+              
+     
+<Button className={styler.btnstyle} onClick={toggle}>
               บันทึกข้อมูล
             </Button>
+      
             <Button  color="success"
                 disableElevation  style={{transform:'translate(5px,0px)',width:250}} onClick={()=> window.open('https://docs.google.com/forms/d/e/1FAIpQLSecTcif-SUzSzxLGulvbGTQgeH_rjiLQ_nTIkmGiScrdtlftA/viewform', "_blank")} >
               Google form
             </Button>
+     
+          
+            </div>
+             <Button  color="info" 
+                disableElevation  style={{transform:'translate(0px,0px)',width:250,color:'white',fontWeight:700,marginTop:15}} onClick={()=> window.open('https://drive.google.com/file/d/1UC6pWDMHvI-dFxwJReVS1OD3sJU4vHfh/view', "_blank")} >
+              ไฟล์สำหรับปริ้น
+            </Button>
+            <div style={{width:'250px',marginTop:15}}>
+            <Image
+                  src={Qrcodes}
+                  alt="Picture of the author"
+                  width={250}
+                  height={250}
+                />
             </div>
            
+          
           </Card>
         </Col>
       </Row>
