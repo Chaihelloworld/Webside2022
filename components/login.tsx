@@ -55,7 +55,7 @@ function Content() {
   const submit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     console.log(email, password);
-    axios.post('https://e9be-184-82-27-191.ap.ngrok.io/api/login', {
+    axios.post('http://localhost:5000/api/login', {
       email: email,
       password: password
     })

@@ -29,7 +29,7 @@ import * as yup from "yup";
 import { BsFillTrashFill } from "react-icons/bs";
 import { v4 } from "uuid";
 import { async } from "@firebase/util";
-import Qrcodes from '../public/img/qrcode.jpg'
+import Qrcodes from "../public/img/qrcode.jpg";
 const validationSchema = yup.object({
   // fullname: yup
   //   .string()
@@ -49,15 +49,13 @@ function Modals(args) {
 
   const toggle = () => setModal(!modal);
 
-
-
   // const submit = () => {
   //   console.log(email, password);
 
   // };
   const [inputList, setInputList] = useState([
     {
-      userid:"",
+      userid: "",
       name: "",
       link: [],
     },
@@ -71,10 +69,22 @@ function Modals(args) {
       member: "",
       amount_month: "",
       occupation: "",
+      billelec: "",
+      numbillelec: "",
+      name_using_w: "",
+      num_using_w: "",
+      using_pow: "",
+      using_pow_amount: "",
+      guss_amount: "",
+      guss_size: "",
+      guss_using: "",
     },
     validationSchema: validationSchema,
 
     onSubmit: async (values) => {
+      // if (Overload) {
+        teestupload();
+      // }
       try {
         const param = {
           fullname: values.fullname,
@@ -84,25 +94,31 @@ function Modals(args) {
           member: values.member,
           amount_month: values.amount_month,
           occupation: values.occupation,
+          billelec: values.billelec,
+          numbillelec: values.numbillelec,
+          name_using_w: values.name_using_w,
+          num_using_w: values.num_using_w,
+          using_pow: values.using_pow,
+          using_pow_amount: values.using_pow_amount,
+          guss_amount: values.guss_amount,
+          guss_size: values.guss_size,
+          guss_using: values.guss_using,
         };
-        console.log(param)
+        console.log(param);
 
         const result = await axios.post(
-          "https://e9be-184-82-27-191.ap.ngrok.io/api/create_list",
+          "http://localhost:5000/api/create_list",
           param
         );
 
         if (result) {
-         
-
           console.log(result);
+
           setModal(false);
-          Swal.fire("Good job!", "You clicked the button!", "success");
+          Swal.fire("Good job!", "บันทึกข้อมูลสำเร็จ!", "success");
+          window.location.reload()
         } else {
           console.log("err 500");
-        }
-        if(Overload){
-          teestupload();
         }
        
       } catch (error) {
@@ -114,7 +130,6 @@ function Modals(args) {
   });
   const [flielength, setFlieLength] = useState(0);
   const [arryImg, setArryImg] = useState([]);
-
 
   useEffect(() => {
     for (let i = 0; i < inputList.length; i++) {
@@ -133,62 +148,45 @@ function Modals(args) {
   }, []);
 
   const teestupload = async () => {
-    
     // console.log(imageTage)
     try {
-      console.log(inputList.userid)
-      const param = inputList
-      
-      // if(param.userid == null) 
+      console.log(inputList.userid);
+      const param = inputList;
+
+      // if(param.userid == null)
       for (let index = 0; index < param.length; index++) {
-        console.log(param[index])
+        console.log(param[index]);
         const result = await axios.post(
-          "https://e9be-184-82-27-191.ap.ngrok.io/api/create_room",
+          "http://localhost:5000/api/create_room",
           param[index]
         );
-  
-        if (result) {
-          console.log(result);
-          setModal(false);
-          Swal.fire("Good job!", "You clicked the button!", "success");
-        } else {
-          console.log("err 500");
-        }
-      
       }
     } catch (error) {
       console.log(error);
     } finally {
-      setOverload(false)
+      setOverload(false);
 
       console.log("connecting");
     }
-   
   };
-  
+
   const handleInputChange = (e, index) => {
-    const dataimg = e.target.files
+    const dataimg = e.target.files;
     let i = 0;
-      const imageTage = [];
+    const imageTage = [];
     if (dataimg == null) {
-      
       console.log("image = null");
     } else {
-
       const length = e.target.files.length;
 
       for (let index = 0; index < length; index++) {
-        const imageRef = ref(
-          storage,
-          `images/${dataimg[index].name + v4()}`
-        );
+        const imageRef = ref(storage, `images/${dataimg[index].name + v4()}`);
         uploadBytes(imageRef, dataimg[index]).then((res) => {
           imageTage.push(res.metadata.name);
         });
       }
-      setOverload(true)
+      setOverload(true);
     }
-
 
     const { name, value } = e.target;
     const { link } = e.target;
@@ -206,15 +204,9 @@ function Modals(args) {
     setInputList(list);
   };
   const handleAddClick = () => {
-    setInputList([
-      ...inputList,
-      {  userid:"",
-        name: "",
-        link: [],
-      },
-    ]);
+    setInputList([...inputList, { userid: "", name: "", link: [] }]);
   };
-console.log(formik.values.phone)
+  console.log(formik.values.phone);
   return (
     <div style={{ marginTop: 50, marginBottom: 50 }}>
       <Row>
@@ -233,21 +225,26 @@ console.log(formik.values.phone)
               เพื่อนประโยชน์ส่วนรวม ข้อมูลจะถูกจัดเก็บและนำมาประมวลผล
               และแสดงผลผ่านกราฟ เพื่อให้คุณ สามารถตรวจสอบ ได้ด้วยตนเอง
             </CardText>
-            <div style={{display:'flex',alignItems:'center'}}>
-              
-     
-<Button className={styler.btnstyle} onClick={toggle}>
-              บันทึกข้อมูล
-            </Button>
-      
-            <Button  color="success"
-                disableElevation  style={{transform:'translate(5px,0px)',width:250}} onClick={()=> window.open('https://docs.google.com/forms/d/e/1FAIpQLSecTcif-SUzSzxLGulvbGTQgeH_rjiLQ_nTIkmGiScrdtlftA/viewform', "_blank")} >
-              Google form
-            </Button>
-     
-          
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <Button className={styler.btnstyle} onClick={toggle}>
+                บันทึกข้อมูล
+              </Button>
+
+              <Button
+                color="success"
+                disableElevation
+                style={{ transform: "translate(5px,0px)", width: 250 }}
+                onClick={() =>
+                  window.open(
+                    "https://docs.google.com/forms/d/e/1FAIpQLSecTcif-SUzSzxLGulvbGTQgeH_rjiLQ_nTIkmGiScrdtlftA/viewform",
+                    "_blank"
+                  )
+                }
+              >
+                Google form
+              </Button>
             </div>
-             <Button  color="info" 
+            {/* <Button  color="info" 
                 disableElevation  style={{transform:'translate(0px,0px)',width:250,color:'white',fontWeight:700,marginTop:15}} onClick={()=> window.open('https://drive.google.com/file/d/1UC6pWDMHvI-dFxwJReVS1OD3sJU4vHfh/view', "_blank")} >
               ไฟล์สำหรับปริ้น
             </Button>
@@ -258,8 +255,7 @@ console.log(formik.values.phone)
                   width={250}
                   height={250}
                 />
-            </div>
-           
+            </div> */}
           </Card>
         </Col>
       </Row>
@@ -474,8 +470,190 @@ console.log(formik.values.phone)
                 </>
               );
             })}
-          
 
+            <FormGroup style={{ marginTop: 15 }}>
+              <Row>
+                <Col sm={6}>
+                  <Label for="billelec">หมายเลขที่ผู้ใช้ไฟฟ้า</Label>
+                  <Input
+                    id="billelec"
+                    name="billelec"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.billelec}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.billelec && Boolean(formik.errors.billelec)
+                    }
+                    helperText={
+                      formik.touched.billelec && formik.errors.billelec
+                    }
+                  />
+                </Col>
+                <Col sm={6}>
+                  <Label for="numbillelec">รหัสเครื่องวัด</Label>
+
+                  <Input
+                    id="numbillelec"
+                    name="numbillelec"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.numbillelec}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.numbillelec &&
+                      Boolean(formik.errors.numbillelec)
+                    }
+                    helperText={
+                      formik.touched.numbillelec && formik.errors.numbillelec
+                    }
+                  />
+                </Col>
+              </Row>
+            </FormGroup>
+
+            <FormGroup>
+              <Row>
+                <Col sm={6}>
+                  <Label for="name_using_w">ชื่อผู้ใช้น้ำ</Label>
+
+                  <Input
+                    id="name_using_w"
+                    name="name_using_w"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.name_using_w}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.name_using_w &&
+                      Boolean(formik.errors.name_using_w)
+                    }
+                    helperText={
+                      formik.touched.name_using_w && formik.errors.name_using_w
+                    }
+                  />
+                </Col>
+                <Col sm={6}>
+                  <Label for="num_using_w">เลขที่ผู้ใช้น้ำ</Label>
+
+                  <Input
+                    id="num_using_w"
+                    name="num_using_w"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.num_using_w}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.num_using_w &&
+                      Boolean(formik.errors.num_using_w)
+                    }
+                    helperText={
+                      formik.touched.num_using_w && formik.errors.num_using_w
+                    }
+                  />
+                </Col>
+                <Col sm={6}>
+                  <Label for="using_pow">การใช้น้ำมัน/บาท</Label>
+                  <Input
+                    id="using_pow"
+                    name="using_pow"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.using_pow}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.using_pow &&
+                      Boolean(formik.errors.using_pow)
+                    }
+                    helperText={
+                      formik.touched.using_pow && formik.errors.using_pow
+                    }
+                  />
+                </Col>
+                <Col sm={6}>
+                  <Label for="using_pow_amount">การใช้น้ำมัน/ลิตร</Label>
+                  <Input
+                    id="using_pow_amount"
+                    name="using_pow_amount"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.using_pow_amount}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.using_pow_amount &&
+                      Boolean(formik.errors.using_pow_amount)
+                    }
+                    helperText={
+                      formik.touched.using_pow_amount &&
+                      formik.errors.using_pow_amount
+                    }
+                  />
+                </Col>
+              </Row>
+            </FormGroup>
+
+            <FormGroup>
+              <Row>
+                <Col sm={6}>
+                  <Label for="guss_amount">จำนวนก๊าซหุงต้ม/ถัง</Label>
+                  <Input
+                    id="guss_amount"
+                    name="guss_amount"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.guss_amount}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.guss_amount &&
+                      Boolean(formik.errors.guss_amount)
+                    }
+                    helperText={
+                      formik.touched.guss_amount && formik.errors.guss_amount
+                    }
+                  />
+                </Col>
+                <Col sm={6}>
+                  <Label for="guss_size">ขนาดถังก๊าซหุงต้ม/ลิตร</Label>
+                  <Input
+                    id="guss_size"
+                    name="guss_size"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.guss_size}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.guss_size &&
+                      Boolean(formik.errors.guss_size)
+                    }
+                    helperText={
+                      formik.touched.guss_size && formik.errors.guss_size
+                    }
+                  />
+                </Col>
+              </Row>
+            </FormGroup>
+            <FormGroup>
+              <Label for="guss_using">
+                ปริมาณก๊าซหุงต้มขนาด 1 ถัง ใช้ได้กี่เดือน
+              </Label>
+              <Col sm={12}>
+                <Input
+                  id="guss_using"
+                  name="guss_using"
+                  placeholder=""
+                  type="text"
+                  value={formik.values.guss_using}
+                  onChange={formik.handleChange}
+                  error={
+                    formik.touched.guss_using &&
+                    Boolean(formik.errors.guss_using)
+                  }
+                  helperText={
+                    formik.touched.guss_using && formik.errors.guss_using
+                  }
+                />
+              </Col>
+            </FormGroup>
             <FormGroup
               style={{
                 marginTop: 25,
@@ -488,7 +666,6 @@ console.log(formik.values.phone)
                 style={{ width: "150px" }}
                 color="success"
                 disableElevation
-
               >
                 บันทึก
               </Button>
