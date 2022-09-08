@@ -10,30 +10,77 @@ import {
 function App() {
   const [data, setData] = useState([]);
   const headers = [
-    { label: "Security Code", key: "scrip_cd" },
-    { label: "Security Name", key: "scripname" },
-    { label: "Group", key: "scrip_grp" },
-    { label: "LTP", key: "highrate" },
-    { label: "Chg", key: "change_val" },
-    { label: "% Chg", key: "change_percent" }
+    { label: "ชื่อโรงเรียน", key: "schoolname"},
+    { label: "ชื่อ-สกุล", key: "fullname" },
+    { label: "อีเมล์", key: "email" },
+    { label: "จำนวนสมาชิกในครัวเรือน", key: "member" },
+    { label: "รายได้ต่อเดือน", key: "amount_month" },
+    { label: "อาชีพผู้ปกครอง", key: "occupation" },
+    { label: "หมายเลขผู้ใช้ไฟฟ้า", key: "billelec" },
+    { label: "รหัสเครื่องวัด", key: "numbillelec" },
+    { label: "ชื่อผู้ใช้น้ำ", key: "name_using_w" },
+    { label: "เลขที่ผู้ใช้น้ำ", key: "num_using_w" },
+    { label: "การใช้น้ำมัน/บาท", key: "using_pow" },
+    { label: "การใช้น้ำมัน/ลิตร", key: "using_pow_amount" },
+    { label: "จำนวนก๊าซหุงต้ม/ถัง", key: "guss_amount" },
+    { label: "ขนาดถังก๊าซหุงต้ม/ลิตร", key: "guss_size" },
+    // { label: "เบอร์ติดต่อ", key: "phone" },
+    // { label: "Chg", key: "change_val" },
+    // { label: "% Chg", key: "change_percent" }
+    
   ];
+  const prettyLink  = {
+    backgroundColor: '#8dc63f',
+    fontSize: 14,
+    fontWeight: 500,
+    height: 52,
+    padding: '0 48px',
+    borderRadius: 5,
+    color: '#fff'
+  };
+  const [Overload, setOverload] = useState(false);
+  const [datafecth, setDatafecth] = useState();
 
+
+  const fetchDataLise = async () => {
+    try {
+        const result = await axios.get(
+          "http://localhost:5000/api/getlisr_roomer"
+        )
+        if(!result.error){
+          console.log(result)
+          setDatafecth(result.result)
+        }else{
+          return;
+        }
+      
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setOverload(false);
+
+      console.log("connecting");
+    }
+  };
+
+  // /
   useEffect(() => {
+    // console.log(fetchDataLise)
     const fetchData = async () => {
       const response = await axios.get(
-        "https://api.bseindia.com/BseIndiaAPI/api/MktRGainerLoserData/w?GLtype=gainer&IndxGrp=AllMkt&IndxGrpval=AllMkt&orderby=all"
+        "http://localhost:5000/api/getlisr_roomer",
       );
-      const responseData = await response.data.Table;
+      const responseData = await response.data.data;
       console.log(responseData);
       setData(responseData);
     };
     fetchData();
   }, []);
-
+// console.log(datafecth)
   return (
     <div >
       {data && data.length > 0 && (
-        <CSVLink headers={headers} data={data} filename="bsedata.csv">
+        <CSVLink headers={headers} data={data} filename="report.csv" >
           <Button className={styler.btnstyleReport}>
                       <Image
                         src={Excels}

@@ -31,15 +31,35 @@ import { v4 } from "uuid";
 import { async } from "@firebase/util";
 import Qrcodes from "../public/img/qrcode.jpg";
 const validationSchema = yup.object({
-  // fullname: yup
-  //   .string()
-  //   .required("กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น")
-  //   .matches(/^[ก-๙]+$/, "กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น"),
-  // phone: yup
-  //   .number()
-  //   .required("กรุณากรอก username เป็นตัวเลขเท่านั้น")
-  //   .typeError("กรุณากรอก username เป็นตัวเลขเท่านั้น"),
+  schoolname: yup
+    .string()
+    .required("กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น")
+    .matches(/^[ก-๙]+$/, "กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น"),
+  fullname: yup
+    .string()
+    .required("กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น")
+    .matches(/^[ก-๙]+$/, "กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น"),
+  phone: yup
+    .number()
+    .required("กรุณากรอก phone เป็นตัวเลขเท่านั้น")
+    .typeError("กรุณากรอก phone เป็นตัวเลขเท่านั้น"),
+  address: yup.string().required("กรุณากรอกข้อมูล"),
+  member: yup.string().required("กรุณากรอกข้อมูล"),
+  amount_month: yup.string().required("กรุณากรอกข้อมูล"),
+  occupation: yup.string().required("กรุณากรอกข้อมูล"),
+  billelec: yup.string().required("กรุณากรอกข้อมูล"),
+  // numbillelec: yup.string().required("กรุณากรอกข้อมูล"),
+  // name_using_w: yup.string().required("กรุณากรอกข้อมูล"),
+  // num_using_w: yup.string().required("กรุณากรอกข้อมูล"),
+  // using_pow: yup.string().required("กรุณากรอกข้อมูล"),
+  // using_pow_amount: yup.string().required("กรุณากรอกข้อมูล"),
+  // guss_amount: yup.string().required("กรุณากรอกข้อมูล"),
+  // guss_size: yup.string().required("กรุณากรอกข้อมูล"),
+  // guss_using: yup.string().required("กรุณากรอกข้อมูล"),
 });
+
+
+
 
 function Modals(args) {
   const [imageUpload, setImageUpload] = useState(null);
@@ -60,33 +80,40 @@ function Modals(args) {
       link: [],
     },
   ]);
+  const [data, setData] = useState(); 
+  const initialValues = {
+    schoolname: "",
+    fullname: "",
+    phone: "",
+    email: "",
+    address: "",
+    member: "",
+    amount_month: "",
+    occupation: "",
+    billelec: "",
+    numbillelec: "",
+    name_using_w: "",
+    num_using_w: "",
+    using_pow: "",
+    using_pow_amount: "",
+    guss_amount: "",
+    guss_size: "",
+    guss_using: "",
+};
   const formik = useFormik({
-    initialValues: {
-      fullname: "",
-      phone: "",
-      email: "",
-      address: "",
-      member: "",
-      amount_month: "",
-      occupation: "",
-      billelec: "",
-      numbillelec: "",
-      name_using_w: "",
-      num_using_w: "",
-      using_pow: "",
-      using_pow_amount: "",
-      guss_amount: "",
-      guss_size: "",
-      guss_using: "",
-    },
+    initialValues:initialValues,
     validationSchema: validationSchema,
 
     onSubmit: async (values) => {
+      console.log('values ===>',values)
+      setData(values)
+
       // if (Overload) {
-        teestupload();
+      teestupload();
       // }
       try {
         const param = {
+          schoolname: values.schoolname,
           fullname: values.fullname,
           phone: values.phone,
           email: values.email,
@@ -104,7 +131,6 @@ function Modals(args) {
           guss_size: values.guss_size,
           guss_using: values.guss_using,
         };
-        console.log(param);
 
         const result = await axios.post(
           "http://localhost:5000/api/create_list",
@@ -116,11 +142,10 @@ function Modals(args) {
 
           setModal(false);
           Swal.fire("Good job!", "บันทึกข้อมูลสำเร็จ!", "success");
-          window.location.reload()
+          window.location.reload();
         } else {
           console.log("err 500");
         }
-       
       } catch (error) {
         console.log(error);
       } finally {
@@ -206,7 +231,8 @@ function Modals(args) {
   const handleAddClick = () => {
     setInputList([...inputList, { userid: "", name: "", link: [] }]);
   };
-  console.log(formik.values.phone);
+  console.log(Boolean(formik.errors.schoolname));
+
   return (
     <div style={{ marginTop: 50, marginBottom: 50 }}>
       <Row>
@@ -271,11 +297,28 @@ function Modals(args) {
             // method="post"
             // onChange={handleOnChange}
             // onSubmit={handleOnSubmit}
-            autoComplete="off"
-            onSubmit={formik.handleSubmit}
+            autoComplete="off" onSubmit={formik.handleSubmit}
           >
             <FormGroup>
-              <Label for="fullname">ชื่อ-สกุล</Label>
+              <Label  for="schoolname"><span style={{color:'red'}}>*</span>ชื่อโรงเรียน</Label>
+              <Col sm={12}>
+                <Input
+                  id="schoolname"
+                  name="schoolname"
+                  placeholder=""
+                  fullWidth
+                  type="text"
+                  value={formik.values.schoolname}
+                  onChange={formik.handleChange}
+                  error={
+                    Boolean(formik.errors.schoolname) 
+                  }
+                />
+                {Boolean(formik.errors.schoolname) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูลเป็นภาษาไทย</smail> :''}
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Label for="fullname"><span style={{color:'red'}}>*</span>ชื่อ-สกุล</Label>
               <Col sm={12}>
                 <Input
                   id="fullname"
@@ -285,15 +328,17 @@ function Modals(args) {
                   type="text"
                   value={formik.values.fullname}
                   onChange={formik.handleChange}
+
                   error={
-                    formik.touched.fullname && Boolean(formik.errors.fullname)
+                    Boolean(formik.errors.fullname)
                   }
-                  helperText={formik.touched.fullname && formik.errors.fullname}
                 />
+                {Boolean(formik.errors.fullname) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูลเป็นภาษาไทย</smail> :''}
+
               </Col>
             </FormGroup>
             <FormGroup>
-              <Label for="phone">เบอร์โทรศัพท์</Label>
+              <Label for="phone"><span style={{color:'red'}}>*</span>เบอร์โทรศัพท์</Label>
               <Col sm={12}>
                 <Input
                   id="phone"
@@ -302,13 +347,16 @@ function Modals(args) {
                   type="tel"
                   value={formik.values.phone}
                   onChange={formik.handleChange}
-                  error={formik.touched.phone && Boolean(formik.errors.phone)}
+                  error={Boolean(formik.errors.phone)}
                   helperText={formik.touched.phone && formik.errors.phone}
+
                 />
+                 {Boolean(formik.errors.phone) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง</smail> :''}
+
               </Col>
             </FormGroup>
             <FormGroup>
-              <Label for="email">อีเมล์</Label>
+              <Label for="email"><span style={{color:'red'}}>*</span>อีเมล์</Label>
               <Col sm={12}>
                 <Input
                   id="email"
@@ -317,13 +365,16 @@ function Modals(args) {
                   type="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
+
                   error={formik.touched.email && Boolean(formik.errors.email)}
                   helperText={formik.touched.email && formik.errors.email}
                 />
               </Col>
+              {Boolean(formik.errors.email) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกอีเมล์ให้ถูกต้อง</smail> :''}
+
             </FormGroup>
             <FormGroup>
-              <Label for="address">ที่อยู่ บ้านเลขที่ ตำบล</Label>
+              <Label for="address"><span style={{color:'red'}}>*</span>ที่อยู่ บ้านเลขที่ ตำบล</Label>
               <Col sm={12}>
                 <Input
                   id="address"
@@ -331,16 +382,19 @@ function Modals(args) {
                   type="textarea"
                   value={formik.values.address}
                   onChange={formik.handleChange}
+
                   error={
                     formik.touched.address && Boolean(formik.errors.address)
                   }
                   helperText={formik.touched.address && formik.errors.address}
                 />
               </Col>
+              {Boolean(formik.errors.address) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูล</smail> :''}
+
             </FormGroup>
 
             <FormGroup>
-              <Label for="member">จำนวนสมาชิกในครัวเรือน</Label>
+              <Label for="member"><span style={{color:'red'}}>*</span>จำนวนสมาชิกในครัวเรือน</Label>
               <Col sm={12}>
                 <Input
                   id="member"
@@ -351,12 +405,15 @@ function Modals(args) {
                   onChange={formik.handleChange}
                   error={formik.touched.member && Boolean(formik.errors.member)}
                   helperText={formik.touched.member && formik.errors.member}
+
                 />
               </Col>
+              {Boolean(formik.errors.member) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูล</smail> :''}
+
             </FormGroup>
 
             <FormGroup>
-              <Label for="amount_month">รายได้ต่อเดือน</Label>
+              <Label for="amount_month"><span style={{color:'red'}}>*</span>รายได้ต่อเดือน</Label>
               <Col sm={12}>
                 <Input
                   id="amount_month"
@@ -365,6 +422,7 @@ function Modals(args) {
                   type="number"
                   value={formik.values.amount_month}
                   onChange={formik.handleChange}
+
                   error={
                     formik.touched.amount_month &&
                     Boolean(formik.errors.amount_month)
@@ -374,9 +432,11 @@ function Modals(args) {
                   }
                 />
               </Col>
+              {Boolean(formik.errors.amount_month) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูล</smail> :''}
+
             </FormGroup>
             <FormGroup>
-              <Label for="occupation">อาชีพของผู้ปกครอง</Label>
+              <Label for="occupation"><span style={{color:'red'}}>*</span>อาชีพของผู้ปกครอง</Label>
               <Col sm={12}>
                 <Input
                   id="occupation"
@@ -385,6 +445,7 @@ function Modals(args) {
                   type="text"
                   value={formik.values.occupation}
                   onChange={formik.handleChange}
+
                   error={
                     formik.touched.occupation &&
                     Boolean(formik.errors.occupation)
@@ -394,6 +455,202 @@ function Modals(args) {
                   }
                 />
               </Col>
+              {Boolean(formik.errors.occupation) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูล</smail> :''}
+
+            </FormGroup>
+         
+
+            <FormGroup style={{ marginTop: 15 }}>
+              <Row>
+                <Col sm={6}>
+                  <Label for="billelec">หมายเลขที่ผู้ใช้ไฟฟ้า</Label>
+                  <Input
+                    id="billelec"
+                    name="billelec"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.billelec}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.billelec && Boolean(formik.errors.billelec)
+                    }
+                    helperText={
+                      formik.touched.billelec && formik.errors.billelec
+                    }
+                  />
+                </Col>
+
+                <Col sm={6}>
+                  <Label for="numbillelec">รหัสเครื่องวัด</Label>
+
+                  <Input
+                    id="numbillelec"
+                    name="numbillelec"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.numbillelec}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.numbillelec &&
+                      Boolean(formik.errors.numbillelec)
+                    }
+                    helperText={
+                      formik.touched.numbillelec && formik.errors.numbillelec
+                    }
+                  />
+                </Col>
+
+              </Row>
+            </FormGroup>
+
+            <FormGroup>
+              <Row>
+                <Col sm={6}>
+                  <Label for="name_using_w">ชื่อผู้ใช้น้ำ</Label>
+
+                  <Input
+                    id="name_using_w"
+                    name="name_using_w"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.name_using_w}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.name_using_w &&
+                      Boolean(formik.errors.name_using_w)
+                    }
+                    helperText={
+                      formik.touched.name_using_w && formik.errors.name_using_w
+                    }
+                  />
+                </Col>
+
+                <Col sm={6}>
+                  <Label for="num_using_w">เลขที่ผู้ใช้น้ำ</Label>
+
+                  <Input
+                    id="num_using_w"
+                    name="num_using_w"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.num_using_w}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.num_using_w &&
+                      Boolean(formik.errors.num_using_w)
+                    }
+                    helperText={
+                      formik.touched.num_using_w && formik.errors.num_using_w
+                    }
+                  />
+                </Col>
+
+                <Col sm={6}>
+                  <Label for="using_pow">การใช้น้ำมัน/บาท</Label>
+                  <Input
+                    id="using_pow"
+                    name="using_pow"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.using_pow}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.using_pow &&
+                      Boolean(formik.errors.using_pow)
+                    }
+                    helperText={
+                      formik.touched.using_pow && formik.errors.using_pow
+                    }
+                  />
+                </Col>
+
+                <Col sm={6}>
+                  <Label for="using_pow_amount">การใช้น้ำมัน/ลิตร</Label>
+                  <Input
+                    id="using_pow_amount"
+                    name="using_pow_amount"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.using_pow_amount}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.using_pow_amount &&
+                      Boolean(formik.errors.using_pow_amount)
+                    }
+                    helperText={
+                      formik.touched.using_pow_amount &&
+                      formik.errors.using_pow_amount
+                    }
+                  />
+                </Col>
+
+              </Row>
+            </FormGroup>
+
+            <FormGroup>
+              <Row>
+                <Col sm={6}>
+                  <Label for="guss_amount">จำนวนก๊าซหุงต้ม/ถัง</Label>
+                  <Input
+                    id="guss_amount"
+                    name="guss_amount"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.guss_amount}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.guss_amount &&
+                      Boolean(formik.errors.guss_amount)
+                    }
+                    helperText={
+                      formik.touched.guss_amount && formik.errors.guss_amount
+                    }
+                  />
+                </Col>
+
+                <Col sm={6}>
+                  <Label for="guss_size">ขนาดถังก๊าซหุงต้ม/ลิตร</Label>
+                  <Input
+                    id="guss_size"
+                    name="guss_size"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.guss_size}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.guss_size &&
+                      Boolean(formik.errors.guss_size)
+                    }
+                    helperText={
+                      formik.touched.guss_size && formik.errors.guss_size
+                    }
+                  />
+                </Col>
+
+              </Row>
+            </FormGroup>
+            <FormGroup>
+              <Label for="guss_using">
+                ปริมาณก๊าซหุงต้มขนาด 1 ถัง ใช้ได้กี่เดือน
+              </Label>
+              <Col sm={12}>
+                <Input
+                  id="guss_using"
+                  name="guss_using"
+                  placeholder=""
+                  type="text"
+                  value={formik.values.guss_using}
+                  onChange={formik.handleChange}
+                  error={
+                    formik.touched.guss_using &&
+                    Boolean(formik.errors.guss_using)
+                  }
+                  helperText={
+                    formik.touched.guss_using && formik.errors.guss_using
+                  }
+                />
+              </Col>
+
             </FormGroup>
             <div
               style={{
@@ -470,190 +727,6 @@ function Modals(args) {
                 </>
               );
             })}
-
-            <FormGroup style={{ marginTop: 15 }}>
-              <Row>
-                <Col sm={6}>
-                  <Label for="billelec">หมายเลขที่ผู้ใช้ไฟฟ้า</Label>
-                  <Input
-                    id="billelec"
-                    name="billelec"
-                    placeholder=""
-                    type="text"
-                    value={formik.values.billelec}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.billelec && Boolean(formik.errors.billelec)
-                    }
-                    helperText={
-                      formik.touched.billelec && formik.errors.billelec
-                    }
-                  />
-                </Col>
-                <Col sm={6}>
-                  <Label for="numbillelec">รหัสเครื่องวัด</Label>
-
-                  <Input
-                    id="numbillelec"
-                    name="numbillelec"
-                    placeholder=""
-                    type="text"
-                    value={formik.values.numbillelec}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.numbillelec &&
-                      Boolean(formik.errors.numbillelec)
-                    }
-                    helperText={
-                      formik.touched.numbillelec && formik.errors.numbillelec
-                    }
-                  />
-                </Col>
-              </Row>
-            </FormGroup>
-
-            <FormGroup>
-              <Row>
-                <Col sm={6}>
-                  <Label for="name_using_w">ชื่อผู้ใช้น้ำ</Label>
-
-                  <Input
-                    id="name_using_w"
-                    name="name_using_w"
-                    placeholder=""
-                    type="text"
-                    value={formik.values.name_using_w}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.name_using_w &&
-                      Boolean(formik.errors.name_using_w)
-                    }
-                    helperText={
-                      formik.touched.name_using_w && formik.errors.name_using_w
-                    }
-                  />
-                </Col>
-                <Col sm={6}>
-                  <Label for="num_using_w">เลขที่ผู้ใช้น้ำ</Label>
-
-                  <Input
-                    id="num_using_w"
-                    name="num_using_w"
-                    placeholder=""
-                    type="text"
-                    value={formik.values.num_using_w}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.num_using_w &&
-                      Boolean(formik.errors.num_using_w)
-                    }
-                    helperText={
-                      formik.touched.num_using_w && formik.errors.num_using_w
-                    }
-                  />
-                </Col>
-                <Col sm={6}>
-                  <Label for="using_pow">การใช้น้ำมัน/บาท</Label>
-                  <Input
-                    id="using_pow"
-                    name="using_pow"
-                    placeholder=""
-                    type="text"
-                    value={formik.values.using_pow}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.using_pow &&
-                      Boolean(formik.errors.using_pow)
-                    }
-                    helperText={
-                      formik.touched.using_pow && formik.errors.using_pow
-                    }
-                  />
-                </Col>
-                <Col sm={6}>
-                  <Label for="using_pow_amount">การใช้น้ำมัน/ลิตร</Label>
-                  <Input
-                    id="using_pow_amount"
-                    name="using_pow_amount"
-                    placeholder=""
-                    type="text"
-                    value={formik.values.using_pow_amount}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.using_pow_amount &&
-                      Boolean(formik.errors.using_pow_amount)
-                    }
-                    helperText={
-                      formik.touched.using_pow_amount &&
-                      formik.errors.using_pow_amount
-                    }
-                  />
-                </Col>
-              </Row>
-            </FormGroup>
-
-            <FormGroup>
-              <Row>
-                <Col sm={6}>
-                  <Label for="guss_amount">จำนวนก๊าซหุงต้ม/ถัง</Label>
-                  <Input
-                    id="guss_amount"
-                    name="guss_amount"
-                    placeholder=""
-                    type="text"
-                    value={formik.values.guss_amount}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.guss_amount &&
-                      Boolean(formik.errors.guss_amount)
-                    }
-                    helperText={
-                      formik.touched.guss_amount && formik.errors.guss_amount
-                    }
-                  />
-                </Col>
-                <Col sm={6}>
-                  <Label for="guss_size">ขนาดถังก๊าซหุงต้ม/ลิตร</Label>
-                  <Input
-                    id="guss_size"
-                    name="guss_size"
-                    placeholder=""
-                    type="text"
-                    value={formik.values.guss_size}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.guss_size &&
-                      Boolean(formik.errors.guss_size)
-                    }
-                    helperText={
-                      formik.touched.guss_size && formik.errors.guss_size
-                    }
-                  />
-                </Col>
-              </Row>
-            </FormGroup>
-            <FormGroup>
-              <Label for="guss_using">
-                ปริมาณก๊าซหุงต้มขนาด 1 ถัง ใช้ได้กี่เดือน
-              </Label>
-              <Col sm={12}>
-                <Input
-                  id="guss_using"
-                  name="guss_using"
-                  placeholder=""
-                  type="text"
-                  value={formik.values.guss_using}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.guss_using &&
-                    Boolean(formik.errors.guss_using)
-                  }
-                  helperText={
-                    formik.touched.guss_using && formik.errors.guss_using
-                  }
-                />
-              </Col>
-            </FormGroup>
             <FormGroup
               style={{
                 marginTop: 25,
