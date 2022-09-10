@@ -28,7 +28,9 @@ const Home: NextPage = () => {
   
     <>
     {/* <div style={styles.paperContainer}> */}
-    <Navber/>
+    {/* <Navber setStates={function (): void {
+        throw new Error('Function not implemented.');
+      } }/> */}
     <div style={{marginTop:'10%'}}>
     <Content/>
     </div>

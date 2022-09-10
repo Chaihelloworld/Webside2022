@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Collapse,
   Navbar,
@@ -15,6 +15,10 @@ import {
   Offcanvas,
   OffcanvasBody,
   OffcanvasHeader,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from 'reactstrap';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -22,7 +26,15 @@ import axios from 'axios';
 import styler from '../styles/Navbar.module.scss'
 import Image from 'next/image'
 import imgIcon from '../public/img/user.svg'
-function Example(props: any) {
+import { setLogLevel } from 'firebase/app';
+interface Props {
+
+  setStated: () => void;
+}
+
+const Example :FC<Props>  = ({
+  setStated
+}) =>{
   const [collapsed, setCollapsed] = useState(true);
   const [cookie, setCookie, removeCookie] = useCookies(['email']);
   const [cookiePass, setCookiePass, removeCookiesPass] = useCookies(['password']);
@@ -33,7 +45,7 @@ function Example(props: any) {
 
 
   const logoutAPI = () => {
-    console.log('logout')
+    // console.log('logout')
     setState(false)
     removeCookie('email');
     removeCookiesPass('password');
@@ -49,6 +61,10 @@ function Example(props: any) {
 
     }
   }, [cookieToken])
+  const setLog=()=>{
+    setStated();
+  }
+
   return (
     <div >
            <Navbar 
@@ -73,7 +89,7 @@ function Example(props: any) {
           <NavItem>
             <NavLink
               active
-              href="#"
+              href="/"
             >
               หน้าหลัก
             </NavLink>
@@ -129,11 +145,14 @@ function Example(props: any) {
         ))}
         {!state && ((
           <NavItem>
-            <NavLink
+            {/* <NavLink
               active
             href="/login"
-            >
-              <Button outline className={styler.root} onClick={function noRefCheck() { }}>
+            > */}
+              <Button outline className={styler.root}
+              //  onClick={function noRefCheck() { }}
+               onClick={()=>{setLog()}}
+               >
                 <Image
                   src={imgIcon}
                   alt="Picture of the author"
@@ -146,7 +165,13 @@ function Example(props: any) {
                 </div>
               </Button>
            
-            </NavLink>
+
+
+
+              
+
+           
+            {/* </NavLink> */}
           </NavItem>
         ))}
 

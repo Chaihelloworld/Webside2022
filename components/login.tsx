@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { SyntheticEvent, useState } from 'react';
+import React, { FC, SyntheticEvent, useState } from 'react';
 import {
   Collapse,
   Navbar,
@@ -19,9 +19,20 @@ import {
   Label,
 } from 'reactstrap';
 import { useCookies } from 'react-cookie';
+import styler from "../styles/Navbar.module.scss";
+import Image from 'next/image'
+import imgIcon from '../public/img/user.svg'
+import Swal from "sweetalert2";
 
-function Content() {
+interface Props {
 
+  check: () => void;
+}
+
+
+  const Content :FC<Props>  = ({
+    check
+  }) =>{
   const [cookie, setCookie] = useCookies(['email']);
   const [cookieToken, setCookieToken] = useCookies(['apiToken']);
   const [cookiePass, setCookiePass] = useCookies(['password']);
@@ -54,8 +65,7 @@ function Content() {
 
   const submit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    console.log(email, password);
-    axios.post('http://localhost:5000/api/login', {
+    axios.post('http://159.89.194.56:5000/api/login', {
       email: email,
       password: password
     })
@@ -68,12 +78,15 @@ function Content() {
           // console.log(response.data.token);
 
           router.push('/')
-        } else {
-          console.log('error')
-        }
+          check();
+        } 
       })
       .catch((error) => {
         console.log(error);
+        // console.log('error====');
+        Swal.fire("เข้าสู่ระบบไม่สำเร็จ!", "กรุณาตรวจสอบ email และ รหัสผ่าน", "error");
+        check();
+
       });
   };
   return (
@@ -81,20 +94,34 @@ function Content() {
 
     //   fluid="sm"
     // >
+    
 <Container
     fluid
     
   >
       <Row>
         <Col
-          className="bg-light border"
+        style={{border:'none'}}
+          // className="bg-light border"
           md={{
-            offset: 4,
-            size: 4
+            offset: 1,
+            size: 10
           }}
+          
           sm="12"
         >
-          <h1 style={{ textAlign: 'center' }}>LOGIN</h1>
+          <div style={{display:'flex',flexDirection: 'column',marginTop:15,marginBottom:15}}>
+          <Image
+                  src={imgIcon}
+                  alt="Picture of the author"
+                  width={50}
+                  height={50}
+                />
+          <h5 style={{ textAlign: 'center',color:'#1286ec',marginTop:5,marginBottom:5 }}>
+         
+            ลงชื่อเข้าสู่ระบบ</h5>
+          </div>
+           
           <Form inline onSubmit={submit}>
             <FormGroup>
               <Label
@@ -130,8 +157,8 @@ function Content() {
               />
             </FormGroup>
             {' '}
-            <Button type="submit">
-              Submit
+            <Button type="submit" className={styler.btnstyleSUBMIT} style={{marginTop:5,margin:'auto',transform:'translate(0px,-5px)'}}>
+              เข้าสู่ระบบ
             </Button>
             {' '}
           </Form>

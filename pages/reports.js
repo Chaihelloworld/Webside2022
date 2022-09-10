@@ -45,7 +45,7 @@ function App() {
   const fetchDataLise = async () => {
     try {
         const result = await axios.get(
-          "http://localhost:5000/api/getlisr_roomer"
+          "http://159.89.194.56:5000/api/getlisr_roomer"
         )
         if(!result.error){
           console.log(result)
@@ -68,7 +68,7 @@ function App() {
     // console.log(fetchDataLise)
     const fetchData = async () => {
       const response = await axios.get(
-        "http://localhost:5000/api/getlisr_roomer",
+        "http://159.89.194.56:5000/api/getlisr_roomer",
       );
       const responseData = await response.data.data;
       console.log(responseData);

@@ -33,12 +33,13 @@ import Qrcodes from "../public/img/qrcode.jpg";
 const validationSchema = yup.object({
   schoolname: yup
     .string()
-    .required("กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น")
-    .matches(/^[ก-๙]+$/, "กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น"),
+    .required("กรุณากรอกข้อมูล"),
+    // .matches(/^[ก-๙]+$/, "กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น"),
   fullname: yup
     .string()
-    .required("กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น")
-    .matches(/^[ก-๙]+$/, "กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น"),
+    .required("กรุณากรอกข้อมูล"),
+    // .required("กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น")
+    // .matches(/^[ก-๙]+$/, "กรุณากรอกชื่อเป็นภาษาไทยเท่านั้น"),
   phone: yup
     .number()
     .required("กรุณากรอก phone เป็นตัวเลขเท่านั้น")
@@ -47,7 +48,7 @@ const validationSchema = yup.object({
   member: yup.string().required("กรุณากรอกข้อมูล"),
   amount_month: yup.string().required("กรุณากรอกข้อมูล"),
   occupation: yup.string().required("กรุณากรอกข้อมูล"),
-  billelec: yup.string().required("กรุณากรอกข้อมูล"),
+  // billelec: yup.string().required("กรุณากรอกข้อมูล"),
   // numbillelec: yup.string().required("กรุณากรอกข้อมูล"),
   // name_using_w: yup.string().required("กรุณากรอกข้อมูล"),
   // num_using_w: yup.string().required("กรุณากรอกข้อมูล"),
@@ -105,7 +106,7 @@ function Modals(args) {
     validationSchema: validationSchema,
 
     onSubmit: async (values) => {
-      console.log('values ===>',values)
+      // console.log('values ===>',values)
       setData(values)
 
       // if (Overload) {
@@ -133,12 +134,12 @@ function Modals(args) {
         };
 
         const result = await axios.post(
-          "http://localhost:5000/api/create_list",
+          "http://159.89.194.56:5000/api/create_list",
           param
         );
 
         if (result) {
-          console.log(result);
+          // console.log(result);
 
           setModal(false);
           Swal.fire("Good job!", "บันทึกข้อมูลสำเร็จ!", "success");
@@ -180,9 +181,9 @@ function Modals(args) {
 
       // if(param.userid == null)
       for (let index = 0; index < param.length; index++) {
-        console.log(param[index]);
+        // console.log(param[index]);
         const result = await axios.post(
-          "http://localhost:5000/api/create_room",
+          "http://159.89.194.56:5000/api/create_room",
           param[index]
         );
       }
@@ -191,7 +192,7 @@ function Modals(args) {
     } finally {
       setOverload(false);
 
-      console.log("connecting");
+      // console.log("connecting");
     }
   };
 
@@ -200,7 +201,7 @@ function Modals(args) {
     let i = 0;
     const imageTage = [];
     if (dataimg == null) {
-      console.log("image = null");
+      // console.log("image = null");
     } else {
       const length = e.target.files.length;
 
@@ -231,7 +232,6 @@ function Modals(args) {
   const handleAddClick = () => {
     setInputList([...inputList, { userid: "", name: "", link: [] }]);
   };
-  console.log(Boolean(formik.errors.schoolname));
 
   return (
     <div style={{ marginTop: 50, marginBottom: 50 }}>
@@ -314,7 +314,7 @@ function Modals(args) {
                     Boolean(formik.errors.schoolname) 
                   }
                 />
-                {Boolean(formik.errors.schoolname) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูลเป็นภาษาไทย</smail> :''}
+                {Boolean(formik.errors.schoolname) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูล</smail> :''}
               </Col>
             </FormGroup>
             <FormGroup>
@@ -333,7 +333,7 @@ function Modals(args) {
                     Boolean(formik.errors.fullname)
                   }
                 />
-                {Boolean(formik.errors.fullname) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูลเป็นภาษาไทย</smail> :''}
+                {Boolean(formik.errors.fullname) ? <smail style={{fontSize:12,color:'red'}}>*กรุณากรอกข้อมูล</smail> :''}
 
               </Col>
             </FormGroup>

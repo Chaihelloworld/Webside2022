@@ -8,6 +8,10 @@ import {
   Navbar,
   Row,
   UncontrolledCarousel,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import Navber from "../components/Navber";
 import Dashboard from "../components/dashboard";
@@ -16,6 +20,8 @@ import Form from "../components/form";
 import Reports from "./reports";
 import Qrcodes from "../public/img/qrcode.jpg";
 import Image from "next/image";
+import Login from "../components/login";
+import { useState } from "react";
 
 const Home: NextPage = () => {
   const styles = {
@@ -31,12 +37,38 @@ const Home: NextPage = () => {
       backgroundImage: `url(${NewBg.src})`,
     },
   };
+const [state,setStated]=useState(false);
+const setStateds= ()=>{
+  setStated(true)
+  toggle();
+}
+console.log(state)
+const [modal, setModal] = useState(false);
+const [unmountOnClose, setUnmountOnClose] = useState(true);
 
+const toggle = () => setModal(!modal);
+const setCheck=()=>{
+  toggle();
+}
   return (
     <>
       <>
-        <Navber />
+        <Navber setStated={setStateds} />
+      
+
         <div style={styles.paperContainer}>
+         
+ {/* <Login /> */}
+
+ <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
+        <ModalBody>
+        <Login check={setCheck} />
+        </ModalBody>
+
+      </Modal>
+        
+       
+
           <Row>
             <Col xs="12" md={6}></Col>
             <Col xs="12" md={6}>
@@ -48,6 +80,7 @@ const Home: NextPage = () => {
 
         <div style={{ padding: 20 }}>
           <Dashboard />
+
         </div>
       </>
       <div
