@@ -303,6 +303,11 @@ function Modals(args) {
             autoComplete="off"
             onSubmit={formik.handleSubmit}
           >
+              <FormGroup>
+              <Label for="schoolname" style={{color:'#005aa9'}}>
+                ส่วนที่ 1 ข้อมูลทั่วไป
+              </Label>
+            </FormGroup>
             <FormGroup>
               <Label for="schoolname">
                 <span style={{ color: "red" }}>*</span>ชื่อโรงเรียน
@@ -561,20 +566,25 @@ function Modals(args) {
 
               
             </FormGroup>
+            <div style={{display:'flex',justifyContent:'space-between'}}>
+            <FormGroup>
+              <Label for="schoolname" style={{color:'#005aa9'}}>
+                ส่วนที่ 2 ข้อมูลด้านการใช้พลังงาน
+              </Label>
+            </FormGroup>
             <div
               style={{
-                display: "flex",
                 // justifyContent: "space-between",
                 float: "right",
                 // alignItems: "center",
               }}
             >
-              {" "}
+        
               <Button
                 type="button"
                 size="sm"
-                color="primary"
-                style={{ transform: "translate(0px,0px)" }}
+             
+                style={{ transform: "translate(0px,0px)" ,backgroundColor:'#5e7387',border:'none'}}
                 onClick={()=>{
                   window.open(
                     "https://drive.google.com/file/d/1zHBfxX-YxaM33667BklbyI5iOKGDX-PC/view",
@@ -584,7 +594,12 @@ function Modals(args) {
                 disableElevation
               >
                 ดูตัวอย่างคู่มือการเก็บข้อมูล
-              </Button></div>
+              </Button>
+              </div>
+            </div>
+            
+      
+              
             {/* <FormGroup style={{ marginTop: 15 }}>
               <Col sm={12}>
                 <Image
@@ -596,7 +611,7 @@ function Modals(args) {
               </Col>
             </FormGroup> */}
 
-            <FormGroup style={{ marginTop: 55 }}>
+            <FormGroup style={{ marginTop: 1 }}>
               
               <Row>
                 <Col sm={6}>
@@ -690,8 +705,8 @@ function Modals(args) {
                   />
                 </Col>
 
-                <Col sm={6}>
-                  <Label for="using_pow">การใช้น้ำมัน (บาท/เดือน)</Label>
+                <Col sm={6} style={{marginTop:5}}>
+                  <Label for="using_pow">การใช้น้ำมันดีเซล (บาท/เดือน)</Label>
                   <Input
                     id="using_pow"
                     name="using_pow"
@@ -709,9 +724,49 @@ function Modals(args) {
                   />
                 </Col>
 
-                <Col sm={6}>
+                <Col sm={6} style={{marginTop:5}}>
                   <Label for="using_pow_amount">
-                    การใช้น้ำมัน (ลิตร/เดือน)
+                    การใช้น้ำมันดีเซล (ลิตร/เดือน)
+                  </Label>
+                  <Input
+                    id="using_pow_amount"
+                    name="using_pow_amount"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.using_pow_amount}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.using_pow_amount &&
+                      Boolean(formik.errors.using_pow_amount)
+                    }
+                    helperText={
+                      formik.touched.using_pow_amount &&
+                      formik.errors.using_pow_amount
+                    }
+                  />
+                </Col>
+                <Col sm={6} style={{marginTop:5}}>
+                  <Label for="using_pow">การใช้น้ำมันเบนซิน (บาท/เดือน)</Label>
+                  <Input
+                    id="using_pow"
+                    name="using_pow"
+                    placeholder=""
+                    type="text"
+                    value={formik.values.using_pow}
+                    onChange={formik.handleChange}
+                    error={
+                      formik.touched.using_pow &&
+                      Boolean(formik.errors.using_pow)
+                    }
+                    helperText={
+                      formik.touched.using_pow && formik.errors.using_pow
+                    }
+                  />
+                </Col>
+
+                <Col sm={6} style={{marginTop:5}}>
+                  <Label for="using_pow_amount">
+                    การใช้น้ำมันเบนซิน (ลิตร/เดือน)
                   </Label>
                   <Input
                     id="using_pow_amount"
@@ -754,7 +809,7 @@ function Modals(args) {
                   />
                 </Col>
                 <Col sm={6}>
-                  <Label for="guss_amount">จำนวนก๊าซหุงต้ม (ถัง/เดือน)</Label>
+                  <Label for="guss_amount">จำนวนก๊าซหุงต้ม (กิโลกรัม)</Label>
                   <Input
                     id="guss_amount"
                     name="guss_amount"
@@ -795,6 +850,11 @@ function Modals(args) {
                 />
               </Col>
             </FormGroup>
+            <FormGroup>
+              <Label for="schoolname" style={{color:'#005aa9'}}>
+                ส่วนที่ 3 ข้อมูลเครื่องใช้ไฟฟ้า
+              </Label>
+            </FormGroup>
             <div
               style={{
                 display: "flex",
@@ -804,6 +864,22 @@ function Modals(args) {
               }}
             >
               {" "}
+        
+              {" "}
+              <Button
+                type="button"
+                size="sm"
+                style={{ transform: "translate(-15px,-8px)" ,backgroundColor:'#5e7387',border:'none'}}
+                onClick={()=>{
+                  window.open(
+                    "https://drive.google.com/file/d/10Nwu_s0Zqjl-LI2nlqDwa4Ea6Cj1xseY/view?usp=sharing",
+                    "_blank"
+                  )
+                }}
+                disableElevation
+              >
+                ดูตัวอย่างคู่มือการเก็บข้อมูล
+              </Button>
               <Button
                 type="button"
                 size="sm"
