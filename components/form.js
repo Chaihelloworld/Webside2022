@@ -97,7 +97,9 @@ function Modals(args) {
     name_using_w: "",
     num_using_w: "",
     using_pow: "",
+    using_powBenzin:"",
     using_pow_amount: "",
+    using_pow_amountBenzin:"",
     guss_amount: "",
     guss_size: "",
     guss_using: "",
@@ -130,7 +132,9 @@ function Modals(args) {
           name_using_w: values.name_using_w,
           num_using_w: values.num_using_w,
           using_pow: values.using_pow,
+          using_powBenzin:values.using_powBenzin,
           using_pow_amount: values.using_pow_amount,
+          using_pow_amountBenzin: values.using_pow_amountBenzin,
           guss_amount: values.guss_amount,
           guss_size: values.guss_size,
           guss_using: values.guss_using,
@@ -746,42 +750,42 @@ function Modals(args) {
                   />
                 </Col>
                 <Col sm={6} style={{marginTop:5}}>
-                  <Label for="using_pow">การใช้น้ำมันเบนซิน (บาท/เดือน)</Label>
+                  <Label for="using_powBenzin">การใช้น้ำมันเบนซิน (บาท/เดือน)</Label>
                   <Input
-                    id="using_pow"
-                    name="using_pow"
+                    id="using_powBenzin"
+                    name="using_powBenzin"
                     placeholder=""
                     type="text"
-                    value={formik.values.using_pow}
+                    value={formik.values.using_powBenzin}
                     onChange={formik.handleChange}
                     error={
-                      formik.touched.using_pow &&
-                      Boolean(formik.errors.using_pow)
+                      formik.touched.using_powBenzin &&
+                      Boolean(formik.errors.using_powBenzin)
                     }
                     helperText={
-                      formik.touched.using_pow && formik.errors.using_pow
+                      formik.touched.using_powBenzin && formik.errors.using_powBenzin
                     }
                   />
                 </Col>
 
                 <Col sm={6} style={{marginTop:5}}>
-                  <Label for="using_pow_amount">
+                  <Label for="using_pow_amountBenzin">
                     การใช้น้ำมันเบนซิน (ลิตร/เดือน)
                   </Label>
                   <Input
-                    id="using_pow_amount"
-                    name="using_pow_amount"
+                    id="using_pow_amountBenzin"
+                    name="using_pow_amountBenzin"
                     placeholder=""
                     type="text"
-                    value={formik.values.using_pow_amount}
+                    value={formik.values.using_pow_amountBenzin}
                     onChange={formik.handleChange}
                     error={
-                      formik.touched.using_pow_amount &&
-                      Boolean(formik.errors.using_pow_amount)
+                      formik.touched.using_pow_amountBenzin &&
+                      Boolean(formik.errors.using_pow_amountBenzin)
                     }
                     helperText={
-                      formik.touched.using_pow_amount &&
-                      formik.errors.using_pow_amount
+                      formik.touched.using_pow_amountBenzin &&
+                      formik.errors.using_pow_amountBenzin
                     }
                   />
                 </Col>
