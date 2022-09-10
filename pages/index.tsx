@@ -42,7 +42,6 @@ const setStateds= ()=>{
   setStated(true)
   toggle();
 }
-console.log(state)
 const [modal, setModal] = useState(false);
 const [unmountOnClose, setUnmountOnClose] = useState(true);
 
@@ -58,7 +57,6 @@ const setCheck=()=>{
 
         <div style={styles.paperContainer}>
          
- {/* <Login /> */}
 
  <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
         <ModalBody>

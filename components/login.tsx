@@ -64,36 +64,35 @@ interface Props {
 
 
   const submit = (event: { preventDefault: () => void; }) => {
-    event.preventDefault();
-    axios.post('http://159.89.194.56:5000/api/login', {
-      email: email,
-      password: password
-    })
-      .then((response) => {
-        // console.log(response);
-        if (response) {
-          setCookieToken('apiToken', response.data.token);
-          setCookie('email', email);
-          setCookiePass('password', password);
-          // console.log(response.data.token);
-
-          router.push('/')
-          check();
-        } 
+      event.preventDefault();
+      axios.post('http://159.89.194.56:5000/api/login', {
+        email: email,
+        password: password
       })
-      .catch((error) => {
-        console.log(error);
-        // console.log('error====');
-        Swal.fire("เข้าสู่ระบบไม่สำเร็จ!", "กรุณาตรวจสอบ email และ รหัสผ่าน", "error");
-        check();
+        .then((response) => {
+          if (response) {
+            setCookieToken('apiToken', response.data.token);
+            setCookie('email', email);
+            setCookiePass('password', password);
+            Swal.fire("เข้าสู่ระบบสำเร็จ!", "ยินดีต้อนรับ admin", "success");
 
-      });
+            // console.log(response.data.token);
+            router.push('/')
+            check();
+          } 
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire("เข้าสู่ระบบไม่สำเร็จ!", "กรุณาตรวจสอบ email และ รหัสผ่าน", "error");
+          check();
+          // console.log('error====');
+    
+  
+        });
+   
   };
   return (
-    // <Container
 
-    //   fluid="sm"
-    // >
     
 <Container
     fluid
