@@ -12,6 +12,8 @@ function App() {
   const headers = [
     { label: "ชื่อโรงเรียน", key: "schoolname"},
     { label: "ชื่อ-สกุล", key: "fullname" },
+    { label: "ชั้น", key: "class" },
+    { label: "ที่เลข", key: "num" },
     { label: "อีเมล์", key: "email" },
     { label: "จำนวนสมาชิกในครัวเรือน", key: "member" },
     { label: "รายได้ต่อเดือน", key: "amount_month" },
@@ -45,7 +47,7 @@ function App() {
   const fetchDataLise = async () => {
     try {
         const result = await axios.get(
-          "http://159.89.194.56:5000/api/getlisr_roomer"
+          "https://www.serverwebp-api.com/api/getlisr_roomer"
         )
         if(!result.error){
           console.log(result)
@@ -68,7 +70,7 @@ function App() {
     // console.log(fetchDataLise)
     const fetchData = async () => {
       const response = await axios.get(
-        "http://159.89.194.56:5000/api/getlisr_roomer",
+        "https://www.serverwebp-api.com/api/getlisr_roomer",
       );
       const responseData = await response.data.data;
       console.log(responseData);
