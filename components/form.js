@@ -267,12 +267,13 @@ function Modals(args) {
                 color="success"
                 disableElevation
                 style={{ transform: "translate(5px,0px)", width: 250 }}
-                onClick={() =>
-                  window.open(
-                    "https://docs.google.com/forms/d/e/1FAIpQLSecTcif-SUzSzxLGulvbGTQgeH_rjiLQ_nTIkmGiScrdtlftA/viewform",
-                    "_blank"
-                  )
-                }
+                // onClick={() =>
+                //   window.open(
+                //     "https://docs.google.com/forms/d/e/1FAIpQLSecTcif-SUzSzxLGulvbGTQgeH_rjiLQ_nTIkmGiScrdtlftA/viewform",
+                //     "_blank"
+                //   )
+                // }
+                onClick={toggle}
               >
                 Google form
               </Button>
