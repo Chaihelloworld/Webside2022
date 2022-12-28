@@ -244,7 +244,7 @@ function Modals(args) {
     <div style={{ marginTop: 50, marginBottom: 50 }}>
       <Row>
         <Col sm={12} md={12}>
-          <Card body style={{ backgroundColor: "#ffffffc7" }}>
+          <Card body style={{ backgroundColor: "#ffffffc7",border:'none' }}>
             <CardTitle style={{ fontWeight: 700, fontSize: "25px" }}>
               แบบฟอร์มบันทึกข้อมูล
             </CardTitle>

@@ -19,6 +19,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  NavbarText,
 } from 'reactstrap';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -26,15 +27,20 @@ import axios from 'axios';
 import styler from '../styles/Navbar.module.scss'
 import Image from 'next/image'
 import imgIcon from '../public/img/user.svg'
+import LOGOBANNERS from '../public/LOGO.png'
+
 import { setLogLevel } from 'firebase/app';
+import Router from 'next/router';
+import { useRouter } from 'next/router'
+
 interface Props {
 
   setStated: () => void;
 }
 
-const Example :FC<Props>  = ({
-  setStated
-}) =>{
+const Example: FC<Props> = ({
+  setStated,
+}) => {
   const [collapsed, setCollapsed] = useState(true);
   const [cookie, setCookie, removeCookie] = useCookies(['email']);
   const [cookiePass, setCookiePass, removeCookiesPass] = useCookies(['password']);
@@ -42,6 +48,7 @@ const Example :FC<Props>  = ({
   const [state, setState] = useState(false);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
+  const router = useRouter()
 
 
   const logoutAPI = () => {
@@ -51,7 +58,7 @@ const Example :FC<Props>  = ({
     removeCookiesPass('password');
     removeCookiesToken('apiToken')
 
-    window.location.reload()
+    router.push('/')
 
 
   };
@@ -61,98 +68,147 @@ const Example :FC<Props>  = ({
 
     }
   }, [cookieToken])
-  const setLog=()=>{
+  const setLog = () => {
     setStated();
   }
+  const [isOpen, setIsOpen] = useState(false);
 
+  const toggle = () => setIsOpen(!isOpen);
   return (
     <div >
-           <Navbar 
-                style={{backgroundColor:'#01459a'}}
-                >
-                  <div style={{color:'white',margin:'auto'}}>
-                  Copyright © 2022 FORM GOOGLE. All Rights Reserved.
+      <Navbar
+        style={{ backgroundColor: 'white' }}
+      >
+        <div style={{ color: 'white', margin: 'auto' }}>
 
-                  </div>
-            </Navbar>
-      <Nav 
+        </div>
+      </Navbar>
+      <Nav
 
         style={{
-          backgroundColor: 'white', height: '65px',
+          backgroundColor: 'white',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between'
         }}
       >
-        <Nav
-        >
-          <NavItem>
-            <NavLink
-              active
-              href="/"
-            >
-              หน้าหลัก
-            </NavLink>
-          </NavItem>
-          {/* <NavItem>
-            <NavLink href="#">
-              Another Link
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              disabled
-              href="#"
-            >
-              Disabled Link
-            </NavLink>
-          </NavItem>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Options
-            </DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown> */}
-        </Nav>
-        {state && ((
-          <NavItem>
-            <NavLink
-              active
-            >
+        <NavItem  >
+          <Image
+            src={LOGOBANNERS}
+            alt="Picture of the author"
 
-              <Button outline className={styler.root} onClick={() => {
-                logoutAPI();
-              }}
+          />
+        </NavItem>
+
+        <Nav style={{
+          marginRight: 10,
+          transition: '0.4s ease',
+          color: '#797979',
+          letterSpacing: '.3px',
+          textAlign: 'center',
+          fontWeight: 500
+        }}>
+          <div style={{display:'flex',transform:'translate(-20px,0px)'}}>
+            {!state ? <>
+              <NavItem>
+              <NavLink
+                active
+                href="/"
+                style={{
+                  color: '#797979', transition: '0.4s ease',
+                  letterSpacing: '2px',
+                  textAlign: 'center',
+                  fontWeight: 500
+                }}
               >
-                {/* <Image
-                  src={imgIcon}
-                  alt="Picture of the author"
-                  width={25}
-                  height={25}
-                /> */}
-                <div>
-                  ออกจากระบบ
+                หน้าหลัก
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                active
+                href="/"
+                style={{
+                  color: '#797979', transition: '0.4s ease',
+                  letterSpacing: '2px',
+                  textAlign: 'center',
+                  fontWeight: 500
+                }}
+              >
+                กิจกรรม
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                active
+                href="/report"
+                style={{
+                  color: '#797979', transition: '0.4s ease',
+                  letterSpacing: '2px',
+                  textAlign: 'center',
+                  fontWeight: 500
+                }}
+              >
+                ฟุตพริ้นท์ เมือง
+              </NavLink>
+            </NavItem>
+            </>:<>
+            <NavItem>
+              <NavLink
+                active
+                href='/createPage'
+                style={{
+                  color: '#797979', transition: '0.4s ease',
+                  letterSpacing: '2px',
+                  textAlign: 'center',
+                  fontWeight: 500
+                }}
+              >
+                บันทึกค่าทรัพยากร
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                active
+                href='/TableData'
+                style={{
+                  color: '#797979', transition: '0.4s ease',
+                  letterSpacing: '2px',
+                  textAlign: 'center',
+                  fontWeight: 500
+                }}
+              >
+                ข้อมูลทรัพยากร
+              </NavLink>
+            </NavItem>
+  
+            </>}
+           
+          </div>
 
-                </div>
-              </Button>
-            </NavLink>
-          </NavItem>
-        ))}
-        {!state && ((
-          <NavItem>
-            {/* <NavLink
-              active
-            href="/login"
-            > */}
-              <Button outline className={styler.root}
-              //  onClick={function noRefCheck() { }}
-               onClick={()=>{setLog()}}
-               >
+
+          {state && ((
+            <NavItem >
+    
+
+                <Button outline style={{transform:"translate(0px,0px)"}} className={styler.root} onClick={() => {
+                  logoutAPI();
+                }}
+                >
+
+                  <div>
+                    ออกจากระบบ
+
+                  </div>
+                </Button>
+            </NavItem>
+          ))}
+          {!state && ((
+            <NavItem >
+
+              <Button outline style={{transform:"translate(0px,0px)"}} className={styler.root}
+                onClick={() => { setLog() }}
+              >
                 <Image
                   src={imgIcon}
                   alt="Picture of the author"
@@ -164,37 +220,31 @@ const Example :FC<Props>  = ({
 
                 </div>
               </Button>
-           
 
+            </NavItem>
+          ))}
+        </Nav>
 
-
-              
-
-           
-            {/* </NavLink> */}
-          </NavItem>
-        ))}
-
-
-
-        {/* <NavItem>
-          <NavLink
-          style={{color:'white'}}
-            active
-            href="/dashboard"
-          >
-            Register
-          </NavLink>
-        </NavItem> */}
 
       </Nav>
-      <Navbar 
-                style={{backgroundColor:'#01459a'}}
-                >
-                  <div style={{color:'white',margin:'auto'}}>
+   
+      <Navbar
+        style={{ backgroundColor: '#01459a' ,zIndex:-1 }}
+      >
+        <div style={{ color: 'white', margin: 'auto' }}>
 
-                  </div>
-            </Navbar>
+        </div>
+      </Navbar>
+      {/* <Navbar >
+        <NavbarBrand >   
+          <Image
+            src={LOGOBANNERS}
+            alt="Picture of the author"
+
+          />
+        </NavbarBrand>
+        
+      </Navbar> */}
     </div>
   );
 }

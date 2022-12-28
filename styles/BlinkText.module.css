@@ -1,0 +1,52 @@
+.blink {
+    text-align: center;
+    animation: animate 1.9s linear infinite;
+    text-decoration-line: blink;
+}
+.deleteIcon {
+    color: white !important;
+    background: #e54b4b!important;
+    border: none !important;
+    border-radius: 50% !important;
+    transform: translate(5px,0px) !important;
+}
+
+.deleteIcon:hover {
+    background: #d51a1a !important;
+}
+.editIcon {
+    color: white !important;
+    background: #ebc380!important;
+    border: none !important;
+    border-radius: 50% !important;
+    transform: translate(0px,0px) !important;
+}
+
+.editIcon:hover {
+    background: #d3a047 !important;
+}
+.editIcon:focus {
+    outline:0 !important;;
+    box-shadow: none !important;;
+
+}
+
+.deleteIcon:focus {
+    outline:0 !important;;
+    box-shadow: none !important;;
+
+}
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+

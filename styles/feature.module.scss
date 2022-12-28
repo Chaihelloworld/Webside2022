@@ -1,0 +1,218 @@
+.x_feature{
+    margin-top: 1rem;
+    padding-bottom: 3rem;
+    // background: url(../public/imgs/1x/bg_bottom.png);
+    // background-repeat: no-repeat;
+    // background-size: cover;
+}
+.box-text-feature p{
+    text-align: center;
+    font-size: 2.1rem;
+    color: rgb(48, 47, 47);
+    font-weight: bold;
+}
+.section_feature {
+    // background-color: #11aeef33;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    justify-content: flex-start;
+}
+.section_feature img{
+    width: 100px !important;
+    height: auto !important;
+}
+.section_feature span{
+    font-size: 1.2rem;
+    color: rgb(48, 47, 47);
+}
+.box-detail-feature{
+    padding: 0 5rem ;
+    position: relative;
+}
+.section_feature .text_feature{
+    margin-left: .5rem;
+}
+.box-feature{
+    width: 450px;
+    margin: auto;
+}
+.hr-feature{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    width: 2px !important;
+    height: 200px !important;
+    margin: auto !important;
+    background:linear-gradient(180deg,transparent,#F3BC22,transparent) !important;
+}
+.box-logo-feature{
+    margin-bottom: 1rem;
+    .img-logo{
+        width: 350px;
+        margin: auto;
+    }
+    .img-logoz{
+        width: 350px;
+        transform: translate(0px,20px);
+        margin: auto;
+    }
+}
+.img-mobile{
+    width: 100%;
+    margin: auto;
+}
+.zone-mobile{
+    margin-top: 1rem;
+    .img-mobile{
+        width: 420px;
+        margin: auto;
+    }
+    .zone-logo{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        li{
+            margin: 0 .5rem;
+            .img-logo{
+                width: 100px;
+                transition: .4s ease all;
+            }
+            .img-logoz{
+                width: 100px;
+                transform: translate(0px,20px);
+                transition: .4s ease all;
+            }
+            p{
+                color: #FFF;
+                text-align: center;
+            }
+        }
+
+    }
+}
+@media(min-width:992px){
+    .zone-mobile{
+        .zone-logo{
+            li{
+                .img-logo:hover{
+                    transform: scale(1.2);
+                }
+                .img-logoz:hover{
+                    transform: scale(1.2);
+                }
+            }
+    
+        }
+    }
+}
+@media(max-width:1024px){
+    .x_feature{
+        margin-top: 1rem;
+    }
+}
+@media(max-width:991.98px){
+    .hr-feature{
+        display: none;
+    }
+    .box-detail-feature{
+        padding: 0;
+    }
+}
+@media(max-width:767.98px){
+    .box-logo-feature{
+        .img-logo{
+            width: 280px;
+        }
+    }
+    .zone-mobile{
+        .img-mobile{
+            width: 400px !important;
+        }
+    }
+    .x_feature{
+        margin-top: 1rem;
+    }
+}
+@media(max-width:575.98px){
+    .x_feature{
+        margin-top: 1rem;
+    }
+    .box-logo-feature{
+        .img-logo{
+            width: 250px;
+        }
+    }
+    .zone-mobile{
+        .img-mobile{
+            width: 300px !important;
+        }
+        .zone-logo{
+            li{
+                .img-logo{
+                    width: 50px;
+                }
+            }
+    
+        }
+    }
+    
+}
+@media(max-width:425px){
+    .box-text-feature p {
+        font-size: 1.6rem;
+    }
+    .box-feature{
+        width: 100%;
+    }
+    .x_feature{
+        margin-top: 28rem;
+    }
+}
+
+@media(max-width:375px){
+    .x_feature{
+        margin-top: 25rem;
+    }
+    .box-logo-feature{
+        .img-logo{
+            width: 230px;
+        }
+    }
+    .zone-mobile{
+        .img-mobile{
+            width: 250px !important;
+        }
+        .zone-logo{
+            li{
+                .img-logo{
+                    width: 50px;
+                }
+            }
+    
+        }
+    }
+}
+@media(max-width:320px){
+    .x_feature{
+        margin-top: 25rem;
+    }
+    .zone-logo{
+        li{
+            .img-logo{
+                width: 40px !important;
+            }
+        }
+
+    }
+}

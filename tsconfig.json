@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/dashboard.tsx", "components/form.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/dashboard.tsx", "components/form.js", "components/chart.js", "pages/report.js", "components/event.js", "pages/TableData.js"],
   "exclude": ["node_modules"]
 }

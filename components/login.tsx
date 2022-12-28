@@ -77,7 +77,7 @@ interface Props {
             Swal.fire("เข้าสู่ระบบสำเร็จ!", "ยินดีต้อนรับ admin", "success");
 
             // console.log(response.data.token);
-            router.push('/')
+            router.push('/TableData')
             check();
           } 
         })
