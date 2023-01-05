@@ -35,6 +35,7 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import stylesIcon from '../styles/BlinkText.module.css';
 import axios from "axios";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
 interface datalist {
     sumCO2rq: any;
     tonneCO2: any;
@@ -74,7 +75,7 @@ const Home: NextPage = () => {
     }
 
     const [listdata, setListdata] = useState([]);
-
+    const router = useRouter();
     const fatchData = async () => {
 
         try {
@@ -250,7 +251,17 @@ const Home: NextPage = () => {
                                                         <td>
                                                             <div style={{ display: 'flex', padding: 5 }}>
 
-                                                                <Button
+                                                                <Button 
+                                                                    onClick={()=>{
+                                                                        router.push({
+                                                                            pathname:
+                                                                                '/update',
+                                                                            query: {
+                                                                                id: data.id
+                                                                            }
+                                                                        })
+                                                                    }}
+                                                        
                                                                     className={stylesIcon.editIcon}>
                                                                     <FaEdit />
                                                                 </Button>

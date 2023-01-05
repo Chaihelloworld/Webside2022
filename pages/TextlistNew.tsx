@@ -24,14 +24,17 @@ import Reports from "./reports";
 import Qrcodes from "../public/img/qrcode.jpg";
 import Image from "next/image";
 import Login from "../components/login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CarouselPage from "../components/CarouselContent"
 import ListEvent from "../components/listEvent";
 import Mainpartners from "../components/MainPartners"
 import stylesAOS from '../styles/feature.module.scss';
 import ListCreateBoard from "../components/listCreateBoard";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+    const router = useRouter();
+    const { new_event } = router.query
     const styles = {
         paperContainer: {
             width: "100%",
@@ -57,6 +60,13 @@ const Home: NextPage = () => {
     const setCheck = () => {
         toggle();
     }
+    useEffect(()=>{
+        if(!new_event){
+            return;
+        }
+        console.log('new_event--->',new_event)
+
+    })
     return (
         <>
             <>
@@ -92,21 +102,31 @@ const Home: NextPage = () => {
 
                 <Row style={{ display: "contents" }}>
 
-                        <Col  sm="12" md={{ size: 8, offset: 2 }}>
-                            <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
-                            </div>{''}
-                            <div className={stylesAOS['x_feature']} id="x_feature" >
-                                <div
-                                    data-aos="zoom-in-up"
-                                    data-aos-duration="600"
-                                    data-aos-easing="ease-in-out"
-                                    data-aos-once="true"
-                                >
-                               ................................
-                                </div>
-                            </div>
+                    <Col sm="12" md={{ size: 8, offset: 2 }}>
+                        <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
+                        </div>{''}
+                        <div className={stylesAOS['x_feature']} id="x_feature" >
+                            <div
+                                data-aos="zoom-in-up"
+                                data-aos-duration="600"
+                                data-aos-easing="ease-in-out"
+                                data-aos-once="true"
+                            >
+                                <Image
+                                     loader={({ src }) => src}
+                                     aria-hidden
+                                    src={`${new_event}`}
+                                    width={850}
+                                    height={900}
+                                    layout='responsive'
+                                    alt="Picture of the author"
 
-                        </Col>
+                                />
+                                {/* ................................ */}
+                            </div>
+                        </div>
+
+                    </Col>
                 </Row>
 
 

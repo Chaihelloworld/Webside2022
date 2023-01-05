@@ -15,22 +15,32 @@ import {
     Table,
 
 } from "reactstrap";
-import { ListGroup, ListGroupItem } from 'reactstrap';
-import { BsFillCaretRightSquareFill, BsMegaphone } from "react-icons/bs";
-import Navber from "../components/Navber";
-import Login from "../components/login";
-import { useState } from "react";
-
-import stylesAOS from '../styles/feature.module.scss';
-
-import DataTable1 from "../components/dataTable1";
 import { useFormik } from 'formik';
 
-import { useCookies } from 'react-cookie';
-import axios from 'axios';
-
-import { useRouter } from 'next/router'
-import Swal from 'sweetalert2';
+import { ListGroup, ListGroupItem } from 'reactstrap';
+import { BsFillCaretRightSquareFill, BsMegaphone } from "react-icons/bs";
+import Navber from "../../components/Navber";
+import Dashboard from "../../components/dashboard";
+import NewBg from "../../public/NewBg.jpg";
+import Form from "../../components/form";
+import Reports from "../reports";
+import Qrcodes from "../../public/img/qrcode.jpg";
+import Image from "next/image";
+import Login from "../../components/login";
+import { useEffect, useState } from "react";
+import CarouselPage from "../../components/CarouselContent"
+import ListEvent from "../../components/listEvent";
+import Mainpartners from "../../components/MainPartners"
+import stylesAOS from '../../styles/feature.module.scss';
+import ListCreateBoard from "../../components/listCreateBoard";
+import { InputGroup, InputGroupText, Input } from 'reactstrap';
+import DataTable1 from "../../components/dataTable1";
+import DataTable2 from "../../components/dataTable2";
+import DataTable3 from "../../components/dataTable3";
+import axios from "axios";
+import router, { useRouter } from "next/router";
+import Swal from "sweetalert2";
+import { contains } from "@firebase/util";
 
 const Home: NextPage = () => {
     const styles = {
@@ -54,18 +64,106 @@ const Home: NextPage = () => {
     const [modal, setModal] = useState(false);
     const [unmountOnClose, setUnmountOnClose] = useState(true);
     const [name, setName] = useState('ขอบเขตที่ 1');
+    const [loading, setLoading] = useState(true);
 
     const toggle = () => setModal(!modal);
     const setCheck = () => {
         toggle();
     }
+
+    const router = useRouter();
+    const { id } = router.query
+    const [statusFetchAdmin, setStatusFetchAdmin] = useState(false);
+    const [key_id, setKey_id] = useState(id ? id:null);
+    console.log(';=====>',router)
+
+    useEffect(() => {
+        // async function fetchData() {
+        //     const response = await axios.get('/some-api');
+        //     console.log(response.data);
+        //   }
+        //   fetchData();
+        if (!id) {
+            return;
+        }
+        async function fetchDATA ()  {
+
+            // setLoading(true);
+            try {
+                const result = await axios.get(
+                    "https://serverwebp-api.com/api/resource/data", {
+                    params: {
+                        id: id
+                    }
+                }
+                );
+
+                if (result) {
+                    formik.setFieldValue('zone_1.gas_h.amount_of_energy', result.data.data[0].raw.zone_1.gas_h.amount_of_energy);
+                    formik.setFieldValue('zone_1.gas_h.kgCO2_eq', result.data.data[0].raw.zone_1.gas_h.kgCO2_eq);
+                    formik.setFieldValue('zone_1.gas_h.tonene_CO2', result.data.data[0].raw.zone_1.gas_h.tonene_CO2);
+                    formik.setFieldValue('zone_1.gas_hi.amount_of_energy', result.data.data[0].raw.zone_1.gas_hi.amount_of_energy);
+                    formik.setFieldValue('zone_1.gas_hi.kgCO2_eq', result.data.data[0].raw.zone_1.gas_hi.kgCO2_eq);
+                    formik.setFieldValue('zone_1.gas_hi.tonene_CO2', result.data.data[0].raw.zone_1.gas_hi.tonene_CO2);
+
+                    formik.setFieldValue('zone_1.d_cell.amount_of_energy', result.data.data[0].raw.zone_1.d_cell.amount_of_energy);
+                    formik.setFieldValue('zone_1.d_cell.kgCO2_eq', result.data.data[0].raw.zone_1.d_cell.kgCO2_eq);
+                    formik.setFieldValue('zone_1.d_cell.tonene_CO2', result.data.data[0].raw.zone_1.d_cell.tonene_CO2);
+                    
+                    formik.setFieldValue('zone_1.bensin.amount_of_energy', result.data.data[0].raw.zone_1.bensin.amount_of_energy);
+                    formik.setFieldValue('zone_1.bensin.kgCO2_eq', result.data.data[0].raw.zone_1.bensin.kgCO2_eq);
+                    formik.setFieldValue('zone_1.bensin.tonene_CO2', result.data.data[0].raw.zone_1.bensin.tonene_CO2);
+
+                    formik.setFieldValue('zone_1.gusohal_91.amount_of_energy', result.data.data[0].raw.zone_1.gusohal_91.amount_of_energy);
+                    formik.setFieldValue('zone_1.gusohal_91.kgCO2_eq', result.data.data[0].raw.zone_1.gusohal_91.kgCO2_eq);
+                    formik.setFieldValue('zone_1.gusohal_91.tonene_CO2', result.data.data[0].raw.zone_1.gusohal_91.tonene_CO2);
+
+                    formik.setFieldValue('zone_1.gusohal_95.amount_of_energy', result.data.data[0].raw.zone_1.gusohal_95.amount_of_energy);
+                    formik.setFieldValue('zone_1.gusohal_95.kgCO2_eq', result.data.data[0].raw.zone_1.gusohal_95.kgCO2_eq);
+                    formik.setFieldValue('zone_1.gusohal_95.tonene_CO2', result.data.data[0].raw.zone_1.gusohal_95.tonene_CO2);
+
+                    formik.setFieldValue('zone_1.gusohal_e20.amount_of_energy', result.data.data[0].raw.zone_1.gusohal_e20.amount_of_energy);
+                    formik.setFieldValue('zone_1.gusohal_e20.kgCO2_eq', result.data.data[0].raw.zone_1.gusohal_e20.kgCO2_eq);
+                    formik.setFieldValue('zone_1.gusohal_e20.tonene_CO2', result.data.data[0].raw.zone_1.gusohal_e20.tonene_CO2);
+
+                    formik.setFieldValue('zone_1.gusohal_e85.amount_of_energy', result.data.data[0].raw.zone_1.gusohal_e85.amount_of_energy);
+                    formik.setFieldValue('zone_1.gusohal_e85.kgCO2_eq', result.data.data[0].raw.zone_1.gusohal_e85.kgCO2_eq);
+                    formik.setFieldValue('zone_1.gusohal_e85.tonene_CO2', result.data.data[0].raw.zone_1.gusohal_e85.tonene_CO2);
+
+                    formik.setFieldValue('zone_1.bio_dcell.amount_of_energy', result.data.data[0].raw.zone_1.bio_dcell.amount_of_energy);
+                    formik.setFieldValue('zone_1.bio_dcell.kgCO2_eq', result.data.data[0].raw.zone_1.bio_dcell.kgCO2_eq);
+                    formik.setFieldValue('zone_1.bio_dcell.tonene_CO2', result.data.data[0].raw.zone_1.bio_dcell.tonene_CO2);
+
+                    formik.setFieldValue('zone_1.lpg.amount_of_energy', result.data.data[0].raw.zone_1.lpg.amount_of_energy);
+                    formik.setFieldValue('zone_1.lpg.kgCO2_eq', result.data.data[0].raw.zone_1.lpg.kgCO2_eq);
+                    formik.setFieldValue('zone_1.lpg.tonene_CO2', result.data.data[0].raw.zone_1.lpg.tonene_CO2);
+
+                    setStatusFetchAdmin(true);
+
+                } else {
+                    setStatusFetchAdmin(false);
+
+                    console.log("err 500");
+                }
+            } catch (error) {
+                console.log(error)
+
+                setStatusFetchAdmin(false);
+
+            } finally {
+                console.log('suc suc')
+                setLoading(false);
+            }
+        };
+        fetchDATA();
+    }, [id]);
     const initialValues =
     {
         zone_1: {
             gas_h: {
                 amount_of_energy: '',
                 kgCO2_eq: '',
-                tonene_CO2:'',
+                tonene_CO2: '',
             },
             gas_hi: {
                 amount_of_energy: '',
@@ -149,14 +247,12 @@ const Home: NextPage = () => {
             }
         }
     }
-const router = useRouter();
-    // console.log(initialValues)
     const formik = useFormik({
         initialValues: initialValues,
         // validationSchema: validationSchema,
 
         onSubmit: async (values) => {
-            // console.log('values ===>', values)
+            console.log('values ===>', values)
             //   setData(values);
 
             // if (Overload) {
@@ -255,7 +351,7 @@ const router = useRouter();
                 }
                 // console.log()
                 const valueData = {
-                    data:param
+                    data: param
                 }
                 // let data = JSON.stringify(param)
                 const result = await axios.post(
@@ -265,9 +361,9 @@ const router = useRouter();
 
                 if (result) {
                     // console.log(result);
-                      Swal.fire("Good job!", "บันทึกข้อมูลสำเร็จ!", "success");
-                      router.push('/TableData');
-                    // console.log("Good job!");
+                    Swal.fire("Good job!", "บันทึกข้อมูลสำเร็จ!", "success");
+                    router.push('/TableData');
+                    console.log("Good job!");
                 } else {
                     console.log("err 500");
                 }
@@ -315,44 +411,46 @@ const router = useRouter();
                 </div>
                 <Row style={{ display: "contents" }}>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-
-                        {/* <Col xs="12" md={3} style={{ transform: 'translate(-10px,0px)' }}>
-                            <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
-                            </div>{''}
-                            <div className={stylesAOS['x_feature']} id="x_feature" >
-                                <div
-                                    data-aos="zoom-in-up"
-                                    data-aos-duration="600"
-                                    data-aos-easing="ease-in-out"
-                                    data-aos-once="true"
-                                >
-                                    <ListCreateBoard setName={setName} />
-                               
-
+                        {loading && !statusFetchAdmin &&(
+                            <Col xs="12" md={8}>
+                                <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
+                                </div>{''}
+                                <div className={stylesAOS['x_feature']} id="x_feature" >
+                                    <div
+                                        data-aos="zoom-in-up"
+                                        data-aos-duration="600"
+                                        data-aos-easing="ease-in-out"
+                                        data-aos-once="true"
+                                    >
+                                        <h6>Loading. . . </h6>
+                          
+                                    </div>
                                 </div>
-                            </div>
 
-                        </Col> */}
-                        <Col xs="12" md={8}>
-                            <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
-                            </div>{''}
-                            <div className={stylesAOS['x_feature']} id="x_feature" >
-                                <div
-                                    data-aos="zoom-in-up"
-                                    data-aos-duration="600"
-                                    data-aos-easing="ease-in-out"
-                                    data-aos-once="true"
-                                >
-                                    {/* {name === 'ขอบเขตที่ 1' ? */}
-                                        <DataTable1  formik={formik} isEdit={false}/> 
+                            </Col>
+                        )}
+                        {!loading  && statusFetchAdmin && (
+                            <Col xs="12" md={8}>
+                                <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
+                                </div>{''}
+                                {/* <div className={stylesAOS['x_feature']} id="x_feature" >
+                                    <div
+                                        data-aos="zoom-in-up"
+                                        data-aos-duration="600"
+                                        data-aos-easing="ease-in-out"
+                                        data-aos-once="true"
+                                    > */}
+                                        {/* {name === 'ขอบเขตที่ 1' ? */}
+                                        <DataTable1 formik={formik} isEdit={true} />
                                         {/* : name === 'ขอบเขตที่ 2' ? <DataTable2 /> : <DataTable3 />
 
-                                    } */}
-                                </div>
-                            </div>
+           } */}
+                                    {/* </div>
+                                </div> */}
 
-                        </Col>
+                            </Col>
+                        )}
+
                     </div>
                 </Row>
 

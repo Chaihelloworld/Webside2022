@@ -26,6 +26,13 @@ import { BsMegaphone } from "react-icons/bs";
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import text1 from '../public/textImg/text1.jpg'
+import text2 from '../public/textImg/text2.jpg'
+import text3 from '../public/textImg/text3.jpg'
+import text4 from '../public/textImg/text4.jpg'
+import text5 from '../public/textImg/text5.jpg'
+import text6 from '../public/textImg/text6.jpg'
+import text7 from '../public/textImg/text7.jpg'
 
 const Home = () => {
     const router = useRouter();
@@ -50,29 +57,57 @@ const Home = () => {
     const [modal, setModal] = useState(false);
     const [unmountOnClose, setUnmountOnClose] = useState(true);
     const [stateCokie, setState] = useState(false);
-
+    console.log(text1)
     const toggle = () => setModal(!modal);
     const setCheck = () => {
         toggle();
     }
     const data = [{
         "id": 1,
-        "img": "https://picsum.photos/300/200",
+        "img": text1.src,
         "title": "บทความ 1",
         "subtitle": "กิจกรรมทดสอบที่ 1",
         "detail": "text ........................"
     },
     {
         "id": 2,
-        "img": "https://picsum.photos/300/200",
+        "img": text2.src,
         "title": "บทความ 2",
         "subtitle": "กิจกรรมทดสอบที่ 2",
         "detail": "text ........................"
     },
     {
         "id": 3,
-        "img": "https://picsum.photos/300/200",
+        "img": text3.src,
         "title": "บทความ 3",
+        "subtitle": "กิจกรรมทดสอบที่ 3",
+        "detail": "text ........................"
+    },
+    {
+        "id": 4,
+        "img": text4.src,
+        "title": "บทความ 4",
+        "subtitle": "กิจกรรมทดสอบที่ 3",
+        "detail": "text ........................"
+    },
+    {
+        "id": 5,
+        "img": text5.src,
+        "title": "บทความ 5",
+        "subtitle": "กิจกรรมทดสอบที่ 3",
+        "detail": "text ........................"
+    },
+    {
+        "id": 6,
+        "img": text6.src,
+        "title": "บทความ 6",
+        "subtitle": "กิจกรรมทดสอบที่ 3",
+        "detail": "text ........................"
+    },
+    {
+        "id": 7,
+        "img": text7.src,
+        "title": "บทความ 7",
         "subtitle": "กิจกรรมทดสอบที่ 3",
         "detail": "text ........................"
     }]
@@ -81,16 +116,16 @@ const Home = () => {
     }, []);
     const [cookieToken, setCookieToken, removeCookiesToken] = useCookies(['apiToken']);
     useEffect(() => {
-      if (cookieToken.apiToken) {
-        setState(true)
-  
-      }
+        if (cookieToken.apiToken) {
+            setState(true)
+
+        }
     }, [cookieToken])
     return (
         <>
             <>
-      
-                <Row style={{ display: "contents" ,overflow:'auto'}} >
+
+                <Row style={{ display: "contents", overflow: 'auto' }} >
                     <Col sm="12" md={{ size: 8, offset: 2 }} >
                         <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
                         </div>{''}
@@ -103,12 +138,17 @@ const Home = () => {
                         }}> <BsMegaphone color='red' style={{ transform: 'translate(0px,-2px)' }} /> {' '}ข่าวสารกิจกรรม</p>
                         <div className={stylesAOS['x_feature']} id="x_feature" >
 
-                            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'flex-start',
+                                flexDirection: 'row',
+                                flexWrap: 'wrap'
+                            }}>
 
                                 {data.map((data, index) => {
                                     return (
 
-                                        <div  key={index} className={stylesAOS['zone-mobile']}>
+                                        <div key={index} className={stylesAOS['zone-mobile']}>
                                             <ul className={stylesAOS['zone-logo']}>
                                                 <li
                                                     data-aos="zoom-in-up"
@@ -119,6 +159,16 @@ const Home = () => {
                                                         <Card
                                                             key={index}
                                                             outline
+                                                            onClick={() => {
+                                                                // router.push('/TextlistNew')
+                                                                router.push({
+                                                                    pathname:
+                                                                        '/TextlistNew',
+                                                                    query: {
+                                                                        new_event: data.img
+                                                                    }
+                                                                })
+                                                            }}
                                                             style={{
                                                                 width: '15rem'
                                                             }}
@@ -127,11 +177,12 @@ const Home = () => {
                                                                 alt="Sample"
                                                                 src={data.img}
                                                             />
-                                                            <CardBody>
-                                                                <CardTitle tag="h5">
-                                                                    {data.title}
-                                                                </CardTitle>
-                                                                <CardSubtitle
+                                                            {/* <CardBody>
+                                                                <CardTitle tag="h5" >
+                                                                    <a>{data.title}</a>
+
+                                                                </CardTitle> */}
+                                                            {/* <CardSubtitle
                                                                     className="mb-2 text-muted"
                                                                     tag="h6"
                                                                 >
@@ -145,8 +196,8 @@ const Home = () => {
                                                                 }}>
                                                                     อ่านเพิ่มเติม
                                                             
-                                                                </Button>
-                                                            </CardBody>
+                                                                </Button> */}
+                                                            {/* </CardBody> */}
                                                         </Card>
                                                     </div>
                                                 </li>
