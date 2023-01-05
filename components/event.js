@@ -26,13 +26,13 @@ import { BsMegaphone } from "react-icons/bs";
 import { useCookies } from 'react-cookie';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import text1 from '../public/textImg/text1.jpg'
-import text2 from '../public/textImg/text2.jpg'
-import text3 from '../public/textImg/text3.jpg'
-import text4 from '../public/textImg/text4.jpg'
-import text5 from '../public/textImg/text5.jpg'
-import text6 from '../public/textImg/text6.jpg'
-import text7 from '../public/textImg/text7.jpg'
+import text1 from '../public/textImgs/text1.jpg'
+import text2 from '../public/textImgs/text2.jpg'
+import text3 from '../public/textImgs/text3.jpg'
+import text4 from '../public/textImgs/text4.jpg'
+import text5 from '../public/textImgs/text5.jpg'
+import text6 from '../public/textImgs/text6.jpg'
+import text7 from '../public/textImgs/text7.jpg'
 
 const Home = () => {
     const router = useRouter();
@@ -56,7 +56,7 @@ const Home = () => {
     const [modal, setModal] = useState(false);
     const [unmountOnClose, setUnmountOnClose] = useState(true);
     const [stateCokie, setState] = useState(false);
-    console.log(text1)
+    // console.log(text1)
     const toggle = () => setModal(!modal);
     const setCheck = () => {
         toggle();
