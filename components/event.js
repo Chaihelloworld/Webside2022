@@ -43,7 +43,6 @@ const Home = () => {
             height: "100%",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            // width: '150%',
             padding: 20,
             backgroundPosition: "center",
             // backgroundImage: `url(${NewBg.src})`,
