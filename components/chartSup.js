@@ -25,17 +25,24 @@ function CardBarChart() {
     return formattedDate
   }
   const [toggle, setToggle] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   const [value, setValue] = useState([])
 
   const [year, setYear] = useState(new Date().getFullYear())
 
   const fetchData = async (years) => {
+    setLoading(true)
+
     try {
       const result = await axios.get(
         // `https://serverwebp-api.com/api/resource?year=${years}`
         `https://serverwebp-api.com/api/resource/report?year=${years}`
       );
+
       if (result) {
+
+        // Finally, call the update method to apply the changes
         // console.log('ควรล้างอาเรย์ !!')
         let data = result.data.data
         console.log(data.KgCO2)
@@ -68,7 +75,7 @@ function CardBarChart() {
               }
             ],
           },
-        
+
           options: {
             maintainAspectRatio: true,
             responsive: true,
@@ -76,23 +83,23 @@ function CardBarChart() {
               display: false,
               text: "Orders Chart",
             },
-            // tooltips: {
-            //   mode: "index",
-            //   intersect: false,
-            // },
             tooltips: {
-              enabled: true,
-              mode: 'single',
-              callbacks: {
-                label: function (tooltipItems, data) {
-                  return data.datasets[tooltipItems.datasetIndex].label + ': ' + tooltipItems.yLabel;
-                }
-              }
+              mode: "index",
+              intersect: false,
             },
-            // hover: {
-            //   mode: "nearest",
-            //   intersect: false,
+            // tooltips: {
+            //   enabled: true,
+            //   mode: 'single',
+            //   callbacks: {
+            //     label: function (tooltipItems, data) {
+            //       return data.datasets[tooltipItems.datasetIndex].label + ': ' + tooltipItems.yLabel;
+            //     }
+            //   }
             // },
+            hover: {
+              mode: "nearest",
+              intersect: false,
+            },
             legend: {
               labels: {
                 fontColor: "rgba(0,0,0,.4)",
@@ -146,7 +153,7 @@ function CardBarChart() {
         };
         let ctx = document.getElementById("bar-charts").getContext("2d");
         window.myBar = new Chart(ctx, configs);
-
+        console.log(window.myBar.data.datasets[0].data)
 
       } else {
         console.log("err 500");
@@ -155,12 +162,14 @@ function CardBarChart() {
       console.log(error);
     } finally {
       console.log("connecting");
+
     }
+
   }
-  useEffect(() => {
-    // let date = new Date().getFullYear()
-    // fetchData(date);
-  }, [])
+  // useEffect(() => {
+  //   // let date = new Date().getFullYear()
+  //   // fetchData(date);
+  // }, [])
   useEffect(() => {
     if (year) {
       fetchData(year);
@@ -168,6 +177,15 @@ function CardBarChart() {
     }
 
   }, [year]);
+  useEffect(() => {
+    // if(toggle){
+    //   setToggle(false)
+
+    // }
+    console.log(loading)
+    setLoading(false)
+
+  }, [loading]);
   // const handleChange = (e) => {
   //   console.log('event.value', e.target.value)
   //   // if(e.target.value){
@@ -233,7 +251,8 @@ function CardBarChart() {
       <div className="p-4 flex-auto">
         {/* Chart */}
         <div className="relative h-350-px">
-          <canvas id="bar-charts"></canvas>
+          {loading ? <>loading .. . </>:<canvas id="bar-charts"></canvas>}
+          {/* <canvas id="bar-charts"></canvas> */}
 
         </div>
       </div>

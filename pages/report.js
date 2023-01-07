@@ -179,7 +179,7 @@ const Home = () => {
 
                     </Col>
                 </Row> */}
-                <Events />
+                {/* <Events /> */}
 
 
             </>
