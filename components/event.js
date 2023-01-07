@@ -19,7 +19,6 @@ import AOS from 'aos';
 import Login from "./login";
 import { useEffect, useState } from "react";
 import stylesAOS from '../styles/feature.module.scss';
-import ChartSup from "./chartSup";
 import Chart from "./chart";
 import ListChart from "./listChart";
 import { BsMegaphone } from "react-icons/bs";

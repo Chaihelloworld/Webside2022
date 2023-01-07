@@ -74,8 +74,8 @@ function Modals(args) {
             <Image
             src={Text}
 
-            width={550}
-              height={280}
+            width={450}
+              height={380}
             />
               {/* <Image
               width={450}

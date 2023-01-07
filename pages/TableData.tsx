@@ -177,13 +177,13 @@ const Home: NextPage = () => {
                         <Col xs="12" md={12}>
                             <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
                             </div>{''}
-                            <div className={stylesAOS['x_feature']} id="x_feature" >
+                            {/* <div className={stylesAOS['x_feature']} id="x_feature" >
                                 <div
                                     data-aos="zoom-in-up"
                                     data-aos-duration="600"
                                     data-aos-easing="ease-in-out"
                                     data-aos-once="true"
-                                >
+                                > */}
                                     <Table bordered>
                                         <thead>
                                             <tr style={{
@@ -282,8 +282,8 @@ const Home: NextPage = () => {
 
                                         </tbody>
                                     </Table>
-                                </div>
-                            </div>
+                                {/* </div>
+                            </div> */}
 
                         </Col>
                     </div>
