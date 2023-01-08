@@ -32,6 +32,7 @@ import LOGOBANNERS from '../public/LOGO.png'
 import { setLogLevel } from 'firebase/app';
 import Router from 'next/router';
 import { useRouter } from 'next/router'
+import Reports from '../pages/reports';
 
 interface Props {
 
@@ -181,7 +182,22 @@ const Example: FC<Props> = ({
                 ข้อมูลทรัพยากร
               </NavLink>
             </NavItem>
-  
+            <NavItem>
+              <NavLink
+                active
+                // href='/'
+                // onClick={}
+                style={{
+                  color: '#797979', transition: '0.4s ease',
+                  letterSpacing: '2px',
+                  textAlign: 'center',
+                  fontWeight: 500
+                }}
+              >
+                {/* ดาวน์โหลดข้อมูลแบบสอบถาม */}
+                <Reports/>
+              </NavLink>
+            </NavItem>
             </>}
            
           </div>

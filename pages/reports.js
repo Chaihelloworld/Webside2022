@@ -85,16 +85,21 @@ function App() {
     <div >
       {data && data.length > 0 && (
         <CSVLink headers={headers} data={data} filename="report.csv" >
-          <Button className={styler.btnstyleReport}>
-                      <Image
+          {/* <Button */}
+          {/* //  className={styler.btnstyleReport} */}
+           {/* > */}
+                      {/* <Image
                         src={Excels}
                         alt="Picture of the author"
                         width={25}
-                        height={25} />
+                        height={25} /> */}
                       {/* <div> */}
-                      Download
+                      <div >
+                      <a style={{textDecoration: 'none !important'}}>ดาวน์โหลดข้อมูลแบบสอบถาม</a> 
+
+                      </div>
                       {/* </div> */}
-                    </Button>
+                    {/* </Button> */}
         </CSVLink>
       )}
     </div>
