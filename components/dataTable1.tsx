@@ -941,7 +941,7 @@ const Example: FC<Props> = ({ formik, isEdit }) => {
                                 2.1 การใช้ไฟฟ้าในเขตพื้นที่เทศบาล
                             </td>
                             <td>
-                                ก๊าซหุงต้ม
+                                พลังงานไฟฟ้า
                             </td>
                             <td>
                                 <InputGroup size="sm">
@@ -959,7 +959,7 @@ const Example: FC<Props> = ({ formik, isEdit }) => {
                                 </InputGroup>
                             </td>
                             <td>
-                                กิโลกรัม/ปี
+                               หน่วย/ปี
                             </td>
                             <td>
                                 <InputGroup size="sm">
@@ -1006,7 +1006,7 @@ const Example: FC<Props> = ({ formik, isEdit }) => {
                                 2.2 การใช้ไฟฟ้าสาธารณะในเขตพื้นที่เทศบาล
                             </td>
                             <td>
-                                ก๊าซหุงต้ม
+                                ไฟสาธารณะ
                             </td>
                             <td>
                                 <InputGroup size="sm">
@@ -1024,7 +1024,7 @@ const Example: FC<Props> = ({ formik, isEdit }) => {
                                 </InputGroup>
                             </td>
                             <td>
-                                กิโลกรัม/ปี
+                            หน่วย/ปี
                             </td>
                             <td>
                                 <InputGroup size="sm">
@@ -1071,7 +1071,7 @@ const Example: FC<Props> = ({ formik, isEdit }) => {
                                 3.1 การจัดการขยะมูลฝอยแบบฝังกลบนอกเขตเทศบาล
                             </td>
                             <td>
-                                ก๊าซหุงต้ม
+                                ปริมาณ
                             </td>
                             <td>
                                 <InputGroup size="sm">

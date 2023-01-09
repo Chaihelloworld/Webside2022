@@ -81,6 +81,7 @@ const Home: NextPage = () => {
             <Col xs="12" md={6}>
               {/* <CarouselPage /> */}
               {/* <Textname /> */}
+
             </Col>
             <Col xs="0" md={1}>
               {/* <CarouselPage /> */}

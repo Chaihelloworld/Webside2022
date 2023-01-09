@@ -51,3 +51,31 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+button:focus {
+  box-shadow: none !important;
+  /* background-color: #01459a !important; */
+}
+
+button:active {
+  box-shadow: none !important;
+  /* background-color: #01459a !important; */
+}
+button:target {
+  box-shadow: none !important;
+  /* background-color: #01459a !important; */
+}
+button:focus-within {
+  box-shadow: none !important;
+  /* background-color: #01459a !important; */
+}
+button:visited {
+  box-shadow: none !important;
+  /* background-color: #01459a !important; */
+}
+button:hover {
+  box-shadow: none !important;
+  /* background-color: #01459a !important; */
+
+  /* background-color: #4300bb !important; */
+}

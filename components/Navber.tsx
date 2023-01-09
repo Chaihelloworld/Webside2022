@@ -153,6 +153,20 @@ const Example: FC<Props> = ({
                 ฟุตพริ้นท์ เมือง
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink
+                active
+                href="/map"
+                style={{
+                  color: '#797979', transition: '0.4s ease',
+                  letterSpacing: '2px',
+                  textAlign: 'center',
+                  fontWeight: 500
+                }}
+              >
+                Carbon Map
+              </NavLink>
+            </NavItem>
             </>:<>
             <NavItem>
               <NavLink
