@@ -354,8 +354,8 @@ const Home: NextPage = () => {
                     data: param
                 }
                 // let data = JSON.stringify(param)
-                const result = await axios.post(
-                    "https://www.serverwebp-api.com/api/resource",
+                const result = await axios.put(
+                    `https://serverwebp-api.com/api/resource?id=${id}`,
                     valueData
                 );
 

@@ -909,6 +909,7 @@ function CardBarChart() {
               bsSize="sm"
               className="mb-12"
               type="select"
+              style={{borderColor:'#0d6efd',color:'#0d6efd'}}
               onChange={(e) => {
                 // handleChange(e);
                 setYear(e.target.value)

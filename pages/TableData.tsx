@@ -36,6 +36,7 @@ import stylesIcon from '../styles/BlinkText.module.css';
 import axios from "axios";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 interface datalist {
     sumCO2rq: any;
     tonneCO2: any;
@@ -68,6 +69,7 @@ const Home: NextPage = () => {
     }
     const [modal, setModal] = useState(false);
     const [unmountOnClose, setUnmountOnClose] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const toggle = () => setModal(!modal);
     const setCheck = () => {
@@ -125,7 +127,9 @@ const Home: NextPage = () => {
     }
     useEffect(() => {
         fatchData();
-    }, [])
+        setLoading(false)
+
+    }, [loading])
     const formatDate =(data: string | number | Date)=>{
         const date = new Date(data);
 
@@ -139,6 +143,31 @@ const Home: NextPage = () => {
         return formattedDate
     }
    
+    const fetchdata = async (id: any) => {    
+        try {
+    
+          const result = await axios.delete(
+            `https://www.serverwebp-api.com/api/resource?id=${id}`);
+          console.log('x ===',result.data.success)
+          setLoading(true)
+          let KgCo2 = 0
+          let tonene = 0
+    
+        //   if (result.data.success) {
+            console.log('delete success!')
+            Swal.fire("Good job!", "ลบข้อมูลสำเร็จ!", "success");
+            router.push('/TableData');
+            // router.reload();
+        //   } 
+         
+        } catch (error) {
+          console.log(error);
+          console.log('delete success!')
+        } finally {
+          console.log("connecting");
+
+        }
+      }
     return (
         <>
             <>
@@ -268,6 +297,10 @@ const Home: NextPage = () => {
 
                                                                 <Button
                                                                     className={stylesIcon.deleteIcon}
+                                                                    onClick={()=>{
+                                                                        fetchdata(data.id)
+                                                                    }}
+                                                                    fetchdata
                                                                 >
                                                                     <RiDeleteBinLine />
                                                                 </Button>

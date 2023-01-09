@@ -35,6 +35,7 @@ function Content() {
 const [data, setData] = useState([])
 const [valueCO2, setValueCO2] = useState(0)
 const [valuetonne, setValuetonne] = useState(0)
+const date = new Date().getFullYear()+ 543;
 
    const fetchdata = async() => {
     const date = new Date().getFullYear();
@@ -42,7 +43,7 @@ const [valuetonne, setValuetonne] = useState(0)
     try {
 
       const result = await axios.get(
-        `https://serverwebp-api.com/api/resource/report?year=${2022}`);
+        `https://serverwebp-api.com/api/resource/report?year=${date}`);
       console.log('x ===',result.data.success)
       let KgCo2 = 0
       let tonene = 0
@@ -102,11 +103,11 @@ const [valuetonne, setValuetonne] = useState(0)
           </ListGroupItem>
         <ListGroupItem> <BsSlashLg color='#4a5568' />{' '}
           <Link href={'/'}>
-            <a style={{ color: '#797979', fontSize: 14 }}>ค่า kg CO2 -eq ที่งหมดในปี 2022 เท่ากับ {valueCO2.toLocaleString()}</a>
+            <a style={{ color: '#797979', fontSize: 14 }}>ค่า kg CO2 -eq ที่งหมดในปี {date} เท่ากับ {valueCO2.toLocaleString()}</a>
           </Link></ListGroupItem>
         <ListGroupItem> <BsSlashLg color='#3182ce' />{' '}
           <Link href={'/'}>
-            <a style={{ color: '#797979', fontSize: 14 }}>tonne CO2 ที่งหมดในปี 2022 เท่ากับ  {valuetonne.toLocaleString()}</a>
+            <a style={{ color: '#797979', fontSize: 14 }}>tonne CO2 ที่งหมดในปี {date} เท่ากับ  {valuetonne.toLocaleString()}</a>
           </Link></ListGroupItem>
 
       </ListGroup>
