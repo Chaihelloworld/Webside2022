@@ -34,9 +34,140 @@ function CardBarChart() {
 
   const fetchData = async (years) => {
     setLoading(true)
+    console.log('iffffff', rSelected)
     let result
+    let KgCo2One
+    let KgCo2Two
+    let KgCo2Three
+    let tonneOne
+    let tonneTwo
+    let tonneThree
     try {
-      if (rSelected) {
+      if (rSelected == 4) {
+        result = await axios.get(
+          `https://serverwebp-api.com/api/resource/report/summary?year=3`
+        );
+        if (result) {
+          let data = result.data.data
+          console.log('result ===+++', data)
+
+          let y = new Date().getFullYear()
+          let y1 = new Date().getFullYear() - 1
+          let y2 = new Date().getFullYear() - 2
+          console.log(y)
+          console.log('result ===+++', data[y])
+
+          KgCo2One = data[y] ? data[y]?.KgCO2 : 0
+          KgCo2Two = data[y1] ? data[y1]?.KgCO2 : 0
+          KgCo2Three = data[y2] ? data[y2]?.KgCO2 : 0
+          tonneOne = data[y] ? data[y]?.tonene : 0
+          tonneTwo = data[y1] ? data[y1]?.tonene : 0
+          tonneThree = data[y2] ? data[y2]?.tonene : 0
+          console.log('KgCo2Two', tonneTwo)
+          let labels = [
+            y2,
+            y1,
+            y
+          ]
+          let configs = {
+            type: "bar",
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: "kg CO2 -eq",
+                  backgroundColor: "#4a5568",
+                  borderColor: "#4a5568",
+                  data: [KgCo2Three, KgCo2Two, KgCo2One],
+                  fill: false,
+                  barThickness: 40,
+
+                },
+                {
+                  label: "tonne CO2",
+                  fill: false,
+                  backgroundColor: "#3182ce",
+                  borderColor: "#3182ce",
+                  data: [tonneThree, tonneTwo, tonneOne],
+                  barThickness: 40,
+                }
+              ],
+            },
+
+            options: {
+              maintainAspectRatio: true,
+              responsive: true,
+              title: {
+                display: false,
+                text: "Orders Chart",
+              },
+              tooltips: {
+                mode: "index",
+                intersect: false,
+              },
+              hover: {
+                mode: "nearest",
+                intersect: false,
+              },
+              legend: {
+                labels: {
+                  fontColor: "rgba(0,0,0,.4)",
+                },
+                align: "end",
+                position: "bottom",
+              },
+              scales: {
+                xAxes: [
+                  {
+                    ticks: {
+                      fontColor: "#4a5568",
+                    },
+                    display: true,
+                    scaleLabel: {
+                      display: false,
+                    },
+                    gridLines: {
+                      borderDash: [2],
+                      borderDashOffset: [2],
+                      color: "rgba(33, 37, 41, 0.3)",
+                      zeroLineColor: "rgba(33, 37, 41, 0.3)",
+                      zeroLineBorderDash: [2],
+                      zeroLineBorderDashOffset: [2],
+                    },
+                  },
+                ],
+                yAxes: [
+                  {
+                    ticks: {
+                      fontColor: "#4a5568",
+                    },
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: "kg",
+                    },
+                    gridLines: {
+                      borderDash: [2],
+                      drawBorder: false,
+                      borderDashOffset: [2],
+                      color: "rgba(33, 37, 41, 0.2)",
+                      zeroLineColor: "rgba(33, 37, 41, 0.15)",
+                      zeroLineBorderDash: [2],
+                      zeroLineBorderDashOffset: [2],
+                    },
+                  },
+                ],
+              },
+            },
+          };
+          let ctx = document.getElementById("bar-charts").getContext("2d");
+          window.myBar = new Chart(ctx, configs);
+          console.log(window.myBar.data.datasets[0].data)
+
+        }
+
+      }
+      else if (rSelected) {
         result = await axios.get(
           `https://serverwebp-api.com/api/resource/report/zone?year=${years}&zone=${rSelected}`
         );
@@ -72,7 +203,7 @@ function CardBarChart() {
           value_tonene_CO2 = 0
 
         const dataPAI = result.data.data
-          console.log('ooooooo',result.data?.success)
+        console.log('ooooooo', result.data?.success)
         if (result.data?.success) {
           let data = result.data.data
           if (rSelected == "1") {
@@ -100,120 +231,120 @@ function CardBarChart() {
               ngv_tonene_CO2 = data[`zone_${rSelected}`].ngv.tonene_CO2,
               water_b_kgCO2_eq = data[`zone_${rSelected}`].water_b.kgCO2_eq,
               water_b_tonene_CO2 = data[`zone_${rSelected}`].water_b.tonene_CO2
-              let labels = [
-                'ก๊าซหุงต้ม',
-                'ถ่านหุงต้ม',
-                'น้ำมันดีเซล',
-                'น้ำมันเบนซิน',
-                'แก๊สโซฮอล์ 91',
-                'แก๊สโซฮอล์ 95',
-                'แก๊สโซฮอล์ E20',
-                'แก๊สโซฮอล์ E85',
-                'น้ำมันไบโอดีเซล',
-                'ก๊าซปีโตรเลียมเหลว(LPG)',
-                'ก๊าซธรรมชาติ(NGV)',
-                'ปริมาณน้ำเสีย	'
-              ]
-              let configs = {
-                type: "bar",
-                data: {
-                  labels: labels,
-                  datasets: [
+            let labels = [
+              'ก๊าซหุงต้ม',
+              'ถ่านหุงต้ม',
+              'น้ำมันดีเซล',
+              'น้ำมันเบนซิน',
+              'แก๊สโซฮอล์ 91',
+              'แก๊สโซฮอล์ 95',
+              'แก๊สโซฮอล์ E20',
+              'แก๊สโซฮอล์ E85',
+              'น้ำมันไบโอดีเซล',
+              'ก๊าซปีโตรเลียมเหลว(LPG)',
+              'ก๊าซธรรมชาติ(NGV)',
+              'ปริมาณน้ำเสีย	'
+            ]
+            let configs = {
+              type: "bar",
+              data: {
+                labels: labels,
+                datasets: [
+                  {
+                    label: 'kg CO2 -eq',
+                    backgroundColor: "#4a5568",
+                    borderColor: "#4a5568",
+                    data: [gas_h_kgCO2_eq, gas_hi_kgCO2_eq, d_cell_kgCO2_eq, bensin_kgCO2_eq, gusohal_91_kgCO2_eq, gusohal_95_kgCO2_eq, gusohal_e20_kgCO2_eq, gusohal_e85_kgCO2_eq, bio_dcell_kgCO2_eq, lpg_kgCO2_eq, ngv_kgCO2_eq, water_b_kgCO2_eq],
+                    fill: false,
+                    barThickness: 40,
+
+                  },
+                  {
+                    label: "tonne CO2",
+                    fill: false,
+                    backgroundColor: "#3182ce",
+                    borderColor: "#3182ce",
+                    data: [gas_h_tonene_CO2, gas_hi_tonene_CO2, d_cell_tonene_CO2, bensin_tonene_CO2, gusohal_91_tonene_CO2, gusohal_95_tonene_CO2, gusohal_e20_tonene_CO2, gusohal_e85_tonene_CO2, bio_dcell_tonene_CO2, lpg_tonene_CO2, ngv_tonene_CO2, water_b_tonene_CO2],
+                    barThickness: 40,
+                  }
+                ],
+              },
+
+              options: {
+                maintainAspectRatio: true,
+                responsive: true,
+                title: {
+                  display: false,
+                  text: "Orders Chart",
+                },
+                tooltips: {
+                  mode: "index",
+                  intersect: false,
+                },
+                hover: {
+                  mode: "nearest",
+                  intersect: false,
+                },
+                legend: {
+                  labels: {
+                    fontColor: "rgba(0,0,0,.4)",
+                  },
+                  align: "end",
+                  position: "bottom",
+                },
+                scales: {
+                  xAxes: [
                     {
-                      label: 'kg CO2 -eq',
-                      backgroundColor: "#4a5568",
-                      borderColor: "#4a5568",
-                      data: [gas_h_kgCO2_eq, gas_hi_kgCO2_eq, d_cell_kgCO2_eq, bensin_kgCO2_eq, gusohal_91_kgCO2_eq, gusohal_95_kgCO2_eq, gusohal_e20_kgCO2_eq, gusohal_e85_kgCO2_eq, bio_dcell_kgCO2_eq, lpg_kgCO2_eq, ngv_kgCO2_eq, water_b_kgCO2_eq],
-                      fill: false,
-                      barThickness: 40,
-    
+                      ticks: {
+                        fontColor: "#4a5568",
+                      },
+                      display: true,
+                      scaleLabel: {
+                        display: false,
+                      },
+                      gridLines: {
+                        borderDash: [2],
+                        borderDashOffset: [2],
+                        color: "rgba(33, 37, 41, 0.3)",
+                        zeroLineColor: "rgba(33, 37, 41, 0.3)",
+                        zeroLineBorderDash: [2],
+                        zeroLineBorderDashOffset: [2],
+                      },
                     },
+                  ],
+                  yAxes: [
                     {
-                      label: "tonne CO2",
-                      fill: false,
-                      backgroundColor: "#3182ce",
-                      borderColor: "#3182ce",
-                      data: [gas_h_tonene_CO2, gas_hi_tonene_CO2, d_cell_tonene_CO2, bensin_tonene_CO2, gusohal_91_tonene_CO2, gusohal_95_tonene_CO2, gusohal_e20_tonene_CO2, gusohal_e85_tonene_CO2, bio_dcell_tonene_CO2, lpg_tonene_CO2, ngv_tonene_CO2, water_b_tonene_CO2],
-                      barThickness: 40,
-                    }
+                      ticks: {
+                        fontColor: "#4a5568",
+                      },
+                      display: true,
+                      scaleLabel: {
+                        display: true,
+                        labelString: "kg",
+                      },
+                      gridLines: {
+                        borderDash: [2],
+                        drawBorder: false,
+                        borderDashOffset: [2],
+                        color: "rgba(33, 37, 41, 0.2)",
+                        zeroLineColor: "rgba(33, 37, 41, 0.15)",
+                        zeroLineBorderDash: [2],
+                        zeroLineBorderDashOffset: [2],
+                      },
+                    },
                   ],
                 },
-    
-                options: {
-                  maintainAspectRatio: true,
-                  responsive: true,
-                  title: {
-                    display: false,
-                    text: "Orders Chart",
-                  },
-                  tooltips: {
-                    mode: "index",
-                    intersect: false,
-                  },
-                  hover: {
-                    mode: "nearest",
-                    intersect: false,
-                  },
-                  legend: {
-                    labels: {
-                      fontColor: "rgba(0,0,0,.4)",
-                    },
-                    align: "end",
-                    position: "bottom",
-                  },
-                  scales: {
-                    xAxes: [
-                      {
-                        ticks: {
-                          fontColor: "#4a5568",
-                        },
-                        display: true,
-                        scaleLabel: {
-                          display: false,
-                        },
-                        gridLines: {
-                          borderDash: [2],
-                          borderDashOffset: [2],
-                          color: "rgba(33, 37, 41, 0.3)",
-                          zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                          zeroLineBorderDash: [2],
-                          zeroLineBorderDashOffset: [2],
-                        },
-                      },
-                    ],
-                    yAxes: [
-                      {
-                        ticks: {
-                          fontColor: "#4a5568",
-                        },
-                        display: true,
-                        scaleLabel: {
-                          display: true,
-                          labelString: "kg",
-                        },
-                        gridLines: {
-                          borderDash: [2],
-                          drawBorder: false,
-                          borderDashOffset: [2],
-                          color: "rgba(33, 37, 41, 0.2)",
-                          zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                          zeroLineBorderDash: [2],
-                          zeroLineBorderDashOffset: [2],
-                        },
-                      },
-                    ],
-                  },
-                },
-              };
-              let ctx = document.getElementById("bar-charts").getContext("2d");
-              window.myBar = new Chart(ctx, configs);
-            
-    
+              },
+            };
+            let ctx = document.getElementById("bar-charts").getContext("2d");
+            window.myBar = new Chart(ctx, configs);
+
+
           }
           // console.log(rSelected)
           if (rSelected == "2") {
             console.log(data.zone_2)
-              elec_kgCO2_eq = data.zone_2.gas.kgCO2_eq,
+            elec_kgCO2_eq = data.zone_2.gas.kgCO2_eq,
               elec_tonene_CO2 = data.zone_2.gas.tonene_CO2,
               elecPublice_kgCO2_eq = data.zone_2.gas_1.kgCO2_eq,
               elecPublice_tonene_CO2 = data.zone_2.gas_1.tonene_CO2
@@ -233,22 +364,22 @@ function CardBarChart() {
                     label: 'kg CO2 -eq',
                     backgroundColor: "#4a5568",
                     borderColor: "#4a5568",
-                    data: [elec_kgCO2_eq,elecPublice_kgCO2_eq],
+                    data: [elec_kgCO2_eq, elecPublice_kgCO2_eq],
                     fill: false,
                     barThickness: 40,
-  
+
                   },
                   {
                     label: "tonne CO2",
                     fill: false,
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
-                    data: [elec_tonene_CO2,elecPublice_tonene_CO2],
+                    data: [elec_tonene_CO2, elecPublice_tonene_CO2],
                     barThickness: 40,
                   }
                 ],
               },
-  
+
               options: {
                 maintainAspectRatio: true,
                 responsive: true,
@@ -317,12 +448,12 @@ function CardBarChart() {
             };
             let ctx = document.getElementById("bar-charts").getContext("2d");
             window.myBar = new Chart(ctx, configs);
-          
-  
+
+
           }
           if (rSelected == "3") {
-              value_kgCO2_eq = data.zone_3.gas.kgCO2_eq
-              value_tonene_CO2 =data.zone_3.gas.tonene_CO2
+            value_kgCO2_eq = data.zone_3.gas.kgCO2_eq
+            value_tonene_CO2 = data.zone_3.gas.tonene_CO2
             let labels = [
               'ปริมาณขยะ',
             ]
@@ -338,7 +469,7 @@ function CardBarChart() {
                     data: [value_kgCO2_eq],
                     fill: false,
                     barThickness: 40,
-  
+
                   },
                   {
                     label: "tonne CO2",
@@ -350,7 +481,7 @@ function CardBarChart() {
                   }
                 ],
               },
-  
+
               options: {
                 maintainAspectRatio: true,
                 responsive: true,
@@ -420,118 +551,118 @@ function CardBarChart() {
             let ctx = document.getElementById("bar-charts").getContext("2d");
             window.myBar = new Chart(ctx, configs);
           }
-        } else{
+        } else {
           console.log('data is null =========== ++++++++++++')
           if (rSelected == "1") {
-              let labels = [
-                'ก๊าซหุงต้ม',
-                'ถ่านหุงต้ม',
-                'น้ำมันดีเซล',
-                'น้ำมันเบนซิน',
-                'แก๊สโซฮอล์ 91',
-                'แก๊สโซฮอล์ 95',
-                'แก๊สโซฮอล์ E20',
-                'แก๊สโซฮอล์ E85',
-                'น้ำมันไบโอดีเซล',
-                'ก๊าซปีโตรเลียมเหลว(LPG)',
-                'ก๊าซธรรมชาติ(NGV)',
-                'ปริมาณน้ำเสีย	'
-              ]
-              let configs = {
-                type: "bar",
-                data: {
-                  labels: labels,
-                  datasets: [
+            let labels = [
+              'ก๊าซหุงต้ม',
+              'ถ่านหุงต้ม',
+              'น้ำมันดีเซล',
+              'น้ำมันเบนซิน',
+              'แก๊สโซฮอล์ 91',
+              'แก๊สโซฮอล์ 95',
+              'แก๊สโซฮอล์ E20',
+              'แก๊สโซฮอล์ E85',
+              'น้ำมันไบโอดีเซล',
+              'ก๊าซปีโตรเลียมเหลว(LPG)',
+              'ก๊าซธรรมชาติ(NGV)',
+              'ปริมาณน้ำเสีย	'
+            ]
+            let configs = {
+              type: "bar",
+              data: {
+                labels: labels,
+                datasets: [
+                  {
+                    label: 'kg CO2 -eq',
+                    backgroundColor: "#4a5568",
+                    borderColor: "#4a5568",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    fill: false,
+                    barThickness: 40,
+
+                  },
+                  {
+                    label: "tonne CO2",
+                    fill: false,
+                    backgroundColor: "#3182ce",
+                    borderColor: "#3182ce",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    barThickness: 40,
+                  }
+                ],
+              },
+
+              options: {
+                maintainAspectRatio: true,
+                responsive: true,
+                title: {
+                  display: false,
+                  text: "Orders Chart",
+                },
+                tooltips: {
+                  mode: "index",
+                  intersect: false,
+                },
+                hover: {
+                  mode: "nearest",
+                  intersect: false,
+                },
+                legend: {
+                  labels: {
+                    fontColor: "rgba(0,0,0,.4)",
+                  },
+                  align: "end",
+                  position: "bottom",
+                },
+                scales: {
+                  xAxes: [
                     {
-                      label: 'kg CO2 -eq',
-                      backgroundColor: "#4a5568",
-                      borderColor: "#4a5568",
-                      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      fill: false,
-                      barThickness: 40,
-    
+                      ticks: {
+                        fontColor: "#4a5568",
+                      },
+                      display: true,
+                      scaleLabel: {
+                        display: false,
+                      },
+                      gridLines: {
+                        borderDash: [2],
+                        borderDashOffset: [2],
+                        color: "rgba(33, 37, 41, 0.3)",
+                        zeroLineColor: "rgba(33, 37, 41, 0.3)",
+                        zeroLineBorderDash: [2],
+                        zeroLineBorderDashOffset: [2],
+                      },
                     },
+                  ],
+                  yAxes: [
                     {
-                      label: "tonne CO2",
-                      fill: false,
-                      backgroundColor: "#3182ce",
-                      borderColor: "#3182ce",
-                      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      barThickness: 40,
-                    }
+                      ticks: {
+                        fontColor: "#4a5568",
+                      },
+                      display: true,
+                      scaleLabel: {
+                        display: true,
+                        labelString: "kg",
+                      },
+                      gridLines: {
+                        borderDash: [2],
+                        drawBorder: false,
+                        borderDashOffset: [2],
+                        color: "rgba(33, 37, 41, 0.2)",
+                        zeroLineColor: "rgba(33, 37, 41, 0.15)",
+                        zeroLineBorderDash: [2],
+                        zeroLineBorderDashOffset: [2],
+                      },
+                    },
                   ],
                 },
-    
-                options: {
-                  maintainAspectRatio: true,
-                  responsive: true,
-                  title: {
-                    display: false,
-                    text: "Orders Chart",
-                  },
-                  tooltips: {
-                    mode: "index",
-                    intersect: false,
-                  },
-                  hover: {
-                    mode: "nearest",
-                    intersect: false,
-                  },
-                  legend: {
-                    labels: {
-                      fontColor: "rgba(0,0,0,.4)",
-                    },
-                    align: "end",
-                    position: "bottom",
-                  },
-                  scales: {
-                    xAxes: [
-                      {
-                        ticks: {
-                          fontColor: "#4a5568",
-                        },
-                        display: true,
-                        scaleLabel: {
-                          display: false,
-                        },
-                        gridLines: {
-                          borderDash: [2],
-                          borderDashOffset: [2],
-                          color: "rgba(33, 37, 41, 0.3)",
-                          zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                          zeroLineBorderDash: [2],
-                          zeroLineBorderDashOffset: [2],
-                        },
-                      },
-                    ],
-                    yAxes: [
-                      {
-                        ticks: {
-                          fontColor: "#4a5568",
-                        },
-                        display: true,
-                        scaleLabel: {
-                          display: true,
-                          labelString: "kg",
-                        },
-                        gridLines: {
-                          borderDash: [2],
-                          drawBorder: false,
-                          borderDashOffset: [2],
-                          color: "rgba(33, 37, 41, 0.2)",
-                          zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                          zeroLineBorderDash: [2],
-                          zeroLineBorderDashOffset: [2],
-                        },
-                      },
-                    ],
-                  },
-                },
-              };
-              let ctx = document.getElementById("bar-charts").getContext("2d");
-              window.myBar = new Chart(ctx, configs);
-            
-    
+              },
+            };
+            let ctx = document.getElementById("bar-charts").getContext("2d");
+            window.myBar = new Chart(ctx, configs);
+
+
           }
           // console.log(rSelected)
           if (rSelected == "2") {
@@ -548,22 +679,22 @@ function CardBarChart() {
                     label: 'kg CO2 -eq',
                     backgroundColor: "#4a5568",
                     borderColor: "#4a5568",
-                    data: [0,0],
+                    data: [0, 0],
                     fill: false,
                     barThickness: 40,
-  
+
                   },
                   {
                     label: "tonne CO2",
                     fill: false,
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
-                    data: [0,0],
+                    data: [0, 0],
                     barThickness: 40,
                   }
                 ],
               },
-  
+
               options: {
                 maintainAspectRatio: true,
                 responsive: true,
@@ -632,11 +763,11 @@ function CardBarChart() {
             };
             let ctx = document.getElementById("bar-charts").getContext("2d");
             window.myBar = new Chart(ctx, configs);
-          
-  
+
+
           }
           if (rSelected == "3") {
-    
+
 
             let labels = [
               'ปริมาณขยะ',
@@ -653,7 +784,7 @@ function CardBarChart() {
                     data: [0],
                     fill: false,
                     barThickness: 40,
-  
+
                   },
                   {
                     label: "tonne CO2",
@@ -665,7 +796,7 @@ function CardBarChart() {
                   }
                 ],
               },
-  
+
               options: {
                 maintainAspectRatio: true,
                 responsive: true,
@@ -734,8 +865,8 @@ function CardBarChart() {
             };
             let ctx = document.getElementById("bar-charts").getContext("2d");
             window.myBar = new Chart(ctx, configs);
+          }
         }
-      }
       } else {
         result = await axios.get(
           `https://serverwebp-api.com/api/resource/report?year=${years}`
@@ -900,7 +1031,7 @@ function CardBarChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold"> */}
-      <Row style={{ display: 'flex', justifyContent: 'flex-end',transform:'translate(-25px,0px)'}}>
+      <Row style={{ display: 'flex', justifyContent: 'flex-end', transform: 'translate(-25px,0px)' }}>
 
         <Col xs="12" md={4}>
           <Form>
@@ -909,7 +1040,7 @@ function CardBarChart() {
               bsSize="sm"
               className="mb-12"
               type="select"
-              style={{borderColor:'#0d6efd',color:'#0d6efd'}}
+              style={{ borderColor: '#0d6efd', color: '#0d6efd' }}
               onChange={(e) => {
                 // handleChange(e);
                 setYear(e.target.value)
@@ -937,7 +1068,7 @@ function CardBarChart() {
 
       </Row>
       <br />
-      <div style={{ float: 'right' ,transform:'translate(-25px,0px)'}}>
+      <div style={{ float: 'right', transform: 'translate(-25px,0px)' }}>
 
         <ButtonGroup>
           <Button
@@ -976,6 +1107,15 @@ function CardBarChart() {
             active={rSelected === '3'}
           >
             ขอบเขตที่ 3
+          </Button>
+          <Button
+            color="primary"
+            outline
+            size="sm"
+            onClick={() => setRSelected('4')}
+            active={rSelected === '4'}
+          >
+            ข้อมูลรายปี
           </Button>
         </ButtonGroup>
       </div>
