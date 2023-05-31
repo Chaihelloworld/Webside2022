@@ -91,7 +91,7 @@ const Home: NextPage = () => {
             // setLoading(true);
             try {
                 const result = await axios.get(
-                    "https://serverwebp-api.com/api/resource/data", {
+                    "https://www.serverwebp-api.com/api/resource/data", {
                     params: {
                         id: id
                     }
@@ -355,7 +355,7 @@ const Home: NextPage = () => {
                 }
                 // let data = JSON.stringify(param)
                 const result = await axios.put(
-                    `https://serverwebp-api.com/api/resource?id=${id}`,
+                    `https://www.serverwebp-api.com/api/resource?id=${id}`,
                     valueData
                 );
 

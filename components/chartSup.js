@@ -45,7 +45,7 @@ function CardBarChart() {
     try {
       if (rSelected == 4) {
         result = await axios.get(
-          `https://serverwebp-api.com/api/resource/report/summary?year=3`
+          `https://www.serverwebp-api.com/api/resource/report/summary?year=3`
         );
         if (result) {
           let data = result.data.data
@@ -169,7 +169,7 @@ function CardBarChart() {
       }
       else if (rSelected) {
         result = await axios.get(
-          `https://serverwebp-api.com/api/resource/report/zone?year=${years}&zone=${rSelected}`
+          `https://www.serverwebp-api.com/api/resource/report/zone?year=${years}&zone=${rSelected}`
         );
         let gas_h_kgCO2_eq = 0,
           gas_h_tonene_CO2 = 0,
@@ -869,7 +869,7 @@ function CardBarChart() {
         }
       } else {
         result = await axios.get(
-          `https://serverwebp-api.com/api/resource/report?year=${years}`
+          `https://www.serverwebp-api.com/api/resource/report?year=${years}`
         );
         if (result) {
           let data = result.data.data

@@ -43,7 +43,7 @@ const date = new Date().getFullYear()+ 543;
     try {
 
       const result = await axios.get(
-        `https://serverwebp-api.com/api/resource/report?year=${date}`);
+        `https://www.serverwebp-api.com/api/resource/report?year=${date}`);
       console.log('x ===',result.data.success)
       let KgCo2 = 0
       let tonene = 0
