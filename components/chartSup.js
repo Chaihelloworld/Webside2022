@@ -12,19 +12,8 @@ import { RiContrastDropLine, RiH2 } from "react-icons/ri";
 import { emit } from "process";
 
 function CardBarChart() {
-  const [sumCO2rqs, setSumCO2rq] = useState([])
-  const [sumtonne, setSumtonne] = useState([])
 
-  const [value_2, setValue_2] = useState([])
-  const formatDate = (data) => {
-    const date = new Date(data);
-    const formattedDate = date.toLocaleDateString('en-US', {
-      // day: '2-digit',
-      // month: '2-digit',
-      year: 'numeric'
-    });
-    return formattedDate
-  }
+
   const [toggle, setToggle] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -160,7 +149,7 @@ function CardBarChart() {
               },
             },
           };
-          let ctx = document.getElementById("bar-charts").getContext("2d");
+          let ctx = document.getElementById("bar-chartsText").getContext("2d");
           window.myBar = new Chart(ctx, configs);
           console.log(window.myBar.data.datasets[0].data)
 
@@ -336,7 +325,7 @@ function CardBarChart() {
                 },
               },
             };
-            let ctx = document.getElementById("bar-charts").getContext("2d");
+            let ctx = document.getElementById("bar-chartsText").getContext("2d");
             window.myBar = new Chart(ctx, configs);
 
 
@@ -446,7 +435,7 @@ function CardBarChart() {
                 },
               },
             };
-            let ctx = document.getElementById("bar-charts").getContext("2d");
+            let ctx = document.getElementById("bar-chartsText").getContext("2d");
             window.myBar = new Chart(ctx, configs);
 
 
@@ -548,7 +537,7 @@ function CardBarChart() {
                 },
               },
             };
-            let ctx = document.getElementById("bar-charts").getContext("2d");
+            let ctx = document.getElementById("bar-chartsText").getContext("2d");
             window.myBar = new Chart(ctx, configs);
           }
         } else {
@@ -659,7 +648,7 @@ function CardBarChart() {
                 },
               },
             };
-            let ctx = document.getElementById("bar-charts").getContext("2d");
+            let ctx = document.getElementById("bar-chartsText").getContext("2d");
             window.myBar = new Chart(ctx, configs);
 
 
@@ -761,7 +750,7 @@ function CardBarChart() {
                 },
               },
             };
-            let ctx = document.getElementById("bar-charts").getContext("2d");
+            let ctx = document.getElementById("bar-chartsText").getContext("2d");
             window.myBar = new Chart(ctx, configs);
 
 
@@ -863,7 +852,7 @@ function CardBarChart() {
                 },
               },
             };
-            let ctx = document.getElementById("bar-charts").getContext("2d");
+            let ctx = document.getElementById("bar-chartsText").getContext("2d");
             window.myBar = new Chart(ctx, configs);
           }
         }
@@ -970,7 +959,7 @@ function CardBarChart() {
               },
             },
           };
-          let ctx = document.getElementById("bar-charts").getContext("2d");
+          let ctx = document.getElementById("bar-chartsText").getContext("2d");
           window.myBar = new Chart(ctx, configs);
           console.log(window.myBar.data.datasets[0].data)
 
@@ -1031,6 +1020,7 @@ function CardBarChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold"> */}
+
       <Row style={{ display: 'flex', justifyContent: 'flex-end', transform: 'translate(-25px,0px)' }}>
 
         <Col xs="12" md={4}>
@@ -1123,8 +1113,8 @@ function CardBarChart() {
       <div className="p-4 flex-auto">
         {/* Chart */}
         <div className="relative h-350-px">
-          {loading ? <>loading .. . </> : <canvas id="bar-charts"></canvas>}
-          {/* <canvas id="bar-charts"></canvas> */}
+          {loading ? <>loading .. . </> : <canvas id="bar-chartsText"></canvas>}
+          {/* <canvas id="bar-chartsText"></canvas> */}
 
         </div>
       </div>
