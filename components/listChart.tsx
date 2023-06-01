@@ -114,19 +114,19 @@ const date = new Date().getFullYear()+ 543;
           </Link></ListGroupItem>
           <ListGroupItem> <BsSlashLg color='#4caf0f' />{' '}
           <Link href={'/report'}>
-            <a style={{ color: '#797979', fontSize: 14 }}>การไฟฟ้าและเชื้อเพลิงในครัวเรือน เท่ากับ  <span style={{fontSize:'15px',fontWeight:550,color:'#4caf0f'}}>286,445,000.00</span>  kWh</a>
+            <a style={{ color: '#797979', fontSize: 14 }}>การไฟฟ้าและเชื้อเพลิงในครัวเรือน เท่ากับ 286,445,000.00 kWh</a>
           </Link></ListGroupItem>
           <ListGroupItem> <BsSlashLg color='#f1bd2b' />{' '}
           <Link href={'/report'}>
-            <a style={{ color: '#797979', fontSize: 14 }}>ขนส่งทางถนน : ปริมาณพลังงานทั้งหมด เท่ากับ  <span style={{fontSize:'15px',fontWeight:550,color:'#f1bd2b'}}>54,400,200</span>  หน่วย</a>
+            <a style={{ color: '#797979', fontSize: 14 }}>ขนส่งทางถนน : ปริมาณพลังงานทั้งหมด เท่ากับ 54,400,200 หน่วย</a>
           </Link></ListGroupItem>
           <ListGroupItem> <BsSlashLg color='#4a5568' />{' '}
           <Link href={'/report'}>
-            <a style={{ color: '#797979', fontSize: 14 }}>ปริมาณขยะมูลฝอยที่ถูกกำจัดด้วยวิธีการฝังกลบปี 2566 เท่ากับ  <span style={{fontSize:'15px',fontWeight:550,color:'#4a5568'}}>0</span>  ตัน/ปี</a>
+            <a style={{ color: '#797979', fontSize: 14 }}>ปริมาณขยะมูลฝอยที่ถูกกำจัดด้วยวิธีการฝังกลบปี 2566 เท่ากับ 0 ตัน/ปี</a>
           </Link></ListGroupItem>
           <ListGroupItem> <BsSlashLg color='#fa8072' />{' '}
           <Link href={'/report'} >
-            <a style={{ color: '#797979', fontSize: 14 }}onClick={onClickState}>ข้อมูลการจัดการและปริมาณน้ำเสียชุมชน เท่ากับ  <span style={{fontSize:'15px',fontWeight:550,color:'#fa8072'}}> 3,736,548.80</span>  ตัน/ปี</a>
+            <a style={{ color: '#797979', fontSize: 14 }}onClick={onClickState}>ข้อมูลการจัดการและปริมาณน้ำเสียชุมชน เท่ากับ 3,736,548.80 ตัน/ปี</a>
           </Link></ListGroupItem>
       </ListGroup>
 
