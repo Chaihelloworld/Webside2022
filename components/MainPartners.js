@@ -34,6 +34,8 @@ export default function Home() {
     return (
 
         // <div style={{ transform: 'translate(70px,-140px)' }}>
+        <>
+       
         <div className={styles['x_feature']} id="x_feature" >
             <div
                 data-aos="zoom-in-up"
@@ -99,14 +101,14 @@ export default function Home() {
                         data-aos-easing="ease-in-out"
                         data-aos-once="true">
                         <div className={styles['img-logotwo'] + ' ' + 'm-auto'}>
-                            <Image src={LOGO6} style={{transform:'translate(0px,-15px)'}}  width={120} height={120} alt="" />
+                            <Image src={LOGO6} style={{transform:'translate(0px,5px)'}}  width={120} height={120} alt="" />
                         </div>
 
                     </li>
                 </ul>
             </div>
         </div>
-
+        </>
 
     )
 }

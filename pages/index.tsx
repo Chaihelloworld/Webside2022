@@ -13,7 +13,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem } from "reactstrap";
 import { BsFillCaretRightSquareFill } from "react-icons/bs";
 import Navber from "../components/Navber";
 import Dashboard from "../components/dashboard";
@@ -25,24 +25,33 @@ import Qrcodes from "../public/img/qrcode.jpg";
 import Image from "next/image";
 import Login from "../components/login";
 import { useEffect, useState } from "react";
-import CarouselPage from "../components/CarouselContent"
+import CarouselPage from "../components/CarouselContent";
 import ListEvent from "../components/listEvent";
-import Mainpartners from "../components/MainPartners"
-import stylesAOS from '../styles/feature.module.scss';
-import { useCookies } from 'react-cookie';
+import Mainpartners from "../components/MainPartners";
+import stylesAOS from "../styles/feature.module.scss";
+import { useCookies } from "react-cookie";
 import Events from "../components/event";
+import LOGOMAP from "../public/map.png";
+import LOGOMAPCO from "../public/mapCo.png";
+import LOGOEVENT from "../public/event.png";
+import LOGOLOCAL from "../public/location.png";
+import LOGOHOME from "../public/home.png";
+
+import styler from "../styles/feature.module.scss";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
   const styles = {
     paperContainer: {
       width: "100%",
       zIndex: 1,
-      height: "100%",
+      height: "max-content",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       // width: '150%',
       padding: 15,
       backgroundPosition: "center",
+      // backgroundColor: "white",
       backgroundImage: `url(${NewBg.src})`,
     },
   };
@@ -50,151 +59,261 @@ const Home: NextPage = () => {
   const [stateCokie, setState] = useState(false);
 
   const setStateds = () => {
-    setStated(true)
+    setStated(true);
     toggle();
-  }
+  };
   const [modal, setModal] = useState(false);
   const [unmountOnClose, setUnmountOnClose] = useState(true);
 
   const toggle = () => setModal(!modal);
   const setCheck = () => {
     toggle();
-  }
-  const [cookieToken, setCookieToken, removeCookiesToken] = useCookies(['apiToken']);
+  };
+  const router = useRouter();
+  const [cookieToken, setCookieToken, removeCookiesToken] = useCookies([
+    "apiToken",
+  ]);
   useEffect(() => {
     if (cookieToken.apiToken) {
-      setState(true)
-
+      setState(true);
     }
-  }, [cookieToken])
+  }, [cookieToken]);
   return (
     <>
-      <>
-      <Navber setStated={setStateds} />
-        <div style={styles.paperContainer}>
+      <div>
+        <Navber setStated={setStateds} />
+
+        <div className={stylesAOS.container}>
+          <div
+            style={{
+              border: "2px solid #01459a",
+              background: "#01459a",
+              marginBottom: 25,
+            }}
+          ></div>
+          {""}
           <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
             <ModalBody>
               <Login check={setCheck} />
             </ModalBody>
           </Modal>
-          <Row>
-            <Col xs="12" md={6}>
-              {/* <CarouselPage /> */}
-              {/* <Textname /> */}
 
-            </Col>
-            <Col xs="0" md={1}>
-              {/* <CarouselPage /> */}
-            </Col>
-            <Col xs="12" md={4}
-             style={stateCokie ?{ zIndex:0}:{ zIndex:1}}
-             >
-              <Form />
-
-              {/* <ListEvent /> */}
-              {/* <Mainpartners /> */}
-            </Col>
-            <Col xs="0" md={1}>
-              {/* <CarouselPage /> */}
-            </Col>
-          </Row>
-        </div>
-        <Navbar style={{ backgroundColor: "#01459a"}}></Navbar>
-        <div style={{
-          padding: 20,
-          display: 'flex',
-          justifyContent: 'center'
-        }}>
-          <Row>
-            <Col xs="12" md={12}>
-              <div>
-                <Mainpartners />
-              </div>
-            </Col>
-          </Row>
-        </div>
-
-        <Row style={{display:"contents"}}>
-          <Col sm="12" md={{ size: 8, offset: 2 }}>
-            <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
-            </div>{''}
-            <div className={stylesAOS['x_feature']} id="x_feature" >
+          <br />
+          <br />
+          <div
+            style={{
+              // marginRight: "5px",
+              marginTop: "5px",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "row",
+            }}
+          >
+            <Button
+              onClick={() => {
+                router.push("/reportMain");
+              }}
+              className="shadow-drop-2-center"
+              style={{
+                width: "400px",
+                height: "200px",
+                background: "#ffdf00bd",
+                border: "none",
+                borderRadius: "20px 30px 20px 14px",
+              }}
+            >
               <div
-                data-aos="zoom-in-up"
-                data-aos-duration="600"
-                data-aos-easing="ease-in-out"
-                data-aos-once="true"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
               >
-                <h3 style={{ color: '#3c3838',fontSize:'25px' ,fontWeight:600}}>Chiangrai-Decarbonization City (CDC): เพื่อการพัฒนาเมืองคาร์บอนต่ำที่น่าอยู่สร้างเศรษฐกิจสีเขียวและแหล่งท่องเที่ยวระดับนานาชาติ 
-               </h3>
-               <div style={{marginLeft:30}}>
-               <h6 style={{ color: '#3c3838',fontSize:'18px'  }}>วัตถุประสงค์</h6>
-                <h6 style={{ color: '#797979',fontSize:'15px' }}>• เพื่อพัฒนาเทคโนโลยีพร้อมใช้ Green Technology ที่สอดคล้องกับบริบทของธุรกิจต้นแบบเป้าหมายในพื้นที่เทศบาลนครเชียงราย</h6>
-                <h6 style={{ color: '#797979' ,fontSize:'15px'}}>• เพื่อประเมินมาตรฐาน การควบคุมและการประเมินโครงการลงทุนเพื่อลดการปล่อยก๊าซเรือนกระจกจากการใช้พลังงานไฟฟ้าในส่วนธุรกิจต้นแบบเป้าหมายในพื้นที่เทศบาลนครเชียงราย</h6>
-                </div>
-                {/* <h6 style={{ color: '#797979' }}>• เพื่อจัดการองค์ความรู้ ค้นหา รวบรวม จัดเก็บ วิเวิคราะห์ สังเคราะห์องค์ความรู้ที่เกิดขึ้น จากการขับเคลื่อนการพัฒนาเมือง ท้องถิ่น และกลไกเติบโตใหม่ เพื่อพื่นำสู่การเผยแพร่สู่สาธารณะในรูปแบบต่างๆ </h6>
-                <h6 style={{ color: '#797979' }}>• เพื่อถอดบทเรียนงานวิจัยและภาคปฎิบัติบัติที่เกี่ยวข้องกับการพัฒนาเมืองและกลไกเติบโตใหม่ วิเวิคราะห์ สังสัเคราะห์ เพื่อพื่ผลิต เป็นข้อเสนอเชิงนโยบาย (Policy Paper)</h6>
-                <h6 style={{ color: '#797979' }}>• เพื่อติดตามความก้าวหน้าส่งเสริมและสนับสนุนการดำเนินโครงการวิจัยเพื่อพัฒนาเมือง ท้องถิ่น และกลไกเติบโตใหม่ที่ได้รับอนุมัติจากโปรแกรม 15 หน่วยบริหารและจัดการทุน ด้านการ พัฒนาระดับพื้นที่</h6>
-                <h6 style={{ color: '#797979' }}>• เพื่อเผยแพร่ข้อมูลข่าวสาร และชุดความรู้ที่เป็นผลที่ได้จากการทำการวิจัวิยเพื่อนำไปสู่การสื่อสารสาธารณะ และสร้างความเข้าใจในการดำเนินงานที่เกี่ยวข้องกับการพัฒนาเมืองท้องถิ่นและกลไกเติบโตใหม่</h6>
-                <h6 style={{ color: '#797979' }}>• เพื่อส่งเสริมสนับสนุนงานวิจัยภายใต้ประเด็นวิจัยที่สนับสนุนการพัฒนาเมือง ท้องถิ่น และกลไกเติบโตใหม่</h6>
-                <h6 style={{ color: '#797979' }}>• เพื่อสนับสนุนการดำเนินงานของหน่วยบริหารและจัดการทุนด้านการพัฒนาระดับพื้นที่ (บพท.) ในการจัดประชุม สัมมนาต่าง ๆ ที่เกี่ยวข้องกับการพัฒนาเมือง ท้องถิ่น และกลไกเติบโตใหม่</h6> */}
+                <Image
+                  src={LOGOMAP}
+                  alt="Picture of the author"
+                  width={"90px"}
+                  height={"90px"}
+                />
+                <h4
+                  style={{
+                    color: "#ff702c",
+                    fontSize: "28px",
+                    fontWeight: 650,
+                  }}
+                >
+                  พื้นฐานเมือง
+                </h4>
               </div>
+            </Button>
+            <div className={styler.displayMo}>
+              <Button
+                className="circle-button shadow-drop-2-center"
+                style={{
+                  position: "absolute",
+                  zIndex: 99,
+                  width: "150px",
+                  height: "150px",
+                  marginTop: "126px",
+                  marginLeft: "-75px",
+                  borderRadius: "50%",
+                  background: "#ff702c",
+                  border: "none",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    src={LOGOHOME}
+                    alt="Picture of the author"
+                    width={"200px"}
+                    height={"200px"}
+                  />
+                </div>
+              </Button>
             </div>
 
-          </Col>
-          < Events />
-        </Row>
+            <Button
+              className="shadow-drop-2-center"
+              onClick={() => {
+                router.push("/report");
+              }}
+              style={{
+                width: "400px",
+                height: "200px",
+                background: "#ff89b9d1",
+                border: "none",
+                borderRadius: "20px 30px 20px 14px",
+                transform: "translate(4px, 0px)",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  src={LOGOMAPCO}
+                  alt="Picture of the author"
+                  width={"100px"}
+                  height={"100px"}
+                />
+                <h4
+                  style={{
+                    color: "#990c94",
+                    fontSize: "28px",
+                    fontWeight: 650,
+                  }}
+                >
+                  คาร์บอนฟุตพริ้น
+                </h4>
+              </div>
+            </Button>
+          </div>
 
-     
-
-
-      </>
-      {/* <div
-        style={{
-          bottom: "150px",
-          float: "right",
-          zIndex: 99,
-          position: "sticky",
-        }}
-      > */}
-        {/* <div
-          style={{
-            // position: "fixed",
-            border: "5px solid #0dcaf0",
-            borderRadius: 10,
-            bottom: "150px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-          }}
-        >
-          <Image
-            src={Qrcodes}
-            style={{ transform: "translate(0px,2px)" }}
-            alt="Picture of the author"
-            width={100}
-            height={100}
-          />
-          <Button
-            color="info"
-            disableElevation
+          <div
             style={{
-              transform: "translate(0px,4px)",
-              width: 100,
-              color: "white",
-              fontWeight: 700,
+              // marginRight: "5px",
+              marginTop: "4px",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "row",
             }}
-            onClick={() =>
-              window.open(
-                "https://drive.google.com/uc?id=1UC6pWDMHvI-dFxwJReVS1OD3sJU4vHfh&export=download",
-                "_blank"
-              )
-            }
           >
-            ดาวน์โหลด
-          </Button>
-        </div> */}
-      {/* </div> */}
+            <Button
+              className="shadow-drop-2-center"
+              onClick={() => {
+                router.push("/description");
+              }}
+              style={{
+                width: "400px",
+                height: "200px",
+                background: "#9e50c6bf",
+                border: "none",
+                borderRadius: "20px 30px 20px 14px",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  src={LOGOEVENT}
+                  alt="Picture of the author"
+                  width={"95px"}
+                  height={"95px"}
+                />
+                <h4
+                  style={{
+                    color: "#ffe1fe",
+                    fontSize: "28px",
+                    fontWeight: 650,
+                  }}
+                >
+                  ข้อมูลและกิจกรรม
+                </h4>
+              </div>
+            </Button>
+
+            <Button
+              onClick={() => {
+                router.push("/map");
+              }}
+              className="shadow-drop-2-center "
+              style={{
+                width: "400px",
+                height: "200px",
+                background: "#00a5bbbf",
+                border: "none",
+                borderRadius: "20px 30px 20px 14px",
+                transform: "translate(4px, 0px)",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  src={LOGOLOCAL}
+                  alt="Picture of the author"
+                  width={"95px"}
+                  height={"95px"}
+                />
+                <h4
+                  style={{
+                    color: "#99faf1f0",
+                    fontSize: "28px",
+                    fontWeight: 650,
+                  }}
+                >
+                  คาร์บอน MAP
+                </h4>
+              </div>
+            </Button>
+          </div>
+        </div>
+        {/* <div style={{ border: '1px solid #01459a', background: '#01459a', marginBottom: 25 }}>
+                            </div>
+        <footer>
+          <Mainpartners />
+          <div className={stylesAOS["bottom-footer"]}>
+            <p>Copyright © 2022 GREENPRODUCT. All Rights Reserved.</p>
+          </div>
+        </footer> */}
+      </div>
     </>
   );
 };

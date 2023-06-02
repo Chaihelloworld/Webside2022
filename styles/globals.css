@@ -81,3 +81,39 @@ button:hover {
 
   /* background-color: #4300bb !important; */
 }
+.navbar-default .navbar-nav:hover>.active:not(:hover) > a {
+  border-top-color: transparent;
+}
+
+@keyframes hover-slide-fwd-center {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+100% {
+    transform: scale(1.1);
+    opacity: 1.5;
+  }
+}
+
+.shadow-drop-2-center:hover {
+  animation: hover-slide-fwd-center 0.3s forwards;
+}
+
+
+@media(max-width:425px){
+  .shadow-drop-2-center:hover {
+    animation: none; 
+  }
+}
+
+@media(max-width:375px){
+  .shadow-drop-2-center:hover {
+    animation: none; 
+  }
+}
+@media(max-width:320px){
+  .shadow-drop-2-center:hover {
+    animation: none; 
+  }
+}

@@ -108,7 +108,7 @@ function TypeCard2() {
                 <br />
         <h6 className=" " style={{ padding: "10px" ,textAlign: 'center'}}>
       
-          ขนส่งทางถนน : ปริมาณพลังงาน
+          ขนส่งทางถนน : ปริมาณพลังงาน ปี 2564
         </h6>
         {/* <h2 className="text-blueGray-700 text-xl font-semibold">
                 Total orders

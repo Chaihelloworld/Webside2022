@@ -120,7 +120,7 @@ function MapGraphWater() {
           style={{ padding: "10px", textAlign: "center" }}
         >
           <br />
-          ข้อมูลการจัดการและปริมาณน้ำเสียชุมชน
+          ข้อมูลการจัดการและปริมาณน้ำเสียชุมชน ปี 2564
         </h6>
         {/* <h2 className="text-blueGray-700 text-xl font-semibold">
                 Total orders

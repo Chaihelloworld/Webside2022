@@ -31,8 +31,7 @@ import Circle from "../components/circle";
 import Events from "../components/event";
 import MapGraph from "../components/MapGraph";
 import MapGraphWater from "../components/MapGraphWater";
-import React, { useRef } from 'react';
-
+import React, { useRef } from "react";
 
 const Home = () => {
   const styles = {
@@ -100,24 +99,24 @@ const Home = () => {
 
   const footerRef = useRef(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     let data = localStorage.getItem("stateClick");
-    if(data !== '1'){
-        return;
+    if (data !== "1") {
+      return;
     }
     if (footerRef && footerRef.current) {
-        // Focus on the footer element
-        footerRef.current.focus();
-      }
-  },[])
+      // Focus on the footer element
+      footerRef.current.focus();
+    }
+  }, []);
 
-//   const handleClick = () => {
-//     // Check if the footer reference is available
-//     if (footerRef && footerRef.current) {
-//       // Focus on the footer element
-//       footerRef.current.focus();
-//     }
-//   };
+  //   const handleClick = () => {
+  //     // Check if the footer reference is available
+  //     if (footerRef && footerRef.current) {
+  //       // Focus on the footer element
+  //       footerRef.current.focus();
+  //     }
+  //   };
 
   return (
     <>
@@ -127,56 +126,32 @@ const Home = () => {
           <Login check={setCheck} />
         </ModalBody>
       </Modal>
-      <div className=".container" style={{padding:30}}>
+      <div className=".container" style={{ padding: 30 }}>
         <br />
-        <Row style={{ marginRight: "1px" }}>
-        
-          <Col xs="12" md={8}>
-            <div className=" break-words bg-white shadow-sm ">
-              <ChartSup />
-            </div>
-          </Col>
-          <Col
-            xs="12"
-            md={4}
-            style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
-          >
-            <ListChart />
-            {/* <Circle /> */}
 
-          </Col>
-
-        </Row>
-        {/* <Row style={{ marginRight: "1px",marginTop:'15px' }}>
-        <Col xs="12" md={6}>
+        <Row style={{ marginRight: "1px", marginTop: "15px" }}>
+          <Col xs="12" md={6}>
             <ChartSupType1 />
           </Col>
           <Col xs="12" md={6}>
-          <div className=" break-words bg-white shadow-sm ">
-          <TypeCard2 />
+            <div className=" break-words bg-white shadow-sm ">
+              <TypeCard2 />
             </div>
           </Col>
-
-      
-        </Row> */}
-        {/* <Row style={{ marginRight: "1px",marginTop:'15px' }}  ref={footerRef}>
-        <Col xs="12" md={6}>
-          <div className=" break-words bg-white shadow-md ">
-          
-            <MapGraph />
+        </Row>
+        <Row style={{ marginRight: "1px", marginTop: "15px" }} ref={footerRef}>
+          <Col xs="12" md={6}>
+            <div className=" break-words bg-white shadow-md ">
+              <MapGraph />
             </div>
           </Col>
           <Col xs="12" md={6}>
-          <div className=" break-words bg-white shadow-md ">
-          
-            <MapGraphWater />
+            <div className=" break-words bg-white shadow-md ">
+              <MapGraphWater />
             </div>
           </Col>
-      
-        </Row> */}
-        
+        </Row>
       </div>
-          
     </>
   );
 };

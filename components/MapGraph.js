@@ -122,7 +122,7 @@ function MapGraph() {
           style={{ padding: "10px", textAlign: "center" }}
         >
           <br />
-          ปริมาณขยะมูลฝอยที่ถูกกำจัดด้วยวิธีการฝังกลบ
+          ปริมาณขยะมูลฝอยที่ถูกกำจัดด้วยวิธีการฝังกลบ ปี 2551-2564
         </h6>
         {/* <h2 className="text-blueGray-700 text-xl font-semibold">
                 Total orders

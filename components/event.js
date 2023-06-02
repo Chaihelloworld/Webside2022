@@ -140,7 +140,8 @@ const Home = () => {
                                 display: 'flex',
                                 justifyContent: 'flex-start',
                                 flexDirection: 'row',
-                                flexWrap: 'wrap'
+                                flexWrap: 'nowrap',
+                                overflowX:'auto'
                             }}>
 
                                 {data.map((data, index) => {

@@ -115,7 +115,7 @@ function ChartSupType1() {
           style={{ padding: "10px", textAlign: "center" }}
         >
           <br />
-          การไฟฟ้าและเชื้อเพลิงในครัวเรือน
+          การไฟฟ้าและเชื้อเพลิงในครัวเรือน ปี 2564
         </h6>
         {/* <h2 className="text-blueGray-700 text-xl font-semibold">
                 Total orders

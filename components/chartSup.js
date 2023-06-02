@@ -1021,7 +1021,7 @@ function CardBarChart() {
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold"> */}
 
-      <Row style={{ display: 'flex', justifyContent: 'flex-end', transform: 'translate(-25px,0px)' }}>
+      <Row style={{ display: 'flex', justifyContent: 'flex-end'}}>
 
         <Col xs="12" md={4}>
           <Form>
@@ -1058,7 +1058,7 @@ function CardBarChart() {
 
       </Row>
       <br />
-      <div style={{ float: 'right', transform: 'translate(-25px,0px)' }}>
+      <div  style={{ display: 'flex', justifyContent: 'flex-end'}}>
 
         <ButtonGroup>
           <Button

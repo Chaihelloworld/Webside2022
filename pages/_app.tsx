@@ -33,7 +33,8 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <meta name="apple-mobile-web-app-title" content="โครงการวิจัยเพื่อสนับสนุนการพัฒนาเมืองท้องถิ่นและกลไกเติบโตใหม่ CDC" />
                 <meta name="format-detection" content="telephone=no"></meta>
                 {/* <link rel="canonical" href="https://www.halalgreenworld.com/" /> */}
-                <meta name="viewport" content="width=976" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
                 <meta property="og:title" content="โครงการวิจัยเพื่อสนับสนุนการพัฒนาเมืองท้องถิ่นและกลไกเติบโตใหม่ CDC" />
                 <meta property="og:description" content="โครงการส่งเสริมภาพลักษณ์ของ คาร์บอนฟุตพริ้นท์ สนับสนุนโดย มพ." />
                 <meta property="og:locale" content="th" />
