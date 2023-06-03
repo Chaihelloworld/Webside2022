@@ -8,10 +8,15 @@ import {
   Modal,
   ModalBody,
   Card,
+  CardHeader,
+  CardTitle,
+  CardText,
+  CardBody,
   Label,
   Input,
   FormGroup,
   Form,
+  Container,
 } from "reactstrap";
 
 import Navber from "../components/Navber";
@@ -45,6 +50,9 @@ const Home = () => {
       padding: 20,
       backgroundPosition: "center",
       // backgroundImage: `url(${NewBg.src})`,
+    },
+    orange: {
+      background: "linear-gradient(to right, #FFA500, #FF4500)",
     },
   };
   const [state, setStated] = useState(false);
@@ -126,32 +134,48 @@ const Home = () => {
           <Login check={setCheck} />
         </ModalBody>
       </Modal>
-      <div className=".container" style={{ padding: 30 }}>
-        <br />
 
-        <Row style={{ marginRight: "1px", marginTop: "15px" }}>
+      <Container>
+      <div
+            style={{
+              border: "2px solid #01459a",
+              background: "#01459a",
+              marginBottom: 25,
+            }}
+          ></div>
+        <br />
+        <Row>
           <Col xs="12" md={6}>
             <ChartSupType1 />
+            {/* <Col xs="12" md={6}> */}
+
+            {/* </Col> */}
           </Col>
           <Col xs="12" md={6}>
-            <div className=" break-words bg-white shadow-sm ">
-              <TypeCard2 />
-            </div>
+            <Row>
+              <Col xs="12" md={6}>
+                <TypeCard2 />
+              </Col>
+              <Col xs="12" md={6}>
+                <Circle />
+              </Col>
+              <Col xs="12" md={12}>
+                {/* <div className=" break-words bg-white shadow-sm "> */}
+                  <MapGraph />
+                {/* </div> */}
+              </Col>
+            </Row>
           </Col>
         </Row>
         <Row style={{ marginRight: "1px", marginTop: "15px" }} ref={footerRef}>
-          <Col xs="12" md={6}>
-            <div className=" break-words bg-white shadow-md ">
-              <MapGraph />
-            </div>
-          </Col>
-          <Col xs="12" md={6}>
+
+          <Col xs="12" md={12}>
             <div className=" break-words bg-white shadow-md ">
               <MapGraphWater />
             </div>
           </Col>
         </Row>
-      </div>
+      </Container>
     </>
   );
 };

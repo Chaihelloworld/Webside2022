@@ -98,7 +98,16 @@ const Home: NextPage = () => {
             </ModalBody>
           </Modal>
 
-          <br />
+          {/* <br /> */}
+          <div style={{ textAlign: "center" }}>
+            <h1 className={styler.gradient_text}>
+              Chiangrai-Decarbonization City (CDC)
+            </h1>
+            <p>
+              {" "}
+              เพื่อการพัฒนาเมืองคาร์บอนต่ำที่น่าอยู่สร้างเศรษฐกิจสีเขียวและแหล่งท่องเที่ยวระดับนานาชาติ
+            </p>
+          </div>
           <br />
           <div
             style={{

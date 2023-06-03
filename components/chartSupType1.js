@@ -1,6 +1,22 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Chart from "chart.js";
-
+import {
+  Button,
+  Col,
+  Row,
+  Modal,
+  ModalBody,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardText,
+  CardBody,
+  Label,
+  Input,
+  FormGroup,
+  Form,
+  Container,
+} from "reactstrap";
 function ChartSupType1() {
   useEffect(() => {
     let config = {
@@ -27,8 +43,9 @@ function ChartSupType1() {
               0, 0, 286445000.0,
             ],
             fill: false,
-            barThickness: 15,
+            barThickness: 10,
           },
+
           // ,
           // {
           //   label: new Date().getFullYear() - 1,
@@ -57,15 +74,15 @@ function ChartSupType1() {
         },
         legend: {
           labels: {
-            fontColor: "rgba(0,0,0,.4)",
+            // fontColor: "rgba(0,0,0,.4)",
           },
-          align: "end",
-          position: "bottom",
+          // align: "end",
+          // position: "bottom",
         },
         scales: {
           xAxes: [
             {
-              display: true,
+              display: false,
               scaleLabel: {
                 display: false,
                 // labelString: "Month",
@@ -87,15 +104,6 @@ function ChartSupType1() {
                 display: false,
                 // labelString: "Value",
               },
-              gridLines: {
-                borderDash: [2],
-                drawBorder: false,
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.2)",
-                zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
             },
           ],
         },
@@ -106,10 +114,7 @@ function ChartSupType1() {
   }, []);
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-        {/* <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full max-w-full flex-grow flex-1"> */}
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
         <h6
           className="uppercase text-blueGray-400 mb-1 text-xs font-semibold "
           style={{ padding: "10px", textAlign: "center" }}
@@ -117,17 +122,116 @@ function ChartSupType1() {
           <br />
           การไฟฟ้าและเชื้อเพลิงในครัวเรือน ปี 2564
         </h6>
-        {/* <h2 className="text-blueGray-700 text-xl font-semibold">
-                Total orders
-              </h2> */}
-        {/* </div>
-          </div>
-        </div> */}
-        <div className="p-4 flex-auto">
-          {/* Chart */}
-          <div className="relative h-350-px">
+        <div className="p-4 flex-auto    " style={{height:"590px"}}>
+          <div className="relative h-450-px">
             <canvas id="bar-chartBAR"></canvas>
           </div>
+          <Row style={{ display: "flex" }}>
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>บ้านอยู่อาศัย <span>110,340,840.62</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการขนาดเล็ก <span>85,455,737.13</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการขนาดกลาง <span>85,455,737.13</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการเฉพาะอย่าง <span> 4,379,000.15</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>ราชการ/องค์กร.. <span> 4,428,815.42</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+         
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>ไฟฟ้าสาธารณะ <span> 286,445,000</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
         </div>
       </div>
     </>

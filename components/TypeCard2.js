@@ -4,7 +4,7 @@ import Chart from "chart.js";
 function TypeCard2() {
   React.useEffect(() => {
     let config = {
-      type: "bar",
+      type: "line",
       data: {
         labels: [
           "น้ำมันดีเซล",
@@ -21,7 +21,7 @@ function TypeCard2() {
               22015480.00, 1174840.00, 31056640.00, 153240.00
             ],
             fill: false,
-            barThickness: 45,
+            barThickness: 10,
             color:'#e2e392'
           },
           // ,
@@ -77,19 +77,10 @@ function TypeCard2() {
           ],
           yAxes: [
             {
-              display: true,
+              display: false,
               scaleLabel: {
                 display: false,
-                labelString: "Value",
-              },
-              gridLines: {
-                borderDash: [2],
-                drawBorder: false,
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.2)",
-                zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
+                // labelString: "Value",
               },
             },
           ],
@@ -101,7 +92,7 @@ function TypeCard2() {
   }, []);
   return (
     <>
-       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded" >
+       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded" >
         {/* <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1"> */}
@@ -116,10 +107,9 @@ function TypeCard2() {
         {/* </div>
           </div>
         </div> */}
-        <div className="p-4 ">
-          {/* Chart */}
-          <div className="">
-            <canvas id="bar-charts"></canvas>
+   <div className="p-4 flex-auto">
+          <div className="relative h-150-px">
+            <canvas  id="bar-charts"></canvas>
           </div>
         </div>
       </div>

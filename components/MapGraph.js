@@ -26,15 +26,15 @@ function MapGraph() {
         datasets: [
           {
             label: "ปริมาณขยะ (ตัน/ปี)",
-            backgroundColor: "#6c757d",
-            borderColor: "#4a5568",
+            backgroundColor: "#fa9834",
+            borderColor: "#fa9834",
             data: [
               30029.08, 29575.25, 28772.96, 30006.37, 30504.12, 34456.56,
               34892.85, 34799.85, 17035.21, 36400.94, 37710.37, 39054.76,
               38954.29, 41260.73,
             ],
             fill: false,
-            barThickness: 20,
+            barThickness: 6,
           },
           // ,
           // {
@@ -74,7 +74,7 @@ function MapGraph() {
             {
               display: true,
               scaleLabel: {
-                display: true,
+                display: false,
                 // labelString: "Month",
               },
               gridLines: {
@@ -89,7 +89,7 @@ function MapGraph() {
           ],
           yAxes: [
             {
-              display: true,
+              display: false,
               scaleLabel: {
                 display: false,
                 labelString: "Value",
@@ -113,7 +113,7 @@ function MapGraph() {
   }, []);
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
         {/* <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1"> */}

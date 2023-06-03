@@ -128,6 +128,13 @@ const Home = () => {
         </ModalBody>
       </Modal>
       <div className=".container" style={{padding:30}}>
+      <div
+            style={{
+              border: "2px solid #01459a",
+              background: "#01459a",
+              marginBottom: 25,
+            }}
+          ></div>
         <br />
         <Row style={{ marginRight: "1px" }}>
         

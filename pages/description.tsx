@@ -13,7 +13,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem } from "reactstrap";
 import { BsFillCaretRightSquareFill } from "react-icons/bs";
 import Navber from "../components/Navber";
 import Dashboard from "../components/dashboard";
@@ -25,11 +25,11 @@ import Qrcodes from "../public/img/qrcode.jpg";
 import Image from "next/image";
 import Login from "../components/login";
 import { useEffect, useState } from "react";
-import CarouselPage from "../components/CarouselContent"
+import CarouselPage from "../components/CarouselContent";
 import ListEvent from "../components/listEvent";
-import Mainpartners from "../components/MainPartners"
-import stylesAOS from '../styles/feature.module.scss';
-import { useCookies } from 'react-cookie';
+import Mainpartners from "../components/MainPartners";
+import stylesAOS from "../styles/feature.module.scss";
+import { useCookies } from "react-cookie";
 import Events from "../components/event";
 
 const Home: NextPage = () => {
@@ -50,27 +50,29 @@ const Home: NextPage = () => {
   const [stateCokie, setState] = useState(false);
 
   const setStateds = () => {
-    setStated(true)
+    setStated(true);
     toggle();
-  }
+  };
   const [modal, setModal] = useState(false);
   const [unmountOnClose, setUnmountOnClose] = useState(true);
 
   const toggle = () => setModal(!modal);
   const setCheck = () => {
     toggle();
-  }
-  const [cookieToken, setCookieToken, removeCookiesToken] = useCookies(['apiToken']);
+  };
+  const [cookieToken, setCookieToken, removeCookiesToken] = useCookies([
+    "apiToken",
+  ]);
   useEffect(() => {
     if (cookieToken.apiToken) {
-      setState(true)
-
+      setState(true);
     }
-  }, [cookieToken])
+  }, [cookieToken]);
   return (
     <>
       <>
-      <Navber setStated={setStateds} />
+        <Navber setStated={setStateds} />
+
         <div style={styles.paperContainer}>
           <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
             <ModalBody>
@@ -81,14 +83,15 @@ const Home: NextPage = () => {
             <Col xs="12" md={6}>
               {/* <CarouselPage /> */}
               {/* <Textname /> */}
-
             </Col>
             <Col xs="0" md={1}>
               {/* <CarouselPage /> */}
             </Col>
-            <Col xs="12" md={4}
-             style={stateCokie ?{ zIndex:0}:{ zIndex:1}}
-             >
+            <Col
+              xs="12"
+              md={4}
+              style={stateCokie ? { zIndex: 0 } : { zIndex: 1 }}
+            >
               <Form />
 
               {/* <ListEvent /> */}
@@ -99,40 +102,64 @@ const Home: NextPage = () => {
             </Col>
           </Row>
         </div>
-        <Navbar style={{ backgroundColor: "#01459a"}}></Navbar>
-        <div style={{
-          padding: 20,
-          display: 'flex',
-          justifyContent: 'center'
-        }}>
+        <Navbar style={{ backgroundColor: "#01459a" }}></Navbar>
+        <div
+          style={{
+            padding: 20,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Row>
             <Col xs="12" md={12}>
               <div>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <Mainpartners />
               </div>
             </Col>
           </Row>
         </div>
 
-        <Row style={{display:"contents"}}>
+        <Row style={{ display: "contents" }}>
           <Col sm="12" md={{ size: 8, offset: 2 }}>
-            <div style={{ border: '3px solid #01459a', background: '#01459a', marginBottom: 25 }}>
-            </div>{''}
-            <div className={stylesAOS['x_feature']} id="x_feature" >
+            <div
+              style={{
+                border: "3px solid #01459a",
+                background: "#01459a",
+                marginBottom: 25,
+              }}
+            ></div>
+            {""}
+            <div className={stylesAOS["x_feature"]} id="x_feature">
               <div
                 data-aos="zoom-in-up"
                 data-aos-duration="600"
                 data-aos-easing="ease-in-out"
                 data-aos-once="true"
               >
-                <h3 style={{ color: '#3c3838',fontSize:'25px' ,fontWeight:600}}>Chiangrai-Decarbonization City (CDC): เพื่อการพัฒนาเมืองคาร์บอนต่ำที่น่าอยู่สร้างเศรษฐกิจสีเขียวและแหล่งท่องเที่ยวระดับนานาชาติ 
-               </h3>
-               <div style={{marginLeft:30}}>
-               <h6 style={{ color: '#3c3838',fontSize:'18px'  }}>วัตถุประสงค์</h6>
-                <h6 style={{ color: '#797979',fontSize:'15px' }}>• เพื่อพัฒนาเทคโนโลยีพร้อมใช้ Green Technology ที่สอดคล้องกับบริบทของธุรกิจต้นแบบเป้าหมายในพื้นที่เทศบาลนครเชียงราย</h6>
-                <h6 style={{ color: '#797979' ,fontSize:'15px'}}>• เพื่อประเมินมาตรฐาน การควบคุมและการประเมินโครงการลงทุนเพื่อลดการปล่อยก๊าซเรือนกระจกจากการใช้พลังงานไฟฟ้าในส่วนธุรกิจต้นแบบเป้าหมายในพื้นที่เทศบาลนครเชียงราย</h6>
+                <h3
+                  style={{
+                    color: "#3c3838",
+                    fontSize: "25px",
+                    fontWeight: 600,
+                  }}
+                >
+                  Chiangrai-Decarbonization City (CDC):
+                  เพื่อการพัฒนาเมืองคาร์บอนต่ำที่น่าอยู่สร้างเศรษฐกิจสีเขียวและแหล่งท่องเที่ยวระดับนานาชาติ
+                </h3>
+                <div style={{ marginLeft: 30 }}>
+                  <h6 style={{ color: "#3c3838", fontSize: "18px" }}>
+                    วัตถุประสงค์
+                  </h6>
+                  <h6 style={{ color: "#797979", fontSize: "15px" }}>
+                    • เพื่อพัฒนาเทคโนโลยีพร้อมใช้ Green Technology
+                    ที่สอดคล้องกับบริบทของธุรกิจต้นแบบเป้าหมายในพื้นที่เทศบาลนครเชียงราย
+                  </h6>
+                  <h6 style={{ color: "#797979", fontSize: "15px" }}>
+                    • เพื่อประเมินมาตรฐาน
+                    การควบคุมและการประเมินโครงการลงทุนเพื่อลดการปล่อยก๊าซเรือนกระจกจากการใช้พลังงานไฟฟ้าในส่วนธุรกิจต้นแบบเป้าหมายในพื้นที่เทศบาลนครเชียงราย
+                  </h6>
                 </div>
                 {/* <h6 style={{ color: '#797979' }}>• เพื่อจัดการองค์ความรู้ ค้นหา รวบรวม จัดเก็บ วิเวิคราะห์ สังเคราะห์องค์ความรู้ที่เกิดขึ้น จากการขับเคลื่อนการพัฒนาเมือง ท้องถิ่น และกลไกเติบโตใหม่ เพื่อพื่นำสู่การเผยแพร่สู่สาธารณะในรูปแบบต่างๆ </h6>
                 <h6 style={{ color: '#797979' }}>• เพื่อถอดบทเรียนงานวิจัยและภาคปฎิบัติบัติที่เกี่ยวข้องกับการพัฒนาเมืองและกลไกเติบโตใหม่ วิเวิคราะห์ สังสัเคราะห์ เพื่อพื่ผลิต เป็นข้อเสนอเชิงนโยบาย (Policy Paper)</h6>
@@ -142,14 +169,9 @@ const Home: NextPage = () => {
                 <h6 style={{ color: '#797979' }}>• เพื่อสนับสนุนการดำเนินงานของหน่วยบริหารและจัดการทุนด้านการพัฒนาระดับพื้นที่ (บพท.) ในการจัดประชุม สัมมนาต่าง ๆ ที่เกี่ยวข้องกับการพัฒนาเมือง ท้องถิ่น และกลไกเติบโตใหม่</h6> */}
               </div>
             </div>
-
           </Col>
-          < Events />
+          <Events />
         </Row>
-
-     
-
-
       </>
       {/* <div
         style={{
@@ -159,7 +181,7 @@ const Home: NextPage = () => {
           position: "sticky",
         }}
       > */}
-        {/* <div
+      {/* <div
           style={{
             // position: "fixed",
             border: "5px solid #0dcaf0",
