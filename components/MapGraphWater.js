@@ -4,7 +4,7 @@ import Chart from "chart.js";
 function MapGraphWater() {
   useEffect(() => {
     let config = {
-      type: "bar",
+      type: "line",
       data: {
         labels: [
           "ม.ค.",

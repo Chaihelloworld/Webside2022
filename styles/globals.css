@@ -122,3 +122,7 @@ button:hover {
     animation: none; 
   }
 }
+.chart-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

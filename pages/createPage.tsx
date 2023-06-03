@@ -139,6 +139,16 @@ const Home: NextPage = () => {
                 amount_of_energy: '',
                 kgCO2_eq: '',
                 tonene_CO2: '',
+            },
+            gas_2: {
+                amount_of_energy: '',
+                kgCO2_eq: '',
+                tonene_CO2: '',
+            },
+            gas_3: {
+                amount_of_energy: '',
+                kgCO2_eq: '',
+                tonene_CO2: '',
             }
         },
         zone_3: {
@@ -243,6 +253,16 @@ const router = useRouter();
                             amount_of_energy: formik.values.zone_2.gas_1.amount_of_energy,
                             kgCO2_eq: formik.values.zone_2.gas_1.kgCO2_eq,
                             tonene_CO2: formik.values.zone_2.gas_1.tonene_CO2,
+                        },
+                        gas_2: {
+                            amount_of_energy: formik.values.zone_2.gas_2.amount_of_energy,
+                            kgCO2_eq: formik.values.zone_2.gas_2.kgCO2_eq,
+                            tonene_CO2: formik.values.zone_2.gas_2.tonene_CO2,
+                        },
+                        gas_3: {
+                            amount_of_energy: formik.values.zone_2.gas_3.amount_of_energy,
+                            kgCO2_eq: formik.values.zone_2.gas_3.kgCO2_eq,
+                            tonene_CO2: formik.values.zone_2.gas_3.tonene_CO2,
                         }
                     },
                     zone_3: {

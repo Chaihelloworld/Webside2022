@@ -141,62 +141,49 @@ const Home = () => {
         <br />
         <Row style={{ marginRight: "1px" }}>
           <Col xs="12" md={6}>
-            <div className=" break-words bg-white shadow-sm ">
-              <ChartSup />
-            </div>
+            <ChartSup />
+          </Col>
+          <Col xs="12" md={6}>
+          <ChartSupYear />
+
+            {/* <Row style={{ marginRight: "1px", marginTop: "15px" }}>
+              <Col
+                xs="12"
+                md={12}
+              >
+                <ChartSupYear />
+              </Col> */}
+
+              {/* <Col xs="12" md={6}>
+                <ChartSupType1 />
+              </Col>
+              <Col xs="12" md={6}>
+                <div className=" break-words bg-white shadow-sm ">
+                  <TypeCard2 />
+                </div>
+              </Col> */}
+            {/* </Row> */}
+          </Col>
+        </Row>
+
+        <Row style={{ marginRight: "1px" }}>
+          <Col xs="12" md={6}>
+            <ChartSupZone1 />
+          </Col>
+
+          <Col
+            xs="12"
+            md={6}
+          >
+            <ChartSupZone2 />
           </Col>
           <Col
             xs="12"
             md={6}
-            style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
           >
-            <Row>
-              <Col
-                xs="12"
-                md={6}
-                style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
-              >
-                                <ChartSupYear />
-
-              </Col>
-              <Col
-                xs="12"
-                md={6}
-                style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
-              >
-                                <ChartSupZone1 />
-
-                {/* <Circle /> */}
-              </Col>
-              <Col
-                xs="12"
-                md={6}
-                style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
-              >
-                <ChartSupZone2 />
-              </Col>
-              <Col
-                xs="12"
-                md={6}
-                style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
-              >
-                <ChartSupZone3 />
-              </Col>
-            </Row>
+            <ChartSupZone3 />
           </Col>
         </Row>
-        {/* <Row style={{ marginRight: "1px",marginTop:'15px' }}>
-        <Col xs="12" md={6}>
-            <ChartSupType1 />
-          </Col>
-          <Col xs="12" md={6}>
-          <div className=" break-words bg-white shadow-sm ">
-          <TypeCard2 />
-            </div>
-          </Col>
-
-      
-        </Row> */}
         {/* <Row style={{ marginRight: "1px",marginTop:'15px' }}  ref={footerRef}>
         <Col xs="12" md={6}>
           <div className=" break-words bg-white shadow-md ">

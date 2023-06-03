@@ -82,7 +82,7 @@ function ChartSupType1() {
         scales: {
           xAxes: [
             {
-              display: false,
+              display: true,
               scaleLabel: {
                 display: false,
                 // labelString: "Month",
@@ -95,6 +95,9 @@ function ChartSupType1() {
                 zeroLineBorderDash: [2],
                 zeroLineBorderDashOffset: [2],
               },
+              ticks: {
+                fontSize: 10, // Set the font size for x-axis labels
+              },
             },
           ],
           yAxes: [
@@ -103,6 +106,20 @@ function ChartSupType1() {
               scaleLabel: {
                 display: false,
                 // labelString: "Value",
+              },
+              min: 0, // Set the minimum value for the y-axis
+              max: 200000000, // Set the maximum value for the y-axis
+              ticks: {
+                callback: function (value, index, values) {
+                  console.log(value)
+                  return (value/1000000)+'m'; // For example, display with 2 decimal places
+                },
+                beginAtZero: true,
+                autoSkip: true, // Enable automatic skipping of x-axis labels
+                maxTicksLimit: 5, // Maximum number of visible ticks on the x-axis
+                // beginAtZero: true,
+                stepSize: 20000000 
+              
               },
             },
           ],
@@ -114,7 +131,7 @@ function ChartSupType1() {
   }, []);
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded">
         <h6
           className="uppercase text-blueGray-400 mb-1 text-xs font-semibold "
           style={{ padding: "10px", textAlign: "center" }}

@@ -1068,6 +1068,136 @@ const Example: FC<Props> = ({ formik, isEdit }) => {
                         }}>
 
                             <td style={{ textAlign: 'left' }}>
+                                2.3 การใช้พลังงานในส่วนธุรกิจ การค้า และหน่วยงานต่างๆ
+                            </td>
+                            <td>
+                                พลังงานไฟฟ้า
+                            </td>
+                            <td>
+                                <InputGroup size="sm">
+                                    <Input placeholder="0"
+                                        type='number'
+                                        pattern="[0-9.]*"
+                                        onKeyPress={(e) => {
+                                            const regex = new RegExp(/Enter|[0-9.]/);
+                                            if (!regex.test(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }} id='zone_2.gas_2.amount_of_energy'
+                                        value={formik.values.zone_2.gas_2.amount_of_energy}
+                                        onChange={formik.handleChange} />
+                                </InputGroup>
+                            </td>
+                            <td>
+                            หน่วย/ปี
+                            </td>
+                            <td>
+                                <InputGroup size="sm">
+                                    <Input placeholder="0"
+                                        type='number'
+                                        pattern="[0-9.]*"
+                                        onKeyPress={(e) => {
+                                            const regex = new RegExp(/Enter|[0-9.]/);
+                                            if (!regex.test(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }} id='zone_2.gas_2.kgCO2_eq'
+                                        value={formik.values.zone_2.gas_2.kgCO2_eq}
+                                        onChange={formik.handleChange} />
+                                </InputGroup>
+                            </td>
+                            <td>
+                                <InputGroup size="sm">
+                                    <Input placeholder="0"
+                                        type='number'
+                                        pattern="[0-9.]*"
+                                        onKeyPress={(e) => {
+                                            const regex = new RegExp(/Enter|[0-9.]/);
+                                            if (!regex.test(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }} id='zone_2.gas_2.tonene_CO2'
+                                        value={formik.values.zone_2.gas_2.tonene_CO2}
+                                        onChange={formik.handleChange} />
+                                </InputGroup>
+                            </td>
+                        </tr>
+                        <tr style={{
+                            marginRight: 80,
+                            transition: '0.4s ease',
+                            color: '#797979',
+                            letterSpacing: '.3px',
+                            textAlign: 'center',
+                            fontWeight: 500, fontSize: '14px'
+
+                        }}>
+
+                            <td style={{ textAlign: 'left' }}>
+                                2.4 การใช้พลังงานในอุตสาหกรรมการผลิต
+                            </td>
+                            <td>
+                                พลังงานไฟฟ้า
+                            </td>
+                            <td>
+                                <InputGroup size="sm">
+                                    <Input placeholder="0"
+                                        type='number'
+                                        pattern="[0-9.]*"
+                                        onKeyPress={(e) => {
+                                            const regex = new RegExp(/Enter|[0-9.]/);
+                                            if (!regex.test(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }} id='zone_2.gas_3.amount_of_energy'
+                                        value={formik.values.zone_2.gas_3.amount_of_energy}
+                                        onChange={formik.handleChange} />
+                                </InputGroup>
+                            </td>
+                            <td>
+                            หน่วย/ปี
+                            </td>
+                            <td>
+                                <InputGroup size="sm">
+                                    <Input placeholder="0"
+                                        type='number'
+                                        pattern="[0-9.]*"
+                                        onKeyPress={(e) => {
+                                            const regex = new RegExp(/Enter|[0-9.]/);
+                                            if (!regex.test(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }} id='zone_2.gas_3.kgCO2_eq'
+                                        value={formik.values.zone_2.gas_3.kgCO2_eq}
+                                        onChange={formik.handleChange} />
+                                </InputGroup>
+                            </td>
+                            <td>
+                                <InputGroup size="sm">
+                                    <Input placeholder="0"
+                                        type='number'
+                                        pattern="[0-9.]*"
+                                        onKeyPress={(e) => {
+                                            const regex = new RegExp(/Enter|[0-9.]/);
+                                            if (!regex.test(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }} id='zone_2.gas_3.tonene_CO2'
+                                        value={formik.values.zone_2.gas_3.tonene_CO2}
+                                        onChange={formik.handleChange} />
+                                </InputGroup>
+                            </td>
+                        </tr>
+                        <tr style={{
+                            marginRight: 80,
+                            transition: '0.4s ease',
+                            color: '#797979',
+                            letterSpacing: '.3px',
+                            textAlign: 'center',
+                            fontWeight: 500, fontSize: '14px'
+
+                        }}>
+
+                            <td style={{ textAlign: 'left' }}>
                                 3.1 การจัดการขยะมูลฝอยแบบฝังกลบนอกเขตเทศบาล
                             </td>
                             <td>

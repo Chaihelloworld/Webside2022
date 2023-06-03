@@ -4,7 +4,7 @@ import Chart from "chart.js";
 function TypeCard2() {
   React.useEffect(() => {
     let config = {
-      type: "line",
+      type: "bar",
       data: {
         labels: [
           "น้ำมันดีเซล",
@@ -65,6 +65,9 @@ function TypeCard2() {
                 display: false,
                 // labelString: "Month",
               },
+              ticks: {
+                fontSize: 9, // Set the font size for x-axis labels
+              },
               gridLines: {
                 borderDash: [2],
                 borderDashOffset: [2],
@@ -77,10 +80,24 @@ function TypeCard2() {
           ],
           yAxes: [
             {
-              display: false,
+              display: true,
               scaleLabel: {
                 display: false,
                 // labelString: "Value",
+              },
+              min: 0, // Set the minimum value for the y-axis
+              max: 500000, // Set the maximum value for the y-axis
+              ticks: {
+                callback: function (value, index, values) {
+                  console.log(value)
+                  return (value/1000000)+'m'; // For example, display with 2 decimal places
+                },
+                beginAtZero: true,
+                autoSkip: true, // Enable automatic skipping of x-axis labels
+                maxTicksLimit: 5, // Maximum number of visible ticks on the x-axis
+                // beginAtZero: true,
+                stepSize: 50000 
+              
               },
             },
           ],
@@ -92,7 +109,7 @@ function TypeCard2() {
   }, []);
   return (
     <>
-       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded" >
+       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded" >
         {/* <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1"> */}

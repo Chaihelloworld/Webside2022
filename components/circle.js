@@ -39,6 +39,7 @@ function Circle() {
             labels: {
               display: false, // Hide the direct labels data
             },
+            
           },
         },
       },
@@ -50,7 +51,7 @@ function Circle() {
 
   return (
     <div className="container">
-      <div className="bg-white shadow-sm">
+      <div className="bg-white ">
         <div className="p-4">
           <div>
             <canvas id="bar-chartsCircle" ref={chartRef} style={{ height: '200px' ,marginLeft:'1px'}}></canvas>

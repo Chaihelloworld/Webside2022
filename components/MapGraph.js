@@ -89,7 +89,7 @@ function MapGraph() {
           ],
           yAxes: [
             {
-              display: false,
+              display: true,
               scaleLabel: {
                 display: false,
                 labelString: "Value",
@@ -113,7 +113,7 @@ function MapGraph() {
   }, []);
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6  rounded">
         {/* <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1"> */}

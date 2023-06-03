@@ -73,8 +73,8 @@ function CardBarChart() {
               let y = new Date().getFullYear()
               let y1 = new Date().getFullYear() - 1
               let y2 = new Date().getFullYear() - 2
-              console.log(y)
-              console.log('result ===+++', data[y])
+              // console.log(y)
+              // console.log('result ===+++', data[y])
     
               KgCo2One = data[y] ? data[y]?.KgCO2 : 0
               KgCo2Two = data[y1] ? data[y1]?.KgCO2 : 0
@@ -82,7 +82,7 @@ function CardBarChart() {
               tonneOne = data[y] ? data[y]?.tonene : 0
               tonneTwo = data[y1] ? data[y1]?.tonene : 0
               tonneThree = data[y2] ? data[y2]?.tonene : 0
-              console.log('KgCo2Two', tonneTwo)
+              // console.log('KgCo2Two', tonneTwo)
               let labels = [
                 y2,
                 y1,
@@ -95,20 +95,20 @@ function CardBarChart() {
                   datasets: [
                     {
                       label: "kg CO2 -eq",
-                      backgroundColor: "#4a5568",
-                      borderColor: "#4a5568",
+                      backgroundColor: "#bf97ff",
+                      borderColor: "#bf97ff",
                       data: [KgCo2Three, KgCo2Two, KgCo2One],
                       fill: false,
-                      barThickness: 15,
+                      barThickness: 25,
     
                     },
                     {
                       label: "tonne CO2",
                       fill: false,
-                      backgroundColor: "#3182ce",
-                      borderColor: "#3182ce",
+                      backgroundColor: "#4a5568",
+                      borderColor: "#4a5568",
                       data: [tonneThree, tonneTwo, tonneOne],
-                      barThickness: 15,
+                      barThickness: 25,
                     }
                   ],
                 },
@@ -160,10 +160,24 @@ function CardBarChart() {
                         ticks: {
                           fontColor: "#4a5568",
                         },
-                        display: false,
+                        display: true,
                         scaleLabel: {
                           display: false,
                           labelString: "kg",
+                        },
+                       
+                        ticks: {
+                          callback: function (value, index, values) {
+                            console.log(value)
+                            return (value/1000000)+'m'; // For example, display with 2 decimal places
+                          },
+                          autoSkip: true, // Enable automatic skipping of x-axis labels
+                          maxTicksLimit: 5, // Maximum number of visible ticks on the x-axis
+                          min: 0, // Set the minimum value for the y-axis
+                          // max: 450000000,// Set the maximum value for the y-axis
+                          // stepSize: 30000000 
+  
+                        
                         },
                         gridLines: {
                           borderDash: [2],
@@ -228,218 +242,24 @@ function CardBarChart() {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded">
         <h6
           className="uppercase text-blueGray-400 mb-1 text-xs font-semibold "
           style={{ textAlign: "center" }}
         >
-          <br />
           ปริมาณก๊าซเรือนกระจกย้อนหลัง 3ปี
         </h6>
-        {/*<div className="rounded-t mb-0 px-4 py-3 bg-transparent">
-          <div className="flex flex-wrap items-center">
-            <div className="relative w-full max-w-full flex-grow flex-1">
-              <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold"> */}
-        {/* 
-      <Row style={{ display: 'flex', justifyContent: 'flex-end'}}>
-
-        <Col xs="12" md={4}>
-          <Form>
-
-            <Input
-              bsSize="sm"
-              className="mb-12"
-              type="select"
-              style={{ borderColor: '#0d6efd', color: '#0d6efd' }}
-              onChange={(e) => {
-                setYear(e.target.value)
-                setToggle(true)
-              }}
-            >
-              <option defaultValue={true} value={"2023"} >
-                ปริมาณก๊าซเรือนกระจก 2566
-              </option>
-              <option value={"2022"}>
-                ปริมาณก๊าซเรือนกระจก 2565
-              </option>
-              <option value={"2021"}>
-                ปริมาณก๊าซเรือนกระจก 2564
-              </option>
-
-            </Input>
-          </Form>
-        </Col>
-
-      </Row> */}
-        <br />
-        {/* <div  style={{ display: 'flex', justifyContent: 'flex-end'}}>
-
-        <ButtonGroup>
-          <Button
-            color="primary"
-            outline
-            size="sm"
-            onClick={() => setRSelected(null)}
-            active={rSelected === null}
-          >
-            ขอบเขตทั้งหมด
-          </Button>
-          <Button
-            color="primary"
-            outline
-            className=".btn"
-            size="sm"
-            onClick={() => setRSelected('1')}
-            active={rSelected === '1'}
-          >
-            ขอบเขตที่ 1
-          </Button>
-          <Button
-            color="primary"
-            outline
-            size="sm"
-            onClick={() => setRSelected('2')}
-            active={rSelected === '2'}
-          >
-            ขอบเขตที่ 2
-          </Button>
-          <Button
-            color="primary"
-            outline
-            size="sm"
-            onClick={() => setRSelected('3')}
-            active={rSelected === '3'}
-          >
-            ขอบเขตที่ 3
-          </Button>
-          <Button
-            color="primary"
-            outline
-            size="sm"
-            onClick={() => setRSelected('4')}
-            active={rSelected === '4'}
-          >
-            ข้อมูลรายปี
-          </Button>
-        </ButtonGroup>
-      </div> */}
-
         <div className="p-4 flex-auto">
           {/* Chart */}
           <div className="relative h-350-px">
             {loading ? (
               <>loading .. . </>
             ) : (
-              <canvas id="bar-chartsTextYear"></canvas>
-            )}
-            {/* <canvas id="bar-chartsTextZone1"></canvas> */}
-          </div>
-          {/* <Row style={{ display: "flex" }}>
-            <Col xs="6" md={3}>
-              <Card
-                className="my-2"
-                inverse
-                style={{
-                  width: "auto",
-                  background:'#4caf0f',
-                  padding: "5px",
-                  border: "none",
-                  height:'50px'
-                }}
-              >
-                <CardBody style={{display:'flex'}}>
-                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>บ้านอยู่อาศัย <span>110,340,840.62</span></p>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6" md={3}>
-              <Card
-                className="my-2"
-                inverse
-                style={{
-                  width: "auto",
-                  background:'#4caf0f',
-                  padding: "5px",
-                  border: "none",
-                  height:'50px'
-                }}
-              >
-                <CardBody style={{display:'flex'}}>
-                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการขนาดเล็ก <span>85,455,737.13</span></p>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6" md={3}>
-              <Card
-                className="my-2"
-                inverse
-                style={{
-                  width: "auto",
-                  background:'#4caf0f',
-                  padding: "5px",
-                  border: "none",
-                  height:'50px'
-                }}
-              >
-                <CardBody style={{display:'flex'}}>
-                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการขนาดกลาง <span>85,455,737.13</span></p>
-                </CardBody>
-              </Card>
-            </Col>
+              <canvas id="bar-chartsTextYear" style={{ height: '200px' ,marginLeft:'1px'}}></canvas>
 
-            <Col xs="6" md={3}>
-              <Card
-                className="my-2"
-                inverse
-                style={{
-                  width: "auto",
-                  background:'#4caf0f',
-                  padding: "5px",
-                  border: "none",
-                  height:'50px'
-                }}
-              >
-                <CardBody style={{display:'flex'}}>
-                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการเฉพาะอย่าง <span> 4,379,000.15</span></p>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6" md={3}>
-              <Card
-                className="my-2"
-                inverse
-                style={{
-                  width: "auto",
-                  background:'#4caf0f',
-                  padding: "5px",
-                  border: "none",
-                  height:'50px'
-                }}
-              >
-                <CardBody style={{display:'flex'}}>
-                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>ราชการ/องค์กร.. <span> 4,428,815.42</span></p>
-                </CardBody>
-              </Card>
-            </Col>
-         
-            <Col xs="6" md={3}>
-              <Card
-                className="my-2"
-                inverse
-                style={{
-                  width: "auto",
-                  background:'#4caf0f',
-                  padding: "5px",
-                  border: "none",
-                  height:'50px'
-                }}
-              >
-                <CardBody style={{display:'flex'}}>
-                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>ไฟฟ้าสาธารณะ <span> 286,445,000</span></p>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row> */}
+            )}
+          </div>
+          
         </div>
       </div>
       {/* </div> */}

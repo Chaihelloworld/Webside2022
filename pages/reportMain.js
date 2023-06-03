@@ -164,17 +164,20 @@ const Home = () => {
                   <MapGraph />
                 {/* </div> */}
               </Col>
+    
             </Row>
+            
           </Col>
-        </Row>
-        <Row style={{ marginRight: "1px", marginTop: "15px" }} ref={footerRef}>
-
           <Col xs="12" md={12}>
-            <div className=" break-words bg-white shadow-md ">
+            <div className=" break-words bg-white  ">
               <MapGraphWater />
             </div>
           </Col>
         </Row>
+        {/* <Row style={{ marginRight: "1px", marginTop: "5px" }} ref={footerRef}>
+
+ 
+        </Row> */}
       </Container>
     </>
   );

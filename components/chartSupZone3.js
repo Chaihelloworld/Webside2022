@@ -76,8 +76,8 @@ function CardBarChart() {
                 datasets: [
                   {
                     label: 'kg CO2 -eq',
-                    backgroundColor: "#4a5568",
-                    borderColor: "#4a5568",
+                    backgroundColor: "#0d82e9",
+                    borderColor: "#0d82e9",
                     data: [value_kgCO2_eq],
                     fill: false,
                     barThickness: 25,
@@ -86,8 +86,8 @@ function CardBarChart() {
                   {
                     label: "tonne CO2",
                     fill: false,
-                    backgroundColor: "#3182ce",
-                    borderColor: "#3182ce",
+                    backgroundColor: "#4a5568",
+                    borderColor: "#4a5568",
                     data: [value_tonene_CO2],
                     barThickness: 25,
                   }
@@ -141,7 +141,14 @@ function CardBarChart() {
                       ticks: {
                         fontColor: "#4a5568",
                       },
-                      display: false,
+                      min: 0,
+                      ticks: {
+                        callback: function (value, index, values) {
+                          console.log(value)
+                          return (value/1000000)+'m'; // For example, display with 2 decimal places
+                        },
+                      },
+                      display: true,
                       scaleLabel: {
                         display: false,
                         labelString: "kg",
@@ -189,18 +196,14 @@ function CardBarChart() {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6  rounded">
         <h6
           className="uppercase text-blueGray-400 mb-1 text-xs font-semibold "
           style={{ textAlign: "center" }}
         >
-          <br />
           ปริมาณก๊าซเรือนกระจก ปี 2564 ขอบเขตที่ 3
         </h6>
-
-        <br />
-
-        <div className="p-4 flex-auto">
+        <div className="p-4 flex-auto" >
           {/* Chart */}
           <div className="relative h-350-px">
             {loading ? (

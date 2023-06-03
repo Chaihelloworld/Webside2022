@@ -907,20 +907,20 @@ function CardBarChart() {
               datasets: [
                 {
                   label: "kg CO2 -eq",
-                  backgroundColor: "#4a5568",
-                  borderColor: "#4a5568",
+                  backgroundColor: "#bf97ff",
+                  borderColor: "#bf97ff",
                   data: data.KgCO2,
                   fill: false,
-                  barThickness: 15,
+                  barThickness: 25,
 
                 },
                 {
                   label: "tonne CO2",
                   fill: false,
-                  backgroundColor: "#3182ce",
-                  borderColor: "#3182ce",
+                  backgroundColor: "#4a5568",
+                  borderColor: "#4a5568",
                   data: data.tonene,
-                  barThickness: 15,
+                  barThickness: 25,
                 }
               ],
             },
@@ -971,6 +971,13 @@ function CardBarChart() {
                     scaleLabel: {
                       display: false,
                       // labelString: "Value",
+                    },
+                    min: 0,
+                    ticks: {
+                      callback: function (value, index, values) {
+                        console.log(value)
+                        return (value/1000000)+'m'; // For example, display with 2 decimal places
+                      },
                     },
                   },
                 ],
@@ -1073,12 +1080,11 @@ function CardBarChart() {
 
   return (
     <>
- <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
+ <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6  ">
         <h6
           className="uppercase text-blueGray-400 mb-1 text-xs font-semibold "
           style={{textAlign: "center" }}
         >
-          <br />
           ปริมาณก๊าซเรือนกระจก ปี 2564
         </h6>
         {/*<div className="rounded-t mb-0 px-4 py-3 bg-transparent">
@@ -1116,7 +1122,6 @@ function CardBarChart() {
         </Col>
 
       </Row> */}
-      <br />
       <div  style={{ display: 'flex', justifyContent: 'flex-end'}}>
 
       {/*   <ButtonGroup>
@@ -1176,12 +1181,12 @@ function CardBarChart() {
           {/* <canvas id="bar-chartsText"></canvas> */}
 
         </div>
-       <Row style={{ display: "flex" }}>
+       {/* <Row style={{ display: "flex" }}>
         <Col>
         <ListChart />
 
         </Col>
-       </Row>
+       </Row> */}
             {/*  <Col xs="6" md={3}>
               <Card
                 className="my-2"

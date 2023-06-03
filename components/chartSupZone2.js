@@ -56,20 +56,33 @@ function CardBarChart() {
           elec_tonene_CO2 = 0,
           elecPublice_kgCO2_eq = 0,
           elecPublice_tonene_CO2 = 0,
+          elecType2_kgCO2_eq = 0,
+          elecType2_tonene_CO2 = 0,
+          elecType3_kgCO2_eq = 0,
+          elecType3_tonene_CO2 = 0,
           value_kgCO2_eq = 0,
           value_tonene_CO2 = 0;
 
         const dataPAI = result.data.data;
         if (result.data?.success) {
           let data = result.data.data;
+          console.log('----------------------------------------------------',data.zone_2)
           if (rSelected == "2") {
+            
             elec_kgCO2_eq = data.zone_2.gas.kgCO2_eq,
             elec_tonene_CO2 = data.zone_2.gas.tonene_CO2,
             elecPublice_kgCO2_eq = data.zone_2.gas_1.kgCO2_eq,
-            elecPublice_tonene_CO2 = data.zone_2.gas_1.tonene_CO2
+            elecPublice_tonene_CO2 = data.zone_2.gas_1.tonene_CO2,
+
+            elecType2_kgCO2_eq = data.zone_2.gas_2.kgCO2_eq?data.zone_2.gas_2.kgCO2_eq:0,
+            elecType2_tonene_CO2 = data.zone_2.gas_2.tonene_CO2? data.zone_2.gas_2.tonene_CO2:0,
+            elecType3_kgCO2_eq = data.zone_2.gas_3.kgCO2_eq ?data.zone_2.gas_3.kgCO2_eq:0,
+            elecType3_tonene_CO2 = data.zone_2.gas_3.tonene_CO2 ?  data.zone_2.gas_3.tonene_CO2 :0
             let labels = [
               'พลังงานไฟฟ้า',
               'ไฟสาธารณะ',
+              'ธุรกิจการค้าและหน่วยงาน',
+              'พลังงานไฟฟ้าอุตสาหกรรม',
             ]
             let configs = {
               type: "bar",
@@ -78,9 +91,9 @@ function CardBarChart() {
                 datasets: [
                   {
                     label: 'kg CO2 -eq',
-                    backgroundColor: "#4a5568",
-                    borderColor: "#4a5568",
-                    data: [elec_kgCO2_eq, elecPublice_kgCO2_eq],
+                    backgroundColor: "#efdd03",
+                    borderColor: "#efdd03",
+                    data: [elec_kgCO2_eq, elecPublice_kgCO2_eq,elecType2_kgCO2_eq,elecType3_kgCO2_eq],
                     fill: false,
                     barThickness: 15,
 
@@ -88,9 +101,9 @@ function CardBarChart() {
                   {
                     label: "tonne CO2",
                     fill: false,
-                    backgroundColor: "#3182ce",
-                    borderColor: "#3182ce",
-                    data: [elec_tonene_CO2, elecPublice_tonene_CO2],
+                    backgroundColor: "#4a5568",
+                    borderColor: "#4a5568",
+                    data: [elec_tonene_CO2, elecPublice_tonene_CO2,elecType2_tonene_CO2,elecType3_tonene_CO2],
                     barThickness: 15,
                   }
                 ],
@@ -143,7 +156,22 @@ function CardBarChart() {
                       ticks: {
                         fontColor: "#4a5568",
                       },
-                      display: false,
+                      display: true,
+                      min: 0,
+                      min: 0, // Set the minimum value for the y-axis
+                      max: 200000000, // Set the maximum value for the y-axis
+                      ticks: {
+                        callback: function (value, index, values) {
+                          console.log(value)
+                          return (value/1000000)+'m'; // For example, display with 2 decimal places
+                        },
+                        beginAtZero: true,
+                        autoSkip: true, // Enable automatic skipping of x-axis labels
+                        maxTicksLimit: 5, // Maximum number of visible ticks on the x-axis
+                        // beginAtZero: true,
+                        stepSize: 20000000 
+                      
+                      },
                       scaleLabel: {
                         display: false,
                         labelString: "kg",
@@ -193,7 +221,7 @@ function CardBarChart() {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 rounded">
         <h6
           className="uppercase text-blueGray-400 mb-1 text-xs font-semibold "
           style={{ textAlign: "center" }}
@@ -204,9 +232,9 @@ function CardBarChart() {
 
         <br />
 
-        <div className="p-4 flex-auto">
+        <div className="p-4 flex-auto" >
           {/* Chart */}
-          <div className="relative h-350-px">
+          <div className="relative h-350-px" style={{marginTop: '-30px'}}>
             {loading ? (
               <>loading .. . </>
             ) : (
