@@ -122,11 +122,11 @@ function ChartSupType1() {
           <br />
           การไฟฟ้าและเชื้อเพลิงในครัวเรือน ปี 2564
         </h6>
-        <div className="p-4 flex-auto    " style={{height:"590px"}}>
+        <div className="p-4 flex-auto    ">
           <div className="relative h-450-px">
             <canvas id="bar-chartBAR"></canvas>
           </div>
-          <Row style={{ display: "flex" }}>
+          <Row style={{ display: "flex" ,marginTop: '50px'}}>
             <Col xs="6" md={3}>
               <Card
                 className="my-2"

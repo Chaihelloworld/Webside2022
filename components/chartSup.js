@@ -10,6 +10,12 @@ import axios from 'axios';
 import { object } from "yup";
 import { RiContrastDropLine, RiH2 } from "react-icons/ri";
 import { emit } from "process";
+import {
+  Card,
+  CardBody,
+} from "reactstrap";
+
+import ListChart from "./listChart";
 
 function CardBarChart() {
 
@@ -69,7 +75,7 @@ function CardBarChart() {
                   borderColor: "#4a5568",
                   data: [KgCo2Three, KgCo2Two, KgCo2One],
                   fill: false,
-                  barThickness: 40,
+                  barThickness: 15,
 
                 },
                 {
@@ -78,7 +84,7 @@ function CardBarChart() {
                   backgroundColor: "#3182ce",
                   borderColor: "#3182ce",
                   data: [tonneThree, tonneTwo, tonneOne],
-                  barThickness: 40,
+                  barThickness: 15,
                 }
               ],
             },
@@ -130,9 +136,9 @@ function CardBarChart() {
                     ticks: {
                       fontColor: "#4a5568",
                     },
-                    display: true,
+                    display: false,
                     scaleLabel: {
-                      display: true,
+                      display: false,
                       labelString: "kg",
                     },
                     gridLines: {
@@ -245,7 +251,7 @@ function CardBarChart() {
                     borderColor: "#4a5568",
                     data: [gas_h_kgCO2_eq, gas_hi_kgCO2_eq, d_cell_kgCO2_eq, bensin_kgCO2_eq, gusohal_91_kgCO2_eq, gusohal_95_kgCO2_eq, gusohal_e20_kgCO2_eq, gusohal_e85_kgCO2_eq, bio_dcell_kgCO2_eq, lpg_kgCO2_eq, ngv_kgCO2_eq, water_b_kgCO2_eq],
                     fill: false,
-                    barThickness: 40,
+                    barThickness: 15,
 
                   },
                   {
@@ -254,7 +260,7 @@ function CardBarChart() {
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
                     data: [gas_h_tonene_CO2, gas_hi_tonene_CO2, d_cell_tonene_CO2, bensin_tonene_CO2, gusohal_91_tonene_CO2, gusohal_95_tonene_CO2, gusohal_e20_tonene_CO2, gusohal_e85_tonene_CO2, bio_dcell_tonene_CO2, lpg_tonene_CO2, ngv_tonene_CO2, water_b_tonene_CO2],
-                    barThickness: 40,
+                    barThickness: 15,
                   }
                 ],
               },
@@ -284,12 +290,10 @@ function CardBarChart() {
                 scales: {
                   xAxes: [
                     {
-                      ticks: {
-                        fontColor: "#4a5568",
-                      },
-                      display: true,
+                      display: false,
                       scaleLabel: {
                         display: false,
+                        // labelString: "Month",
                       },
                       gridLines: {
                         borderDash: [2],
@@ -303,25 +307,53 @@ function CardBarChart() {
                   ],
                   yAxes: [
                     {
-                      ticks: {
-                        fontColor: "#4a5568",
-                      },
                       display: true,
                       scaleLabel: {
-                        display: true,
-                        labelString: "kg",
-                      },
-                      gridLines: {
-                        borderDash: [2],
-                        drawBorder: false,
-                        borderDashOffset: [2],
-                        color: "rgba(33, 37, 41, 0.2)",
-                        zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                        zeroLineBorderDash: [2],
-                        zeroLineBorderDashOffset: [2],
+                        display: false,
+                        // labelString: "Value",
                       },
                     },
                   ],
+                  // xAxes: [
+                  //   {
+                  //     ticks: {
+                  //       fontColor: "#4a5568",
+                  //     },
+                  //     display: true,
+                  //     scaleLabel: {
+                  //       display: false,
+                  //     },
+                  //     gridLines: {
+                  //       borderDash: [2],
+                  //       borderDashOffset: [2],
+                  //       color: "rgba(33, 37, 41, 0.3)",
+                  //       zeroLineColor: "rgba(33, 37, 41, 0.3)",
+                  //       zeroLineBorderDash: [2],
+                  //       zeroLineBorderDashOffset: [2],
+                  //     },
+                  //   },
+                  // ],
+                  // yAxes: [
+                  //   {
+                  //     ticks: {
+                  //       fontColor: "#4a5568",
+                  //     },
+                  //     display: false,
+                  //     scaleLabel: {
+                  //       display: false,
+                  //       labelString: "kg",
+                  //     },
+                  //     gridLines: {
+                  //       borderDash: [2],
+                  //       drawBorder: false,
+                  //       borderDashOffset: [2],
+                  //       color: "rgba(33, 37, 41, 0.2)",
+                  //       zeroLineColor: "rgba(33, 37, 41, 0.15)",
+                  //       zeroLineBorderDash: [2],
+                  //       zeroLineBorderDashOffset: [2],
+                  //     },
+                  //   },
+                  // ],
                 },
               },
             };
@@ -355,7 +387,7 @@ function CardBarChart() {
                     borderColor: "#4a5568",
                     data: [elec_kgCO2_eq, elecPublice_kgCO2_eq],
                     fill: false,
-                    barThickness: 40,
+                    barThickness: 15,
 
                   },
                   {
@@ -364,7 +396,7 @@ function CardBarChart() {
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
                     data: [elec_tonene_CO2, elecPublice_tonene_CO2],
-                    barThickness: 40,
+                    barThickness: 15,
                   }
                 ],
               },
@@ -416,9 +448,9 @@ function CardBarChart() {
                       ticks: {
                         fontColor: "#4a5568",
                       },
-                      display: true,
+                      display: false,
                       scaleLabel: {
-                        display: true,
+                        display: false,
                         labelString: "kg",
                       },
                       gridLines: {
@@ -457,7 +489,7 @@ function CardBarChart() {
                     borderColor: "#4a5568",
                     data: [value_kgCO2_eq],
                     fill: false,
-                    barThickness: 40,
+                    barThickness: 15,
 
                   },
                   {
@@ -466,7 +498,7 @@ function CardBarChart() {
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
                     data: [value_tonene_CO2],
-                    barThickness: 40,
+                    barThickness: 15,
                   }
                 ],
               },
@@ -518,9 +550,9 @@ function CardBarChart() {
                       ticks: {
                         fontColor: "#4a5568",
                       },
-                      display: true,
+                      display: false,
                       scaleLabel: {
-                        display: true,
+                        display: false,
                         labelString: "kg",
                       },
                       gridLines: {
@@ -568,7 +600,7 @@ function CardBarChart() {
                     borderColor: "#4a5568",
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     fill: false,
-                    barThickness: 40,
+                    barThickness: 15,
 
                   },
                   {
@@ -577,7 +609,7 @@ function CardBarChart() {
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
                     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    barThickness: 40,
+                    barThickness: 15,
                   }
                 ],
               },
@@ -629,9 +661,9 @@ function CardBarChart() {
                       ticks: {
                         fontColor: "#4a5568",
                       },
-                      display: true,
+                      display: false,
                       scaleLabel: {
-                        display: true,
+                        display: false,
                         labelString: "kg",
                       },
                       gridLines: {
@@ -670,7 +702,7 @@ function CardBarChart() {
                     borderColor: "#4a5568",
                     data: [0, 0],
                     fill: false,
-                    barThickness: 40,
+                    barThickness: 15,
 
                   },
                   {
@@ -679,7 +711,7 @@ function CardBarChart() {
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
                     data: [0, 0],
-                    barThickness: 40,
+                    barThickness: 15,
                   }
                 ],
               },
@@ -731,9 +763,9 @@ function CardBarChart() {
                       ticks: {
                         fontColor: "#4a5568",
                       },
-                      display: true,
+                      display: false,
                       scaleLabel: {
-                        display: true,
+                        display: false,
                         labelString: "kg",
                       },
                       gridLines: {
@@ -772,7 +804,7 @@ function CardBarChart() {
                     borderColor: "#4a5568",
                     data: [0],
                     fill: false,
-                    barThickness: 40,
+                    barThickness: 15,
 
                   },
                   {
@@ -781,7 +813,7 @@ function CardBarChart() {
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
                     data: [0],
-                    barThickness: 40,
+                    barThickness: 15,
                   }
                 ],
               },
@@ -833,9 +865,9 @@ function CardBarChart() {
                       ticks: {
                         fontColor: "#4a5568",
                       },
-                      display: true,
+                      display: false,
                       scaleLabel: {
-                        display: true,
+                        display: false,
                         labelString: "kg",
                       },
                       gridLines: {
@@ -879,7 +911,7 @@ function CardBarChart() {
                   borderColor: "#4a5568",
                   data: data.KgCO2,
                   fill: false,
-                  barThickness: 40,
+                  barThickness: 15,
 
                 },
                 {
@@ -888,7 +920,7 @@ function CardBarChart() {
                   backgroundColor: "#3182ce",
                   borderColor: "#3182ce",
                   data: data.tonene,
-                  barThickness: 40,
+                  barThickness: 15,
                 }
               ],
             },
@@ -918,12 +950,10 @@ function CardBarChart() {
               scales: {
                 xAxes: [
                   {
-                    ticks: {
-                      fontColor: "#4a5568",
-                    },
-                    display: true,
+                    display: false,
                     scaleLabel: {
                       display: false,
+                      // labelString: "Month",
                     },
                     gridLines: {
                       borderDash: [2],
@@ -937,25 +967,53 @@ function CardBarChart() {
                 ],
                 yAxes: [
                   {
-                    ticks: {
-                      fontColor: "#4a5568",
-                    },
                     display: true,
                     scaleLabel: {
-                      display: true,
-                      labelString: "kg",
-                    },
-                    gridLines: {
-                      borderDash: [2],
-                      drawBorder: false,
-                      borderDashOffset: [2],
-                      color: "rgba(33, 37, 41, 0.2)",
-                      zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                      zeroLineBorderDash: [2],
-                      zeroLineBorderDashOffset: [2],
+                      display: false,
+                      // labelString: "Value",
                     },
                   },
                 ],
+                // xAxes: [
+                //   {
+                //     ticks: {
+                //       fontColor: "#4a5568",
+                //     },
+                //     display: true,
+                //     scaleLabel: {
+                //       display: false,
+                //     },
+                //     gridLines: {
+                //       borderDash: [2],
+                //       borderDashOffset: [2],
+                //       color: "rgba(33, 37, 41, 0.3)",
+                //       zeroLineColor: "rgba(33, 37, 41, 0.3)",
+                //       zeroLineBorderDash: [2],
+                //       zeroLineBorderDashOffset: [2],
+                //     },
+                //   },
+                // ],
+                // yAxes: [
+                //   {
+                //     ticks: {
+                //       fontColor: "#4a5568",
+                //     },
+                //     display: true,
+                //     scaleLabel: {
+                //       display: false,
+                //       labelString: "kg",
+                //     },
+                //     gridLines: {
+                //       borderDash: [2],
+                //       drawBorder: false,
+                //       borderDashOffset: [2],
+                //       color: "rgba(33, 37, 41, 0.2)",
+                //       zeroLineColor: "rgba(33, 37, 41, 0.15)",
+                //       zeroLineBorderDash: [2],
+                //       zeroLineBorderDashOffset: [2],
+                //     },
+                //   },
+                // ],
               },
             },
           };
@@ -985,7 +1043,7 @@ function CardBarChart() {
 
   useEffect(() => {
     if (year) {
-      fetchData(year);
+      fetchData(2022);
     }
 
   }, [year, rSelected]);
@@ -1015,12 +1073,19 @@ function CardBarChart() {
 
   return (
     <>
-      {/* <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-        <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
+ <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-sm rounded">
+        <h6
+          className="uppercase text-blueGray-400 mb-1 text-xs font-semibold "
+          style={{textAlign: "center" }}
+        >
+          <br />
+          ปริมาณก๊าซเรือนกระจก ปี 2564
+        </h6>
+        {/*<div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-blueGray-400 mb-1 text-xs font-semibold"> */}
-
+{/* 
       <Row style={{ display: 'flex', justifyContent: 'flex-end'}}>
 
         <Col xs="12" md={4}>
@@ -1032,15 +1097,10 @@ function CardBarChart() {
               type="select"
               style={{ borderColor: '#0d6efd', color: '#0d6efd' }}
               onChange={(e) => {
-                // handleChange(e);
                 setYear(e.target.value)
                 setToggle(true)
               }}
-            // disabled={true}
             >
-              {/* <option >
-                         เลือก
-                        </option> */}
               <option defaultValue={true} value={"2023"} >
                 ปริมาณก๊าซเรือนกระจก 2566
               </option>
@@ -1052,15 +1112,14 @@ function CardBarChart() {
               </option>
 
             </Input>
-            {/* {value} */}
           </Form>
         </Col>
 
-      </Row>
+      </Row> */}
       <br />
       <div  style={{ display: 'flex', justifyContent: 'flex-end'}}>
 
-        <ButtonGroup>
+      {/*   <ButtonGroup>
           <Button
             color="primary"
             outline
@@ -1097,7 +1156,7 @@ function CardBarChart() {
             active={rSelected === '3'}
           >
             ขอบเขตที่ 3
-          </Button>
+          </Button> 
           <Button
             color="primary"
             outline
@@ -1107,7 +1166,7 @@ function CardBarChart() {
           >
             ข้อมูลรายปี
           </Button>
-        </ButtonGroup>
+        </ButtonGroup>*/}
       </div>
 
       <div className="p-4 flex-auto">
@@ -1117,6 +1176,118 @@ function CardBarChart() {
           {/* <canvas id="bar-chartsText"></canvas> */}
 
         </div>
+       <Row style={{ display: "flex" }}>
+        <Col>
+        <ListChart />
+
+        </Col>
+       </Row>
+            {/*  <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>บ้านอยู่อาศัย <span>110,340,840.62</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการขนาดเล็ก <span>85,455,737.13</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการขนาดกลาง <span>85,455,737.13</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>กิจการเฉพาะอย่าง <span> 4,379,000.15</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>ราชการ/องค์กร.. <span> 4,428,815.42</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+         
+            <Col xs="6" md={3}>
+              <Card
+                className="my-2"
+                inverse
+                style={{
+                  width: "auto",
+                  background:'#4caf0f',
+                  padding: "5px",
+                  border: "none",
+                  height:'50px'
+                }}
+              >
+                <CardBody style={{display:'flex'}}>
+                  <p style={{fontSize:'10px',marginTop: '-12px',fontWeight:550,textAlign: 'center'}}>ไฟฟ้าสาธารณะ <span> 286,445,000</span></p>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row> */}
+      </div>
       </div>
       {/* </div> */}
     </>

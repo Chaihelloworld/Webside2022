@@ -24,15 +24,18 @@ import Chart from "../components/chart";
 import ListChart from "../components/listChart";
 import { BsMegaphone } from "react-icons/bs";
 import { useCookies } from "react-cookie";
+import ChartSupZone2 from "../components/chartSupZone2";
+import ChartSupZone3 from "../components/chartSupZone3";
 
-import ChartSupType1 from "../components/chartSupType1";
+import ChartSupYear from "../components/chartSupYear";
+
+import ChartSupZone1 from "../components/chartSupZone1";
 import TypeCard2 from "../components/TypeCard2";
 import Circle from "../components/circle";
 import Events from "../components/event";
 import MapGraph from "../components/MapGraph";
 import MapGraphWater from "../components/MapGraphWater";
-import React, { useRef } from 'react';
-
+import React, { useRef } from "react";
 
 const Home = () => {
   const styles = {
@@ -100,24 +103,24 @@ const Home = () => {
 
   const footerRef = useRef(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     let data = localStorage.getItem("stateClick");
-    if(data !== '1'){
-        return;
+    if (data !== "1") {
+      return;
     }
     if (footerRef && footerRef.current) {
-        // Focus on the footer element
-        footerRef.current.focus();
-      }
-  },[])
+      // Focus on the footer element
+      footerRef.current.focus();
+    }
+  }, []);
 
-//   const handleClick = () => {
-//     // Check if the footer reference is available
-//     if (footerRef && footerRef.current) {
-//       // Focus on the footer element
-//       footerRef.current.focus();
-//     }
-//   };
+  //   const handleClick = () => {
+  //     // Check if the footer reference is available
+  //     if (footerRef && footerRef.current) {
+  //       // Focus on the footer element
+  //       footerRef.current.focus();
+  //     }
+  //   };
 
   return (
     <>
@@ -127,32 +130,60 @@ const Home = () => {
           <Login check={setCheck} />
         </ModalBody>
       </Modal>
-      <div className=".container" style={{padding:30}}>
-      <div
-            style={{
-              border: "2px solid #01459a",
-              background: "#01459a",
-              marginBottom: 25,
-            }}
-          ></div>
+      <div className=".container" style={{ padding: 30 }}>
+        <div
+          style={{
+            border: "2px solid #01459a",
+            background: "#01459a",
+            marginBottom: 25,
+          }}
+        ></div>
         <br />
         <Row style={{ marginRight: "1px" }}>
-        
-          <Col xs="12" md={8}>
+          <Col xs="12" md={6}>
             <div className=" break-words bg-white shadow-sm ">
               <ChartSup />
             </div>
           </Col>
           <Col
             xs="12"
-            md={4}
+            md={6}
             style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
           >
-            <ListChart />
-            {/* <Circle /> */}
+            <Row>
+              <Col
+                xs="12"
+                md={6}
+                style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
+              >
+                                <ChartSupYear />
 
+              </Col>
+              <Col
+                xs="12"
+                md={6}
+                style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
+              >
+                                <ChartSupZone1 />
+
+                {/* <Circle /> */}
+              </Col>
+              <Col
+                xs="12"
+                md={6}
+                style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
+              >
+                <ChartSupZone2 />
+              </Col>
+              <Col
+                xs="12"
+                md={6}
+                style={stateCokie ? { zIndex: -1 } : { zIndex: 0 }}
+              >
+                <ChartSupZone3 />
+              </Col>
+            </Row>
           </Col>
-
         </Row>
         {/* <Row style={{ marginRight: "1px",marginTop:'15px' }}>
         <Col xs="12" md={6}>
@@ -181,9 +212,7 @@ const Home = () => {
           </Col>
       
         </Row> */}
-        
       </div>
-          
     </>
   );
 };
