@@ -64,7 +64,8 @@ function CardBarChart() {
           let data = result.data.data;
           if (rSelected == "3") {
 
-
+            value_kgCO2_eq = data.zone_3.gas.kgCO2_eq
+            value_tonene_CO2 = data.zone_3.gas.tonene_CO2
             let labels = [
               'ปริมาณขยะ',
             ]
@@ -77,9 +78,9 @@ function CardBarChart() {
                     label: 'kg CO2 -eq',
                     backgroundColor: "#4a5568",
                     borderColor: "#4a5568",
-                    data: [0],
+                    data: [value_kgCO2_eq],
                     fill: false,
-                    barThickness: 15,
+                    barThickness: 25,
 
                   },
                   {
@@ -87,8 +88,8 @@ function CardBarChart() {
                     fill: false,
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
-                    data: [0],
-                    barThickness: 15,
+                    data: [value_tonene_CO2],
+                    barThickness: 25,
                   }
                 ],
               },

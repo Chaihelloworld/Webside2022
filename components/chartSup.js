@@ -896,9 +896,9 @@ function CardBarChart() {
           let data = result.data.data
           console.log(data.KgCO2)
           let labels = [
-            'ขอบเขตที่ 1',
-            'ขอบเขตที่ 2',
-            'ขอบเขตที่ 3'
+            'ขอบเขต 1',
+            'ขอบเขต 2',
+            'ขอบเขต 3'
           ]
           let configs = {
             type: "bar",
@@ -950,7 +950,7 @@ function CardBarChart() {
               scales: {
                 xAxes: [
                   {
-                    display: false,
+                    display: true,
                     scaleLabel: {
                       display: false,
                       // labelString: "Month",

@@ -63,6 +63,10 @@ function CardBarChart() {
         if (result.data?.success) {
           let data = result.data.data;
           if (rSelected == "2") {
+            elec_kgCO2_eq = data.zone_2.gas.kgCO2_eq,
+            elec_tonene_CO2 = data.zone_2.gas.tonene_CO2,
+            elecPublice_kgCO2_eq = data.zone_2.gas_1.kgCO2_eq,
+            elecPublice_tonene_CO2 = data.zone_2.gas_1.tonene_CO2
             let labels = [
               'พลังงานไฟฟ้า',
               'ไฟสาธารณะ',
@@ -76,7 +80,7 @@ function CardBarChart() {
                     label: 'kg CO2 -eq',
                     backgroundColor: "#4a5568",
                     borderColor: "#4a5568",
-                    data: [0, 0],
+                    data: [elec_kgCO2_eq, elecPublice_kgCO2_eq],
                     fill: false,
                     barThickness: 15,
 
@@ -86,7 +90,7 @@ function CardBarChart() {
                     fill: false,
                     backgroundColor: "#3182ce",
                     borderColor: "#3182ce",
-                    data: [0, 0],
+                    data: [elec_tonene_CO2, elecPublice_tonene_CO2],
                     barThickness: 15,
                   }
                 ],
