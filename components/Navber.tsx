@@ -148,6 +148,21 @@ const Example: FC<Props> = ({ setStated }) => {
                     Carbon Map
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink
+                    active
+                    href="/reportMain"
+                    style={{
+                      color: "#797979",
+                      transition: "0.4s ease",
+                      letterSpacing: "2px",
+                      textAlign: "center",
+                      fontWeight: 500,
+                    }}
+                  >
+                    พื้นฐานเมือง
+                  </NavLink>
+                </NavItem>
               </>
             ) : (
               <>
@@ -313,6 +328,21 @@ const Example: FC<Props> = ({ setStated }) => {
                 Carbon Map
               </NavLink>
             </NavItem>
+            <NavItem>
+                  <NavLink
+                    active
+                    href="/reportMain"
+                    style={{
+                      color: "#797979",
+                      transition: "0.4s ease",
+                      letterSpacing: "2px",
+                      textAlign: "center",
+                      fontWeight: 500,
+                    }}
+                  >
+                    พื้นฐานเมือง
+                  </NavLink>
+                </NavItem>
             {!state && (
               <NavItem>
                 <NavLink
